@@ -1,0 +1,163 @@
+name: greenhub
+description: "A new Flutter project."
+publish_to: 'none'
+version: 1.0.0+1
+environment:
+  sdk: ^3.9.2
+
+dependencies:
+
+  flutter:
+    sdk: flutter
+  flutter_localizations:
+    sdk: flutter
+  cupertino_icons: ^1.0.8
+  dio: ^5.7.0
+  rxdart: ^0.28.0
+  flutter_bloc: ^9.1.1
+  device_preview:
+  intl: ^0.20.2
+  pretty_dio_logger: ^1.4.0
+  open_filex: ^4.7.0
+  path_provider: ^2.1.5
+  flutter_svg: ^2.0.11
+  pdf: ^3.11.1
+  printing: ^5.13.2
+  http: ^1.2.1
+  pin_code_text_field: ^1.8.0
+  flutter_staggered_animations: ^1.1.1
+  cached_network_image: ^3.4.1
+  url_launcher: ^6.3.1
+  firebase_core: ^4.0.0
+  firebase_messaging: ^16.0.0
+
+  image_picker: ^1.2.1
+  shimmer: ^3.0.0
+  app_settings: ^6.1.1
+  hive_flutter: ^1.1.0
+  permission_handler: ^12.0.1
+  share_plus: ^12.0.0
+  pin_code_fields: ^8.0.1
+  modal_bottom_sheet: ^3.0.0
+  expandable: ^5.0.1
+  fluttertoast: ^9.0.0
+  equatable: ^2.0.7
+  iconsax: ^0.0.8
+  flutter_animate: ^4.5.2
+  flutter_form_builder: ^10.0.1
+  photo_view: ^0.15.0
+  expandable_text: ^2.3.0
+  dio_cache_interceptor: ^4.0.3
+  google_fonts: ^6.2.1
+  responsive_builder: ^0.7.1
+  dartz: ^0.10.1
+  flutter_widget_from_html: ^0.17.0
+  flutter_staggered_grid_view: ^0.7.0
+  collection: ^1.19.0
+  internet_connection_checker: ^3.0.1
+  flutter_native_splash: ^2.2.16
+  loader_overlay: ^5.0.0
+  hexcolor: ^3.0.1
+  device_info_plus: ^12.1.0
+  package_info_plus: ^9.0.0
+  lottie: ^3.3.1
+  go_router: ^17.0.1
+  glass_kit: ^4.0.1
+  smooth_page_indicator: ^1.1.0
+  flutter_secure_storage: ^9.2.4
+  timeago: ^3.7.1
+  dotted_border: ^3.0.1
+  webview_flutter: ^4.9.0
+  carousel_slider: ^5.0.0
+  flutter_sliding_toast: ^1.5.2
+  file_picker: ^10.3.8
+  flutter_spinkit: ^5.2.2
+  loading_animation_widget: ^1.3.0
+  flutter_keyboard_visibility: ^6.0.0
+  video_player: ^2.10.1
+  geolocator: ^13.0.2
+  geocoding: ^3.0.0
+  pusher_channels_flutter: ^2.2.1
+  google_maps_flutter: ^2.5.0
+  flutter_polyline_points: ^2.0.0
+  timeline_tile: ^2.0.0
+  flutter_local_notifications: ^19.5.0
+  toastification: ^2.3.0
+  names_launcher: ^0.0.2
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+  flutter_lints: ^5.0.0
+  flutter_launcher_icons: ^0.14.4
+
+
+flutter_launcher_icons:
+  android: true
+  ios: true
+  image_path_android: "assets/images/app.png"
+  image_path_ios: "assets/images/app.png"
+  adaptive_icon_background: "assets/images/app.png" # only available for Android 8.0 devices and above
+  adaptive_icon_foreground: "assets/images/app.png" # only available for Android 8.0 devices and above
+  adaptive_icon_monochrome: "assets/images/app.png" # only available for Android 13 devices and above
+  min_sdk_android: 19 # android min sdk min:16, default 21
+  background_color_ios: "#FFFFFF"
+  adaptive_icon_background_ios: "#FFFFFF"
+  background_color_android: "#FFFFFF"
+ 
+  remove_alpha_ios: true
+  web:
+    generate: true
+    image_path: "assets/images/app.png"
+  windows:
+    generate: true
+    image_path: "assets/images/app.png"
+    icon_size: 48
+  macos:
+    generate: true
+    image_path: "assets/images/app.png"
+
+names_launcher:
+  name: "ShipHub"
+  platforms:
+    android:
+      enable: true
+    ios:
+      enable: true
+
+flutter:
+  uses-material-design: true
+
+  # To add assets to your application, add an assets section, like this:
+  assets:
+    - assets/images/
+    - assets/svgs/
+    - assets/langs/
+    - assets/
+
+  # An image asset can refer to one or more resolution-specific "variants", see
+  # https://flutter.dev/to/resolution-aware-images
+
+  # For details regarding adding assets from package dependencies, see
+  # https://flutter.dev/to/asset-from-package
+
+ 
+  fonts:
+    - family: MadaniArabic
+      fonts:
+        - asset: assets/fonts/alfont_com_Madani-Arabic-Semi-Bold.ttf
+          weight: 600
+  # example:
+  # fonts:
+  #   - family: Schyler
+  #     fonts:
+  #       - asset: fonts/Schyler-Regular.ttf
+  #       - asset: fonts/Schyler-Italic.ttf
+  #         style: italic
+  #   - family: Trajan Pro
+  #     fonts:
+  #       - asset: fonts/TrajanPro.ttf
+  #       - asset: fonts/TrajanPro_Bold.ttf
+  #         weight: 700
+  #

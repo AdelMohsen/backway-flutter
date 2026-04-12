@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "818087177858",
+    "project_id": "shiphubapp-94ddf",
+    "storage_bucket": "shiphubapp-94ddf.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:818087177858:android:21771ebf13e895602d8e9b",
+        "android_client_info": {
+          "package_name": "fvs.shiphub.user"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCiCc4rzXsSQZ4nBMPzg9c_gJiVJ91pNlo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

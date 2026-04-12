@@ -1,0 +1,3 @@
+class EmptyEntity {
+  const EmptyEntity();
+}

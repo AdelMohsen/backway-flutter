@@ -1,0 +1,33 @@
+class Routes {
+  static const APP = 'APP';
+  static const SPLASH = 'SPLASH';
+  static const ON_BOARDING_SCREEN = 'ON_BOARDING_SCREEN';
+  static const NAV_LAYOUT = 'NAV_LAYOUT';
+  static const CHOICE_ACCOUNT = 'choice_account';
+  static const APP_SETTINGS = 'APP_SETTINGS';
+  static const REGISTER = 'REGISTER';
+  static const REGISTER_OR_LOGIN = 'REGISTER_OR_LOGIN';
+  static const LOGIN = 'LOGIN';
+  static const EDIT_PROFILE = 'EDIT_PROFILE';
+  static const String ABOUT = '/about';
+  static const String CONTACT_US = '/contact-us';
+  static const String WALLET = '/wallet';
+  static const String RECHARGE = '/recharge';
+  static const String PAYMENT = '/payment';
+  static const String VERIFY_CODE = '/verify-code';
+  static const String ADDRESS = '/address';
+  static const String EDIT_ADDRESS = '/edit-address';
+  static const String ADD_ADDRESS = '/add-address';
+  static const String orders = '/orders';
+  static const String CreateNewOrderScreen = '/CreateNewOrderScreen';
+  static const String ORDER_TRACKING = '/ORDER_TRACKING';
+  static const String ORDER_DETAILS = '/order-details';
+  static const String DOWNLOAD_INVOICE = '/download-invoice';
+  static const String MESSAGES = '/messages';
+  static const String NEGOTIATION_OFFERS = '/negotiation-offers';
+  static const String LANGUAGE = '/language';
+  static const String FILE_COMPLAINT = '/file-complaint';
+  static const String RATE_NEGOTIATION = '/rate-negotiation';
+  static const String NOTIFICATIONS = '/notifications';
+  static const String AVALABLE_VECHILE = '/avalable_vechile';
+}
