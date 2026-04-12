@@ -48,3 +48,7 @@ abstract class AppColors {
   static const Color kDarkYellow = Color(0xFFFFB300);
   static const Color teal = Color(0xFF009688);
 }
+
+class ColorsApp {
+  static const Color kPrimary = Color.fromRGBO(22, 51, 79, 1);
+}

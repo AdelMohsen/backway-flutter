@@ -114,7 +114,7 @@ class _AddAddressView extends StatelessWidget {
                           child: Center(
                             child: Text(
                               AppStrings.save.tr,
-                              style: AppTextStyles.ibmPlexSansSize18w600White,
+                              style: AppTextStyles.ibmPlexSansSize10w400,
                             ),
                           ),
                         ),

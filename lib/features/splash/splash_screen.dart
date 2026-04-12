@@ -8,7 +8,6 @@ import 'package:greenhub/core/navigation/routes.dart';
 import 'package:greenhub/core/shared/cache/cache_methods.dart';
 import 'package:greenhub/core/theme/colors/styles.dart';
 import 'package:greenhub/core/utils/widgets/misc/custom_scaffold_widget.dart';
-// استيراد ملف الترجمة
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({Key? key}) : super(key: key);
@@ -33,12 +32,12 @@ class _SplashScreenState extends State<SplashScreen> {
     final token = await CacheMethods.getToken();
 
     if (!isOnBoardingDone) {
-      if (mounted) context.goNamed(Routes.ON_BOARDING_SCREEN);
+      if (mounted) context.goNamed(Routes.LANGUAGE);
     } else {
       if (token != null && token.isNotEmpty) {
-        if (mounted) context.goNamed(Routes.NAV_LAYOUT);
+        if (mounted) context.goNamed(Routes.LANGUAGE);
       } else {
-        if (mounted) context.goNamed(Routes.CHOICE_ACCOUNT);
+        if (mounted) context.goNamed(Routes.LANGUAGE);
       }
     }
   }
@@ -60,49 +59,18 @@ class _SplashScreenState extends State<SplashScreen> {
           statusBarBrightness: Brightness.light,
         ),
         child: Container(
-          decoration: const BoxDecoration(
-            gradient: LinearGradient(
-              begin: Alignment.topLeft,
-              end: Alignment.bottomLeft,
-              colors: [
-                Color.fromRGBO(4, 131, 114, 1),
-                Color.fromRGBO(174, 207, 92, 1),
-              ],
-            ),
-          ),
+          decoration: const BoxDecoration(color: ColorsApp.kPrimary),
           child: Stack(
             children: [
-              // Lines at the bottom portion of the screen
               Positioned(
-                bottom: 20,
-                left: -30,
-                right: -10,
-                height: MediaQuery.of(context).size.height * 0.45,
-                child: Image.asset(
-                  "assets/images/line_splash.png",
-                  fit: BoxFit.fill,
-                ),
-              ),
-              Positioned(
-                bottom: -5,
-                left: -4,
-                right: -40,
-                height: MediaQuery.of(context).size.height * 0.45,
-                child: Image.asset(
-                  "assets/images/line_splash.png",
-                  fit: BoxFit.fill,
-                ),
-              ),
-              // Logo positioned in upper-center area
-              Positioned(
-                bottom: MediaQuery.of(context).size.height * 0.35,
+                bottom: MediaQuery.of(context).size.height * 0.40,
                 left: 0,
                 right: 0,
                 child: Center(
                   child: SvgPicture.asset(
-                    "assets/svgs/splash.svg",
-                    width: 200,
-                    height: 200,
+                    "assets/svgs/new/splash.svg",
+                    width: 147,
+                    height: 147,
                   ),
                 ),
               ),

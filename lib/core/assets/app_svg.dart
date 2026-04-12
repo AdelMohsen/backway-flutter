@@ -92,3 +92,12 @@ class AppSvg {
   static const String car = 'assets/svgs/car2.svg';
   static const String bell = 'assets/svgs/bell.svg';
 }
+
+class SvgImages {
+  static const String logo = 'assets/svgs/new/logo.svg';
+  static const String splash = 'assets/svgs/new/splash.svg';
+  static const String arFlag = 'assets/svgs/new/ar.svg';
+  static const String enFlag = 'assets/svgs/new/us.svg';
+  static const String frFlag = 'assets/svgs/new/fr.svg';
+  static const String back = 'assets/svgs/new/back.svg';
+}

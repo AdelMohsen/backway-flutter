@@ -32,7 +32,7 @@ import 'package:greenhub/features/messages/ui/pages/messages_screen.dart';
 import 'package:greenhub/features/notification/logic/cubit/notification_cubit.dart';
 import 'package:greenhub/features/notification/ui/pages/notifications_screen.dart';
 import 'package:greenhub/features/negotiation_offers/ui/pages/negotiation_offers.dart';
-import 'package:greenhub/features/language/ui/pages/language_screen.dart';
+import 'package:greenhub/features/choose_language/ui/pages/language_screen.dart';
 import 'package:greenhub/features/file_complaint/ui/pages/file_complaint_screen.dart';
 import 'package:greenhub/features/avalable_vechile/ui/pages/avalable_vechile_screen.dart';
 

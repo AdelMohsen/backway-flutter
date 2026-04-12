@@ -133,6 +133,7 @@ flutter:
   assets:
     - assets/images/
     - assets/svgs/
+    - assets/svgs/new/
     - assets/langs/
     - assets/
 
