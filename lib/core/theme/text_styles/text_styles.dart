@@ -272,3 +272,22 @@ abstract class AppTextStyles {
     color: AppColors.kWhite,
   );
 }
+
+abstract class Styles {
+  static TextStyle urbanistSize28w600White = GoogleFonts.urbanist(
+    fontSize: 28,
+    fontWeight: FontWeight.w700,
+    color: AppColors.kWhite,
+  );
+
+  static TextStyle urbanistSize16w600White = GoogleFonts.urbanist(
+    fontSize: 16,
+    fontWeight: FontWeight.w600,
+    color: AppColors.kWhite,
+  );
+  static TextStyle urbanistSize16w500White = GoogleFonts.urbanist(
+    fontSize: 16,
+    fontWeight: FontWeight.w500,
+    color: AppColors.kWhite,
+  );
+}

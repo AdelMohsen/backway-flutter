@@ -17,6 +17,8 @@ class MainAppBloc {
 
   String get globalLang => allTranslations.currentLanguage;
   bool get isArabic => globalLang == 'ar';
+  bool get isEnglish => globalLang == 'en';
+  bool get isFrench => globalLang == 'fr';
 
   // Setters for global token and user data
   set setGlobalToken(String? token) => _globalToken = token;
@@ -34,7 +36,7 @@ class MainAppBloc {
 
     // Only set language if one exists and is valid
     // Don't set default for first-time users - let ChoiceScreen handle it
-    if (lang.isNotEmpty && ['en', 'ar'].contains(lang)) {
+    if (lang.isNotEmpty && ['en', 'ar', 'fr'].contains(lang)) {
       await setLanguage(lang);
       cprint('Preferred Language: $lang');
     } else {

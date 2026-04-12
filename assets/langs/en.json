@@ -1,3 +1,9 @@
 {
-    "loginTitle": "Login"
+    "loginTitle": "Login",
+    "chooseLanguage": "Choose your language",
+    "selectPreferredLanguage": "Select your preferred language to use BackWay easily",
+    "english": "English",
+    "french": "French",
+    "arabic": "Arabic",
+    "continueText": "Continue"
 }

@@ -53,3 +53,9 @@ class AppImages {
   static const String mark3 = 'assets/images/mylocation.png';
   static const String offer = 'assets/images/offerIcon.png';
 }
+
+class ImagesApp {
+  static const String arFlag = 'assets/images/new/ss1.png';
+  static const String enFlag = 'assets/images/new/unn2.png';
+  static const String frFlag = 'assets/images/new/frr2.png';
+}

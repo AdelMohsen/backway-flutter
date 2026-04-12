@@ -51,4 +51,9 @@ abstract class AppColors {
 
 class ColorsApp {
   static const Color kPrimary = Color.fromRGBO(22, 51, 79, 1);
+  static const Color kTextGrey = Color.fromRGBO(173, 181, 191, 1);
+  static const Color kTextGrey2 = Color.fromRGBO(203, 203, 207, 1);
+  static const Color buttonColor = Color.fromRGBO(255, 169, 146, 1);
+  static const Color kDarkGrey = Color.fromRGBO(83, 85, 101, 1);
+  static const Color KorangePrimary = Color.fromRGBO(255, 111, 71, 1);
 }

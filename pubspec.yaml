@@ -136,6 +136,7 @@ flutter:
     - assets/svgs/new/
     - assets/langs/
     - assets/
+    - assets/images/new/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/to/resolution-aware-images

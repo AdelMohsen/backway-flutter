@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:greenhub/core/assets/app_images.dart';
 import 'package:greenhub/core/assets/app_svg.dart';
 import 'package:greenhub/core/shared/blocs/main_app_bloc.dart';
 import 'package:greenhub/core/theme/colors/styles.dart';
@@ -21,7 +22,7 @@ class LanguageScreen extends StatefulWidget {
 
 class _LanguageScreenState extends State<LanguageScreen> {
   // Get current language from mainAppBloc
-  String get selectedLanguage => mainAppBloc.isArabic ? 'ar' : 'en';
+  String get selectedLanguage => mainAppBloc.globalLang;
 
   Future<void> _changeLanguage(String langCode) async {
     await mainAppBloc.setLanguage(langCode);
@@ -45,23 +46,81 @@ class _LanguageScreenState extends State<LanguageScreen> {
       child: CustomScaffoldWidget(
         needAppbar: false,
         backgroundColor: ColorsApp.kPrimary,
-        child: Column(
-          children: [
-            SizedBox(height: 60),
-
-            Padding(
-              padding: EdgeInsetsGeometry.directional(end: 20),
-              child: SvgPicture.asset(SvgImages.logo),
+        child: SafeArea(
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 16),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const SizedBox(height: 25),
+                SvgPicture.asset(SvgImages.logo, height: 32),
+                const SizedBox(height: 52),
+                Center(
+                  child: Text(
+                    AppStrings.chooseLanguage.tr,
+                    style: Styles.urbanistSize28w600White,
+                  ),
+                ),
+                const SizedBox(height: 12),
+                Center(
+                  child: Text(
+                    AppStrings.selectPreferredLanguage.tr,
+                    textAlign: TextAlign.center,
+                    style: Styles.urbanistSize16w600White.copyWith(
+                      color: ColorsApp.kTextGrey,
+                    ),
+                  ),
+                ),
+                const SizedBox(height: 44),
+                LanguageOptionItem(
+                  title: AppStrings.english.tr,
+                  flagIcon: ImagesApp.enFlag,
+                  value: 'en',
+                  groupValue: selectedLanguage,
+                  onChanged: (val) => _changeLanguage(val!),
+                ),
+                const SizedBox(height: 16),
+                LanguageOptionItem(
+                  title: AppStrings.french.tr,
+                  flagIcon: ImagesApp.frFlag,
+                  value: 'fr',
+                  groupValue: selectedLanguage,
+                  onChanged: (val) => _changeLanguage(val!),
+                ),
+                const SizedBox(height: 16),
+                LanguageOptionItem(
+                  title: AppStrings.arabic.tr,
+                  flagIcon: ImagesApp.arFlag,
+                  value: 'ar',
+                  groupValue: selectedLanguage,
+                  onChanged: (val) => _changeLanguage(val!),
+                ),
+                const Spacer(),
+                SizedBox(
+                  width: double.infinity,
+                  height: 56,
+                  child: ElevatedButton(
+                    onPressed: () {
+                      // Handle continue logic
+                    },
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: const Color(0xFFFFAA90),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(28),
+                      ),
+                    ),
+                    child: Text(
+                      AppStrings.continueText.tr,
+                      style: AppTextStyles.ibmPlexSansSize14w700Black.copyWith(
+                        color: Colors.white,
+                      ),
+                    ),
+                  ),
+                ),
+                const SizedBox(height: 24),
+              ],
             ),
-            Text(
-              " Choose your language",
-              style: TextStyle(
-                color: Colors.white,
-                fontSize: 20,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-          ],
+          ),
         ),
       ),
     );

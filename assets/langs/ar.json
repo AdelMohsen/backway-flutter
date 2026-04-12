@@ -1,3 +1,9 @@
 {
-    "loginTitle": "تسجيل الدخول"
+    "loginTitle": "تسجيل الدخول",
+    "chooseLanguage": "اختر لغتك",
+    "selectPreferredLanguage": "اختر لغتك المفضلة لاستخدام باك واي بسهولة",
+    "english": "الإنجليزية",
+    "french": "الفرنسية",
+    "arabic": "العربية",
+    "continueText": "متابعة"
 }

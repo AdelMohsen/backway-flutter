@@ -96,8 +96,8 @@ class AppSvg {
 class SvgImages {
   static const String logo = 'assets/svgs/new/logo.svg';
   static const String splash = 'assets/svgs/new/splash.svg';
-  static const String arFlag = 'assets/svgs/new/ar.svg';
-  static const String enFlag = 'assets/svgs/new/us.svg';
-  static const String frFlag = 'assets/svgs/new/fr.svg';
+  static const String unFlag = 'assets/svgs/new/unflags.svg';
+
+  static const String frFlag = 'assets/svgs/new/frr.svg';
   static const String back = 'assets/svgs/new/back.svg';
 }

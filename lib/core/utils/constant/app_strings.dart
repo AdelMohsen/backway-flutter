@@ -490,7 +490,7 @@ class AppStrings {
   static const String heavySize = 'heavySize';
   static const String mediumSize = 'mediumSize';
   static const String homeBannerTitle = 'homeBannerTitle';
-  
+
   // ---------- ORDER TRACKING STATUS ----------
   static const String driverOnWayToPickup = 'driverOnWayToPickup';
   static const String arrivedAtPickup = 'arrivedAtPickup';
@@ -585,16 +585,28 @@ class AppStrings {
   // ---------- ENABLE NOTIFICATIONS ----------
   static const String notificationsEnabled = 'notificationsEnabled';
   static const String notificationsDisabled = 'notificationsDisabled';
-  static const String failedToUpdateNotifications = 'failedToUpdateNotifications';
-  static const String pleaseEnterAValidTrackingNumber = 'pleaseEnterAValidTrackingNumber';
-  static const String deleteAddressConfirmationTitle = 'deleteAddressConfirmationTitle';
-  static const String deleteAddressConfirmationMessage = 'deleteAddressConfirmationMessage';
+  static const String failedToUpdateNotifications =
+      'failedToUpdateNotifications';
+  static const String pleaseEnterAValidTrackingNumber =
+      'pleaseEnterAValidTrackingNumber';
+  static const String deleteAddressConfirmationTitle =
+      'deleteAddressConfirmationTitle';
+  static const String deleteAddressConfirmationMessage =
+      'deleteAddressConfirmationMessage';
   static const String addressTitleMinLength = 'addressTitleMinLength';
   static const String orderNumberCopied = 'orderNumberCopied';
   static const String shipmentImages = 'shipmentImages';
   static const String complaintTitleMinLength = 'complaintTitleMinLength';
   static const String complaintDetailsMinLength = 'complaintDetailsMinLength';
-  static const String locationServiceDisabledTitle = 'locationServiceDisabledTitle';
-  static const String locationServiceDisabledMessage = 'locationServiceDisabledMessage';
+  static const String locationServiceDisabledTitle =
+      'locationServiceDisabledTitle';
+  static const String locationServiceDisabledMessage =
+      'locationServiceDisabledMessage';
   static const String enableLocation = 'enableLocation';
+
+  // ---------- LANG SCREEN ----------
+  static const String chooseLanguage = 'chooseLanguage';
+  static const String selectPreferredLanguage = 'selectPreferredLanguage';
+  static const String french = 'french';
+  static const String continueText = 'continueText';
 }
