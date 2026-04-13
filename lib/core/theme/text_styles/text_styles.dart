@@ -279,7 +279,16 @@ abstract class Styles {
     fontWeight: FontWeight.w700,
     color: AppColors.kWhite,
   );
-
+  static TextStyle urbanistSize28w700Orange = GoogleFonts.urbanist(
+    fontSize: 28,
+    fontWeight: FontWeight.w700,
+    color: ColorsApp.KorangePrimary,
+  );
+  static TextStyle urbanistSize28w500White = GoogleFonts.urbanist(
+    fontSize: 28,
+    fontWeight: FontWeight.w500,
+    color: AppColors.kWhite,
+  );
   static TextStyle urbanistSize16w600White = GoogleFonts.urbanist(
     fontSize: 16,
     fontWeight: FontWeight.w600,
@@ -288,6 +297,21 @@ abstract class Styles {
   static TextStyle urbanistSize16w500White = GoogleFonts.urbanist(
     fontSize: 16,
     fontWeight: FontWeight.w500,
+    color: AppColors.kWhite,
+  );
+  static TextStyle urbanistSize14w700White = GoogleFonts.urbanist(
+    fontSize: 14,
+    fontWeight: FontWeight.w700,
+    color: AppColors.kWhite,
+  );
+  static TextStyle urbanistSize14w400White = GoogleFonts.urbanist(
+    fontSize: 14,
+    fontWeight: FontWeight.w400,
+    color: AppColors.kWhite,
+  );
+  static TextStyle urbanistSize12w400White = GoogleFonts.urbanist(
+    fontSize: 12,
+    fontWeight: FontWeight.w400,
     color: AppColors.kWhite,
   );
 }

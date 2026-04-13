@@ -1,19 +1,4 @@
 class AppStrings {
-  // ---------- ONBOARDING ----------
-  static const String onboardingNext = 'onboardingNext';
-  static const String onboardingStart = 'onboardingStart';
-  static const String onboardingTitle1Part1 = 'onboardingTitle1Part1';
-  static const String onboardingTitle1Part2 = 'onboardingTitle1Part2';
-  static const String onboardingLine2Page1 = 'onboardingLine2Page1';
-  static const String onboardingDesc1 = 'onboardingDesc1';
-  static const String onboardingTitle2Part1 = 'onboardingTitle2Part1';
-  static const String onboardingTitle2Part2 = 'onboardingTitle2Part2';
-  static const String onboardingLine2Page2 = 'onboardingLine2Page2';
-  static const String onboardingDesc2 = 'onboardingDesc2';
-  static const String onboardingTitle3 = 'onboardingTitle3';
-  static const String onboardingLine2Page3 = 'onboardingLine2Page3';
-  static const String onboardingDesc3 = 'onboardingDesc3';
-
   // ---------- CHOICE ACCOUNT ----------
   static const String areYouNewUser = 'areYouNewUser';
   static const String yesNew = 'yesNew';
@@ -609,4 +594,29 @@ class AppStrings {
   static const String selectPreferredLanguage = 'selectPreferredLanguage';
   static const String french = 'french';
   static const String continueText = 'continueText';
+
+  // ---------- CHOOSE ACCOUNT ----------
+  static const String chooseAccountType = 'chooseAccountType';
+  static const String selectAccountTypeDescription =
+      'selectAccountTypeDescription';
+  static const String shipper = 'shipper';
+  static const String shipperDescription = 'shipperDescription';
+  static const String driver = 'driver';
+  static const String driverDescription = 'driverDescription';
+
+  // ---------- ONBOARDING ----------
+  static const String chooseClosestDriver = 'chooseClosestDriver';
+  static const String deliveredShipment = 'deliveredShipment';
+  static const String trackShipment = 'trackShipment';
+  static const String receiveWorldAt = 'receiveWorldAt';
+  static const String doorstep = 'doorstep';
+  static const String enterTrackingNumber = 'enterTrackingNumber';
+  static const String getYour = 'getYour';
+  static const String package = 'package';
+  static const String deliveredSafely = 'deliveredSafely';
+  static const String upToThreeStops = 'upToThreeStops';
+  static const String delivery = 'delivery';
+  static const String byVerifiedUsers = 'byVerifiedUsers';
+  static const String signIn = 'signIn';
+  static const String skip = 'skip';
 }

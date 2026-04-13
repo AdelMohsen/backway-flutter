@@ -58,4 +58,15 @@ class ImagesApp {
   static const String arFlag = 'assets/images/new/ss1.png';
   static const String enFlag = 'assets/images/new/unn2.png';
   static const String frFlag = 'assets/images/new/frr2.png';
+  static const String shipper = 'assets/images/new/shipper.png';
+  static const String driver = 'assets/images/new/driver1.png';
+  static const String onboadringDriver =
+      'assets/images/new/onboadring_driver.png';
+  static const String onboarding2 = 'assets/images/new/onboaring_d2.png';
+  static const String cc = 'assets/images/new/cc.png';
+
+  static const String vec1 = 'assets/images/new/Vector.png';
+  static const String vec2 = 'assets/images/new/Vector1.png';
+  static const String shadow = 'assets/images/new/s.png';
+  static const String onboarding3 = 'assets/images/new/on3.png';
 }

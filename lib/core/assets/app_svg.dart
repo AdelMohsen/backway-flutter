@@ -100,4 +100,7 @@ class SvgImages {
 
   static const String frFlag = 'assets/svgs/new/frr.svg';
   static const String back = 'assets/svgs/new/back.svg';
+  static const String lang = 'assets/svgs/new/language-skill.svg';
+  static const String backs = 'assets/svgs/new/bc.svg';
+  static const String on3 = 'assets/svgs/new/icon.svg';
 }

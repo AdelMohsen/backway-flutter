@@ -3,13 +3,14 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:greenhub/app/app.dart';
 import 'package:greenhub/features/auth/login/ui/pages/login_screen.dart';
+import 'package:greenhub/features/onboarding/ui/pages/onboarding_screen.dart';
 import 'package:greenhub/features/auth/register/ui/pages/register_screen.dart';
 import 'package:greenhub/features/auth/resgister_or_login/ui/pages/register_or_login.dart';
 import 'package:greenhub/features/choice_account/ui/pages/choice_account.dart';
+import 'package:greenhub/features/choose_account/ui/pages/choose_account_screen.dart';
 import 'package:greenhub/features/edit_profile/ui/pages/edit_profile_screen.dart';
 import 'package:greenhub/features/edit_profile/logic/cubit/edit_profile_cubit.dart';
 import 'package:greenhub/features/new_order/ui/pages/create_new_order_screen.dart';
-import 'package:greenhub/features/on_boarding/on_boarding_screen.dart';
 import 'package:greenhub/features/orders/ui/pages/order_screen.dart';
 import 'package:greenhub/features/settings/ui/pages/app_settings_screen.dart';
 import 'package:greenhub/features/splash/splash_screen.dart';
@@ -67,6 +68,11 @@ final GoRouter appRouter = GoRouter(
       builder: (context, state) => const SplashScreen(),
     ),
     GoRoute(
+      path: '/onboarding',
+      name: Routes.ON_BOARDING_SCREEN,
+      builder: (context, state) => const OnboardingScreen(),
+    ),
+    GoRoute(
       path: '/choice_account',
       name: Routes.CHOICE_ACCOUNT,
       builder: (context, state) => const ChoiceAccount(),
@@ -77,15 +83,16 @@ final GoRouter appRouter = GoRouter(
       name: Routes.APP,
       builder: (context, state) => const MyApp(),
     ),
-    GoRoute(
-      path: '/onboarding',
-      name: Routes.ON_BOARDING_SCREEN,
-      builder: (context, state) => const OnBoardingScreen(),
-    ),
+
     GoRoute(
       path: '/register',
       name: Routes.REGISTER,
       builder: (context, state) => const RegisterScreen(),
+    ),
+    GoRoute(
+      path: '/choose_account',
+      name: Routes.CHOOSE_ACCOUNT,
+      builder: (context, state) => const ChooseAccountScreen(),
     ),
     GoRoute(
       path: '/CreateNewOrderScreen',

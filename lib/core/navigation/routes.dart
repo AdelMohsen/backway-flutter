@@ -30,4 +30,5 @@ class Routes {
   static const String RATE_NEGOTIATION = '/rate-negotiation';
   static const String NOTIFICATIONS = '/notifications';
   static const String AVALABLE_VECHILE = '/avalable_vechile';
+  static const String CHOOSE_ACCOUNT = '/choose_account';
 }

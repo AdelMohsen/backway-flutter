@@ -82,7 +82,8 @@ class LanguageOptionItem<T> extends StatelessWidget {
                     ? null
                     : Border.all(color: Colors.white, width: 1.2),
                 color: isSelected
-                    ? const Color(0xFFFF7A59) // vibrant orange
+                    ? ColorsApp
+                          .KorangePrimary // vibrant orange
                     : Colors.transparent,
               ),
               child: isSelected

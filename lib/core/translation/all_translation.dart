@@ -6,7 +6,7 @@ import '../shared/blocs/main_app_bloc.dart';
 
 /// Preferences related
 const String _storageKey = 'MyApplication_';
-const List<String> _supportedLanguages = ['en', 'ar'];
+const List<String> _supportedLanguages = ['en', 'ar', 'fr'];
 
 class GlobalTranslations {
   Locale? _locale;
