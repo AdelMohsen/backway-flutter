@@ -167,6 +167,18 @@ class VerifyCodeScreen extends StatelessWidget {
 
                             // PIN Code Field
                             PinCodeTextField(
+                              validator: (value) {
+                                if (value == null || value.isEmpty) {
+                                  return AppStrings.otpRequired.tr;
+                                }
+                                if (!RegExp(r'^\d+$').hasMatch(value)) {
+                                  return AppStrings.otpDigitsOnly.tr;
+                                }
+                                if (value.length < 4) {
+                                  return AppStrings.otpLength.tr;
+                                }
+                                return null;
+                              },
                               appContext: context,
                               length: 4,
                               autoDisposeControllers: false,
