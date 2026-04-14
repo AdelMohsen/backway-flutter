@@ -69,9 +69,10 @@ class VerifyCodeScreen extends StatelessWidget {
               final cubit = context.read<VerifyCodeCubit>();
               return SafeArea(
                 child: Padding(
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: 24,
-                    vertical: 20,
+                  padding: EdgeInsetsDirectional.only(
+                    start: 16,
+                    end: 18,
+                    top: 20,
                   ),
                   child: CustomScrollView(
                     slivers: [
@@ -83,17 +84,23 @@ class VerifyCodeScreen extends StatelessWidget {
                             // AppBar Row
                             Row(
                               children: [
-                                Container(
-                                  width: 40,
-                                  height: 40,
-                                  decoration: const BoxDecoration(
-                                    color: Color(0xFFF6F8FA),
-                                    shape: BoxShape.circle,
-                                  ),
-                                  alignment: Alignment.center,
-                                  child: SvgPicture.asset(
-                                    SvgImages.kBackIcon,
-                                    color: Color.fromRGBO(36, 35, 39, 1),
+                                GestureDetector(
+                                  onTap: () => CustomNavigator.pop(),
+                                  child: Container(
+                                    width: 40,
+                                    height: 40,
+                                    decoration: const BoxDecoration(
+                                      color: Color(0xFFF6F8FA),
+                                      shape: BoxShape.circle,
+                                    ),
+                                    alignment: Alignment.center,
+                                    child: SvgPicture.asset(
+                                      SvgImages.kBackIcon,
+                                      colorFilter: const ColorFilter.mode(
+                                        Color.fromRGBO(36, 35, 39, 1),
+                                        BlendMode.srcIn,
+                                      ),
+                                    ),
                                   ),
                                 ),
                                 Expanded(
@@ -109,15 +116,15 @@ class VerifyCodeScreen extends StatelessWidget {
                                 ), // To balance the row visually
                               ],
                             ),
-                            const SizedBox(height: 50),
+                            const SizedBox(height: 40),
 
                             // Title
                             Text(
                               AppStrings.otpConfirmation.tr,
                               style: Styles.urbanistSize28w600White.copyWith(
-                                color: const Color(0xFF14304A),
+                                color: ColorsApp.kPrimary,
                                 fontWeight: FontWeight.w700,
-                                fontSize: 26,
+                                fontSize: 22,
                               ),
                             ),
                             const SizedBox(height: 12),
@@ -129,8 +136,7 @@ class VerifyCodeScreen extends StatelessWidget {
                                 cubit.phoneNumber,
                               ),
                               style: Styles.urbanistSize14w400White.copyWith(
-                                color: const Color.fromRGBO(133, 133, 133, 1),
-                                height: 1.5,
+                                color: const Color.fromRGBO(107, 114, 128, 1),
                               ),
                             ),
                             const SizedBox(height: 32),
@@ -143,14 +149,14 @@ class VerifyCodeScreen extends StatelessWidget {
                                   vertical: 8,
                                 ),
                                 decoration: BoxDecoration(
-                                  color: const Color(0xFFFFF5F0),
+                                  color: Color.fromRGBO(255, 243, 239, 1),
                                   borderRadius: BorderRadius.circular(20),
                                 ),
                                 child: Text(
                                   cubit.formatTime(cubit.secondsRemaining),
                                   style: Styles.urbanistSize14w400White
                                       .copyWith(
-                                        color: const Color(0xFFFF6F47),
+                                        color: ColorsApp.KorangePrimary,
                                         fontWeight: FontWeight.w600,
                                       ),
                                 ),
@@ -171,6 +177,12 @@ class VerifyCodeScreen extends StatelessWidget {
                               ],
                               autoFocus: true,
                               enableActiveFill: true,
+                              hintCharacter: '-',
+                              hintStyle: const TextStyle(
+                                fontSize: 20,
+                                color: Color.fromRGBO(174, 173, 178, 1),
+                                fontWeight: FontWeight.w400,
+                              ),
                               pinTheme: PinTheme(
                                 shape: PinCodeFieldShape.box,
                                 borderRadius: BorderRadius.circular(16),
@@ -184,8 +196,10 @@ class VerifyCodeScreen extends StatelessWidget {
                                 inactiveFillColor: const Color(0xFFFBFBFD),
                                 errorBorderColor: Colors.red,
                               ),
-                              textStyle: Styles.urbanistSize28w600White
-                                  .copyWith(color: Colors.black),
+                              textStyle: Styles.urbanistSize20w500Orange
+                                  .copyWith(
+                                    color: Color.fromRGBO(64, 64, 64, 1),
+                                  ),
                               onChanged: (val) {
                                 // Update state to trigger button refresh
                                 if (val.length == 4 || val.length == 3) {
@@ -207,8 +221,9 @@ class VerifyCodeScreen extends StatelessWidget {
                                   style: Styles.urbanistSize14w400White
                                       .copyWith(
                                         color: cubit.isResendActive
-                                            ? const Color(0xFF14304A)
-                                            : const Color(0xFFB4B4BE),
+                                            ? Color.fromRGBO(75, 85, 99, 1)
+                                            : Color.fromRGBO(183, 192, 200, 1),
+                                        fontWeight: FontWeight.w600,
                                       ),
                                 ),
                               ),
