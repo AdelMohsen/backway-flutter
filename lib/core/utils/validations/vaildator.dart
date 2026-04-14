@@ -204,51 +204,46 @@ class EmailValidator {
 }
 
 class PhoneValidator {
-  static String? phoneValidator(String? phone) {
+  static String? phoneValidator(String? phone, [String? dialCode]) {
     if (phone == null || phone.isEmpty) {
       return AppStrings.phoneCannotBeEmptyPleaseEnterAValidPhone.tr;
     }
 
-    // Remove spaces and dashes
-    String normalizedPhone = phone.replaceAll(RegExp(r'[\s\-]'), '');
-
-    // Remove leading + if present
-    if (normalizedPhone.startsWith('+')) {
-      normalizedPhone = normalizedPhone.substring(1);
-    }
-
-    String localNumber;
-
-    if (normalizedPhone.startsWith('966')) {
-      if (normalizedPhone.length == 12) {
-        localNumber = normalizedPhone.substring(3); // Remove '966'
+    if (dialCode != null) {
+      if (dialCode == '+966') {
+        // Saudi Arabia mobile numbers start with 5 or 05
+        if (!RegExp(r'^(5\d{8}|05\d{8})$').hasMatch(phone)) {
+          return AppStrings.pleaseEnterAValidPhoneFormat.tr;
+        }
+      } else if (dialCode == '+20') {
+        // Egypt mobile numbers start with 10, 11, 12, or 15 (10 digits) or 01... (11 digits)
+        if (!RegExp(r'^(01[0125]\d{8}|1[0125]\d{8})$').hasMatch(phone)) {
+          return AppStrings.pleaseEnterAValidPhoneFormat.tr;
+        }
       } else {
-        return AppStrings.pleaseEnterAValidPhoneFormat.tr;
-      }
-    } else if (normalizedPhone.startsWith('05')) {
-      // Local format with leading zero: 05XXXXXXXX (10 digits)
-      if (normalizedPhone.length == 10) {
-        localNumber = normalizedPhone.substring(1); // Remove leading '0'
-      } else {
-        return AppStrings.pleaseEnterAValidPhoneFormat.tr;
-      }
-    } else if (normalizedPhone.startsWith('5')) {
-      // Direct format: 5XXXXXXXX (9 digits)
-      if (normalizedPhone.length == 9) {
-        localNumber = normalizedPhone;
-      } else {
-        return AppStrings.pleaseEnterAValidPhoneFormat.tr;
+        // General check for other countries: minimum 8 digits
+        if (phone.length < 8 || !RegExp(r'^\d+$').hasMatch(phone)) {
+          return AppStrings.pleaseEnterAValidPhoneFormat.tr;
+        }
       }
     } else {
-      return AppStrings.pleaseEnterAValidPhoneFormat.tr;
+      // General check if no dialCode is provided: minimum 8 digits
+      if (phone.length < 8 || !RegExp(r'^\d+$').hasMatch(phone)) {
+        return AppStrings.pleaseEnterAValidPhoneFormat.tr;
+      }
     }
 
-    // Validate the local part: must be 5 followed by 8 digits
-    final phoneReg = RegExp(r'^5[0-9]{8}$');
-    if (!phoneReg.hasMatch(localNumber)) {
-      return AppStrings.pleaseEnterAValidPhoneFormat.tr;
-    }
+    return null;
+  }
+}
 
+class CountryCodeValidator {
+  /// Pass the currently selected dial-code (e.g. "+1", "+966").
+  /// Returns an error string if no valid country code is selected.
+  static String? validate(String? dialCode) {
+    if (dialCode == null || dialCode.trim().isEmpty || dialCode == '+0') {
+      return AppStrings.validationSelectCountryCode.tr;
+    }
     return null;
   }
 }
@@ -305,20 +300,17 @@ class PasswordConfirmationValidator {
 
 class ChangePasswordConfirmationValidator {
   static String? passwordValidator(String? password, BuildContext context) {
-    if (password!.length < 6) {
-      return 'confirm_password'.tr;
+    if (password == null || password.length < 6) {
+      return AppStrings.confirmPassword.tr;
     }
-    // else if (password != context.read<PasswordBloc>().newPassword.value) {
-    //   ext('confirmed_password_match_password'.tr;
-    // }
     return null;
   }
 }
 
 class NameValidator {
   static String? nameValidator(var name) {
-    if (name!.length < 2) {
-      return 'please_enter_valid_user_name'.tr;
+    if (name == null || name.length < 2) {
+      return AppStrings.pleaseEnterValidUserName.tr;
     }
     return null;
   }
@@ -326,8 +318,8 @@ class NameValidator {
 
 class TitleValidator {
   static String? nameValidator(String? name) {
-    if (name!.length < 2) {
-      return 'please_enter_valid_title'.tr;
+    if (name == null || name.length < 2) {
+      return AppStrings.pleaseEnterValidTitle.tr;
     } else if (name.contains('٠١٥') ||
         name.contains('٠١٢') ||
         name.contains('٠١١') ||
@@ -338,7 +330,7 @@ class TitleValidator {
         name.contains('010') ||
         name.contains('http://') ||
         name.contains('https://')) {
-      return 'please_enter_valid_title_without_phone'.tr;
+      return AppStrings.pleaseEnterValidTitleWithoutPhone.tr;
     }
     return null;
   }
@@ -346,16 +338,8 @@ class TitleValidator {
 
 class DescriptionValidator {
   static String? descriptionValidator(String? name) {
-    // String pattern = '^[\u0600-\u065F\u066A-\u06EF\u06FA-\u06FFa-zA-Z][0-9]{5}*\$';
-    // String pattern = '[a-z]+^[0-9]{5}\$';
-    // String pattern = '^[A-Z]{3}[A-Z]{3}[0-9]{4}\$';
-    //  RegExp regExp = RegExp(pattern);
-    //  if (!regExp.hasMatch(name.trim())) {
-    //    cprint("RegExp Name : "+name);
-    //    ext("please_enter_valid_description".tr;
-    //  }
-    if (name!.length < 2) {
-      return 'please_enter_valid_description'.tr;
+    if (name == null || name.length < 2) {
+      return AppStrings.pleaseEnterValidDescription.tr;
     } else if (name.contains('٠١٥') ||
         name.contains('٠١٢') ||
         name.contains('٠١١') ||
@@ -366,7 +350,7 @@ class DescriptionValidator {
         name.contains('010') ||
         name.contains('http://') ||
         name.contains('https://')) {
-      return 'please_enter_valid_description_without_phone'.tr;
+      return AppStrings.pleaseEnterValidDescriptionWithoutPhone.tr;
     }
     return null;
   }
@@ -374,8 +358,8 @@ class DescriptionValidator {
 
 class NoteValidator {
   static String? nameValidator(String? name) {
-    if (name!.length < 2) {
-      return 'please_enter_valid_description'.tr;
+    if (name == null || name.length < 2) {
+      return AppStrings.pleaseEnterValidDescription.tr;
     }
     return null;
   }
@@ -383,9 +367,12 @@ class NoteValidator {
 
 class PriceValidator {
   static String? priceValidator(String? price) {
-    double doublePrice = double.parse(price!);
+    if (price == null || double.tryParse(price) == null) {
+      return AppStrings.pleaseEnterValidPrice.tr;
+    }
+    double doublePrice = double.parse(price);
     if (doublePrice < 1) {
-      return 'please_enter_valid_price'.tr;
+      return AppStrings.pleaseEnterValidPrice.tr;
     }
     return null;
   }
@@ -397,14 +384,20 @@ class PriceToValidator {
     String? stringPriceFrom,
     BuildContext context,
   ) {
-    double priceTo = double.parse(price!);
+    if (price == null || double.tryParse(price) == null) {
+      return AppStrings.pleaseEnterValidPrice.tr;
+    }
+    double priceTo = double.parse(price);
     if (priceTo > 1) {
-      double priceFrom = double.parse(stringPriceFrom!);
+      if (stringPriceFrom == null || double.tryParse(stringPriceFrom) == null) {
+        return null; // Or handle error
+      }
+      double priceFrom = double.parse(stringPriceFrom);
       if (priceTo < priceFrom) {
-        return 'please_enter_valid_price'.tr;
+        return AppStrings.pleaseEnterValidPrice.tr;
       }
     } else {
-      return 'please_enter_valid_price'.tr;
+      return AppStrings.pleaseEnterValidPrice.tr;
     }
     return null;
   }
@@ -412,8 +405,11 @@ class PriceToValidator {
 
 class DiscountValidator {
   static String? discountValidator(String? discount) {
-    if (discount!.isEmpty || double.parse(discount) > 100.00) {
-      return 'please_enter_valid_discount'.tr;
+    if (discount == null ||
+        discount.isEmpty ||
+        double.tryParse(discount) == null ||
+        double.parse(discount) > 100.00) {
+      return AppStrings.pleaseEnterValidDiscount.tr;
     }
     return null;
   }
@@ -421,8 +417,8 @@ class DiscountValidator {
 
 class LinkValidator {
   static String? linkValidator(String? link) {
-    if (!link!.contains('http')) {
-      return 'please_enter_valid_link'.tr;
+    if (link == null || !link.contains('http')) {
+      return AppStrings.pleaseEnterValidLink.tr;
     }
     return null;
   }
@@ -430,8 +426,8 @@ class LinkValidator {
 
 class AddressValidator {
   static String? addressValidator(var address) {
-    if (address!.length < 1) {
-      return 'this_field_is_required'.tr;
+    if (address == null || address.length < 1) {
+      return AppStrings.thisFieldIsRequired.tr;
     }
     return null;
   }
@@ -439,8 +435,8 @@ class AddressValidator {
 
 class DefaultValidator {
   static String? defaultValidator(var value) {
-    if (value!.length < 1) {
-      return 'this_field_is_required'.tr;
+    if (value == null || value.length < 1) {
+      return AppStrings.thisFieldIsRequired.tr;
     }
     return null;
   }

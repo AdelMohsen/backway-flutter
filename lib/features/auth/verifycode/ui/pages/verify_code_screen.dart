@@ -6,7 +6,11 @@ import 'package:greenhub/core/assets/app_svg.dart';
 import 'package:greenhub/core/navigation/custom_navigation.dart';
 import 'package:greenhub/core/navigation/routes.dart';
 import 'package:greenhub/core/theme/colors/styles.dart';
+import 'package:greenhub/core/theme/text_styles/text_styles.dart';
+import 'package:greenhub/core/utils/constant/app_strings.dart';
 import 'package:greenhub/core/utils/enums/enums.dart';
+import 'package:greenhub/core/utils/extensions/extensions.dart';
+import 'package:greenhub/core/utils/widgets/buttons/default_button.dart';
 import 'package:greenhub/core/utils/widgets/misc/custom_scaffold_widget.dart';
 import 'package:greenhub/core/utils/widgets/misc/graident_heaader_layout.dart';
 import 'package:greenhub/core/utils/widgets/toast/custom_toast.dart';
@@ -21,6 +25,7 @@ import 'package:greenhub/features/auth/verifycode/ui/widgets/timer_widget.dart';
 import 'package:greenhub/features/auth/verifycode/ui/widgets/verify_button_widget.dart';
 import 'package:greenhub/features/auth/verifycode/ui/widgets/verify_code_icon_widget.dart';
 import 'package:greenhub/features/auth/verifycode/ui/widgets/verify_code_title_widget.dart';
+import 'package:pin_code_fields/pin_code_fields.dart';
 
 class VerifyCodeScreen extends StatelessWidget {
   const VerifyCodeScreen({super.key, required this.params});
@@ -42,14 +47,12 @@ class VerifyCodeScreen extends StatelessWidget {
           systemNavigationBarIconBrightness: Brightness.dark,
           systemNavigationBarDividerColor: Colors.transparent,
         ),
-        child: CustomScaffoldWidget(
-          needAppbar: false,
-          child: BlocConsumer<VerifyCodeCubit, VerifyCodeState>(
+        child: Scaffold(
+          backgroundColor: Colors.white,
+          body: BlocConsumer<VerifyCodeCubit, VerifyCodeState>(
             listener: (context, state) {
               if (state is VerifyOtpSuccess) {
-                // Show success message
                 CustomToast.showSuccess(context, message: state.data.message);
-                // Navigate based on fromScreen enum
                 if (params.fromScreen == VerifyCodeFromScreen.fromLogin ||
                     params.fromScreen == VerifyCodeFromScreen.fromRegister) {
                   CustomNavigator.push(Routes.NAV_LAYOUT, clean: true);
@@ -63,43 +66,195 @@ class VerifyCodeScreen extends StatelessWidget {
               }
             },
             builder: (context, state) {
-              return GradientHeaderLayout(
-                showAction: false,
-                title: '',
-                logo: SvgPicture.asset(AppSvg.iconApp, width: 35, height: 45),
-                child: SingleChildScrollView(
+              final cubit = context.read<VerifyCodeCubit>();
+              return SafeArea(
+                child: Padding(
                   padding: const EdgeInsets.symmetric(
                     horizontal: 24,
                     vertical: 20,
                   ),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: const [
-                      SizedBox(height: 10),
-                      // Icon Container
-                      VerifyCodeIconWidget(),
-                      SizedBox(height: 20),
-                      // Title & Description
-                      VerifyCodeTitleWidget(),
-                      SizedBox(height: 48),
-                      // Resend Code Row
-                      ResendCodeWidget(),
-                      SizedBox(height: 16),
-                      // Timer
-                      TimerWidget(),
-                      SizedBox(height: 16),
-                      // PIN Code Field
-                      OtpInputWidget(),
-                      // Change Phone Row
-                      ChangePhoneWidget(),
-                      SizedBox(height: 56),
-                      // Login/Verify Button
-                      VerifyButtonWidget(),
-                      SizedBox(height: 16),
-                      // Back to Login Link
-                      BackToLoginWidget(),
-                      SizedBox(height: 10),
+                  child: CustomScrollView(
+                    slivers: [
+                      SliverFillRemaining(
+                        hasScrollBody: false,
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.stretch,
+                          children: [
+                            // AppBar Row
+                            Row(
+                              children: [
+                                Container(
+                                  width: 40,
+                                  height: 40,
+                                  decoration: const BoxDecoration(
+                                    color: Color(0xFFF6F8FA),
+                                    shape: BoxShape.circle,
+                                  ),
+                                  alignment: Alignment.center,
+                                  child: SvgPicture.asset(
+                                    SvgImages.kBackIcon,
+                                    color: Color.fromRGBO(36, 35, 39, 1),
+                                  ),
+                                ),
+                                Expanded(
+                                  child: Text(
+                                    AppStrings.authenticationCode.tr,
+                                    textAlign: TextAlign.center,
+                                    style: Styles.urbanistSize16w600White
+                                        .copyWith(color: Colors.black),
+                                  ),
+                                ),
+                                const SizedBox(
+                                  width: 44,
+                                ), // To balance the row visually
+                              ],
+                            ),
+                            const SizedBox(height: 50),
+
+                            // Title
+                            Text(
+                              AppStrings.otpConfirmation.tr,
+                              style: Styles.urbanistSize28w600White.copyWith(
+                                color: const Color(0xFF14304A),
+                                fontWeight: FontWeight.w700,
+                                fontSize: 26,
+                              ),
+                            ),
+                            const SizedBox(height: 12),
+
+                            // Subtitle
+                            Text(
+                              AppStrings.otpSentDescription.tr.replaceAll(
+                                '{phone}',
+                                cubit.phoneNumber,
+                              ),
+                              style: Styles.urbanistSize14w400White.copyWith(
+                                color: const Color.fromRGBO(133, 133, 133, 1),
+                                height: 1.5,
+                              ),
+                            ),
+                            const SizedBox(height: 32),
+
+                            // Timer
+                            Center(
+                              child: Container(
+                                padding: const EdgeInsets.symmetric(
+                                  horizontal: 20,
+                                  vertical: 8,
+                                ),
+                                decoration: BoxDecoration(
+                                  color: const Color(0xFFFFF5F0),
+                                  borderRadius: BorderRadius.circular(20),
+                                ),
+                                child: Text(
+                                  cubit.formatTime(cubit.secondsRemaining),
+                                  style: Styles.urbanistSize14w400White
+                                      .copyWith(
+                                        color: const Color(0xFFFF6F47),
+                                        fontWeight: FontWeight.w600,
+                                      ),
+                                ),
+                              ),
+                            ),
+
+                            const SizedBox(height: 32),
+
+                            // PIN Code Field
+                            PinCodeTextField(
+                              appContext: context,
+                              length: 4,
+                              autoDisposeControllers: false,
+                              controller: cubit.otpController,
+                              keyboardType: TextInputType.number,
+                              inputFormatters: [
+                                FilteringTextInputFormatter.digitsOnly,
+                              ],
+                              autoFocus: true,
+                              enableActiveFill: true,
+                              pinTheme: PinTheme(
+                                shape: PinCodeFieldShape.box,
+                                borderRadius: BorderRadius.circular(16),
+                                fieldHeight: 72,
+                                fieldWidth: 72,
+                                activeColor: ColorsApp.KorangeSecondary,
+                                selectedColor: ColorsApp.KorangeSecondary,
+                                inactiveColor: const Color(0xFFE5E7EB),
+                                activeFillColor: Colors.white,
+                                selectedFillColor: Colors.white,
+                                inactiveFillColor: const Color(0xFFFBFBFD),
+                                errorBorderColor: Colors.red,
+                              ),
+                              textStyle: Styles.urbanistSize28w600White
+                                  .copyWith(color: Colors.black),
+                              onChanged: (val) {
+                                // Update state to trigger button refresh
+                                if (val.length == 4 || val.length == 3) {
+                                  cubit.emit(VerifyCodeInitial());
+                                }
+                              },
+                            ),
+
+                            const SizedBox(height: 24),
+
+                            // Resend Code
+                            GestureDetector(
+                              onTap: cubit.isResendActive
+                                  ? () => cubit.resendOtp()
+                                  : null,
+                              child: Center(
+                                child: Text(
+                                  AppStrings.resendCode.tr,
+                                  style: Styles.urbanistSize14w400White
+                                      .copyWith(
+                                        color: cubit.isResendActive
+                                            ? const Color(0xFF14304A)
+                                            : const Color(0xFFB4B4BE),
+                                      ),
+                                ),
+                              ),
+                            ),
+
+                            const Spacer(),
+
+                            // Verify Button
+                            DefaultButton(
+                              text: AppStrings.otpVerificationButton.tr,
+                              isLoading: state is VerifyOtpLoading,
+                              backgroundColor:
+                                  cubit.otpController.text.length == 4
+                                  ? ColorsApp.kPrimary
+                                  : const Color(0xFFBFC5CC),
+                              height: 56,
+                              borderRadiusValue: 28,
+                              onPressed: cubit.otpController.text.length == 4
+                                  ? () => cubit.verifyOtpThenLogin()
+                                  : () {
+                                      if (cubit.otpController.text.isEmpty) {
+                                        CustomToast.showError(
+                                          context,
+                                          message: AppStrings.otpRequired.tr,
+                                        );
+                                      } else if (cubit
+                                              .otpController
+                                              .text
+                                              .length <
+                                          4) {
+                                        CustomToast.showError(
+                                          context,
+                                          message: AppStrings.otpLength.tr,
+                                        );
+                                      }
+                                    },
+                              textStyle: Styles.urbanistSize14w400White
+                                  .copyWith(
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.w600,
+                                    fontSize: 16,
+                                  ),
+                            ),
+                          ],
+                        ),
+                      ),
                     ],
                   ),
                 ),

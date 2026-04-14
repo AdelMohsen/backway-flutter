@@ -54,96 +54,103 @@ class _LanguageScreenState extends State<LanguageScreen> {
         child: SafeArea(
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 16),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                const SizedBox(height: 25),
-                SvgPicture.asset(SvgImages.logo, height: 32),
-                const SizedBox(height: 70),
-                Center(
-                  child: Text(
-                    AppStrings.chooseLanguage.tr,
-                    style: Styles.urbanistSize28w600White,
-                  ),
-                ),
-                const SizedBox(height: 12),
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 25),
-                  child: Center(
-                    child: Text(
-                      AppStrings.selectPreferredLanguage.tr,
-                      textAlign: TextAlign.center,
-                      style: Styles.urbanistSize16w600White.copyWith(
-                        color: ColorsApp.kTextGrey,
-                      ),
-                    ),
-                  ),
-                ),
-                const SizedBox(height: 44),
-                LanguageOptionItem(
-                  title: AppStrings.english.tr,
-                  flagIcon: ImagesApp.enFlag,
-                  value: 'en',
-                  groupValue: currentLang,
-                  onChanged: (val) {
-                    mainAppBloc.setLanguage(val!);
-                    setState(() => _selectedLangCode = val);
-                  },
-                ),
-                const SizedBox(height: 16),
-                LanguageOptionItem(
-                  title: AppStrings.french.tr,
-                  flagIcon: ImagesApp.frFlag,
-                  value: 'fr',
-                  groupValue: currentLang,
-                  onChanged: (val) {
-                    mainAppBloc.setLanguage(val!);
-                    setState(() => _selectedLangCode = val);
-                  },
-                ),
-                const SizedBox(height: 16),
-                LanguageOptionItem(
-                  title: AppStrings.arabic.tr,
-                  flagIcon: ImagesApp.arFlag,
-                  value: 'ar',
-                  groupValue: currentLang,
-                  onChanged: (val) {
-                    mainAppBloc.setLanguage(val!);
-                    setState(() => _selectedLangCode = val);
-                  },
-                ),
-                const Spacer(),
-                DefaultButton(
-                  height: 48,
-                  borderRadiusValue: 28,
-                  backgroundColor: isActive
-                      ? ColorsApp.KorangePrimary
-                      : ColorsApp.buttonColor,
-                  onPressed: () {
-                    CustomNavigator.push(Routes.CHOOSE_ACCOUNT);
-                  },
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
+            child: CustomScrollView(
+              slivers: [
+                SliverFillRemaining(
+                  hasScrollBody: false,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(
-                        AppStrings.continueText.tr,
-                        style: Styles.urbanistSize14w700White,
-                      ),
-                      if (isActive) ...[
-                        const SizedBox(width: 6),
-                        SvgPicture.asset(
-                          SvgImages.back,
-                          colorFilter: const ColorFilter.mode(
-                            Colors.white,
-                            BlendMode.srcIn,
-                          ),
-                          height: 18,
+                      const SizedBox(height: 25),
+                      SvgPicture.asset(SvgImages.logo, height: 32),
+                      const SizedBox(height: 70),
+                      Center(
+                        child: Text(
+                          AppStrings.chooseLanguage.tr,
+                          style: Styles.urbanistSize28w600White,
                         ),
-                      ],
+                      ),
+                      const SizedBox(height: 12),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 25),
+                        child: Center(
+                          child: Text(
+                            AppStrings.selectPreferredLanguage.tr,
+                            textAlign: TextAlign.center,
+                            style: Styles.urbanistSize16w600White.copyWith(
+                              color: ColorsApp.kTextGrey,
+                            ),
+                          ),
+                        ),
+                      ),
+                      const SizedBox(height: 44),
+                      LanguageOptionItem(
+                        title: AppStrings.english.tr,
+                        flagIcon: ImagesApp.enFlag,
+                        value: 'en',
+                        groupValue: currentLang,
+                        onChanged: (val) {
+                          mainAppBloc.setLanguage(val!);
+                          setState(() => _selectedLangCode = val);
+                        },
+                      ),
+                      const SizedBox(height: 16),
+                      LanguageOptionItem(
+                        title: AppStrings.french.tr,
+                        flagIcon: ImagesApp.frFlag,
+                        value: 'fr',
+                        groupValue: currentLang,
+                        onChanged: (val) {
+                          mainAppBloc.setLanguage(val!);
+                          setState(() => _selectedLangCode = val);
+                        },
+                      ),
+                      const SizedBox(height: 16),
+                      LanguageOptionItem(
+                        title: AppStrings.arabic.tr,
+                        flagIcon: ImagesApp.arFlag,
+                        value: 'ar',
+                        groupValue: currentLang,
+                        onChanged: (val) {
+                          mainAppBloc.setLanguage(val!);
+                          setState(() => _selectedLangCode = val);
+                        },
+                      ),
+                      const Spacer(),
+                      DefaultButton(
+                        height: 48,
+                        borderRadiusValue: 28,
+                        backgroundColor: isActive
+                            ? ColorsApp.KorangePrimary
+                            : ColorsApp.buttonColor,
+                        onPressed: () {
+                          CustomNavigator.push(Routes.CHOOSE_ACCOUNT);
+                        },
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text(
+                              AppStrings.continueText.tr,
+                              style: Styles.urbanistSize14w700White,
+                            ),
+                            if (isActive) ...[
+                              const SizedBox(width: 6),
+                              SvgPicture.asset(
+                                SvgImages.back,
+                                colorFilter: const ColorFilter.mode(
+                                  Colors.white,
+                                  BlendMode.srcIn,
+                                ),
+                                height: 18,
+                              ),
+                            ],
+                          ],
+                        ),
+                      ),
+                      const SizedBox(height: 24),
                     ],
                   ),
                 ),
-                const SizedBox(height: 24),
               ],
             ),
           ),

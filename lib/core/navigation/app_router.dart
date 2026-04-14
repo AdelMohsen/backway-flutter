@@ -8,9 +8,7 @@ import 'package:greenhub/features/auth/register/ui/pages/register_screen.dart';
 import 'package:greenhub/features/auth/resgister_or_login/ui/pages/register_or_login.dart';
 import 'package:greenhub/features/choice_account/ui/pages/choice_account.dart';
 import 'package:greenhub/features/choose_account/ui/pages/choose_account_screen.dart';
-import 'package:greenhub/features/edit_profile/ui/pages/edit_profile_screen.dart';
-import 'package:greenhub/features/edit_profile/logic/cubit/edit_profile_cubit.dart';
-import 'package:greenhub/features/new_order/ui/pages/create_new_order_screen.dart';
+
 import 'package:greenhub/features/orders/ui/pages/order_screen.dart';
 import 'package:greenhub/features/settings/ui/pages/app_settings_screen.dart';
 import 'package:greenhub/features/splash/splash_screen.dart';
@@ -94,14 +92,7 @@ final GoRouter appRouter = GoRouter(
       name: Routes.CHOOSE_ACCOUNT,
       builder: (context, state) => const ChooseAccountScreen(),
     ),
-    GoRoute(
-      path: '/CreateNewOrderScreen',
-      name: Routes.CreateNewOrderScreen,
-      builder: (context, state) {
-        final orderType = state.extra as int?;
-        return CreateNewOrderScreen(orderType: orderType);
-      },
-    ),
+
     GoRoute(
       path: '/register-or-login',
       name: Routes.REGISTER_OR_LOGIN,
@@ -112,14 +103,7 @@ final GoRouter appRouter = GoRouter(
       name: Routes.LOGIN,
       builder: (context, state) => const LoginScreen(),
     ),
-    GoRoute(
-      path: '/EDIT_PROFILE',
-      name: Routes.EDIT_PROFILE,
-      builder: (context, state) => BlocProvider(
-        create: (context) => EditProfileCubit(),
-        child: const EditProfileScreen(),
-      ),
-    ),
+
     GoRoute(
       path: '/nav-layout',
       name: Routes.NAV_LAYOUT,

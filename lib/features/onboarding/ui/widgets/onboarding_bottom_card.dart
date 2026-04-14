@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:greenhub/core/assets/app_svg.dart';
 import 'package:greenhub/core/theme/colors/styles.dart';
@@ -71,7 +72,7 @@ class OnboardingBottomCard extends StatelessWidget {
                 if (titlePart2.isNotEmpty) TextSpan(text: titlePart2),
               ],
             ),
-          ),
+          ).animate(key: ValueKey(titleHighlight)).fadeIn(duration: 400.ms).slideY(begin: 0.1, end: 0),
           const SizedBox(height: 16),
 
           // Subtitle
@@ -79,9 +80,9 @@ class OnboardingBottomCard extends StatelessWidget {
             subtitle,
             textAlign: TextAlign.center,
             style: Styles.urbanistSize14w400White.copyWith(
-              color: Color.fromRGBO(222, 222, 222, 1),
+              color: const Color.fromRGBO(222, 222, 222, 1),
             ),
-          ),
+          ).animate(key: ValueKey(subtitle)).fadeIn(duration: 400.ms, delay: 100.ms).slideY(begin: 0.1, end: 0),
           const SizedBox(height: 38), // Space before button
           // Next Button
           DefaultButton(
@@ -99,7 +100,7 @@ class OnboardingBottomCard extends StatelessWidget {
                 const SizedBox(width: 8),
                 SvgPicture.asset(
                   SvgImages.back, // Ensure this points to the right arrow icon
-                ),
+                ).animate(onPlay: (c) => c.repeat()).moveX(begin: 0, end: 3, duration: 600.ms, curve: Curves.easeInOut).then().moveX(begin: 0, end: -3, duration: 600.ms, curve: Curves.easeInOut),
               ],
             ),
           ),
@@ -109,7 +110,8 @@ class OnboardingBottomCard extends StatelessWidget {
   }
 
   Widget _buildIndicator({required bool isActive}) {
-    return Container(
+    return AnimatedContainer(
+      duration: const Duration(milliseconds: 300),
       height: 8,
       width: isActive ? 37 : 12,
       decoration: BoxDecoration(

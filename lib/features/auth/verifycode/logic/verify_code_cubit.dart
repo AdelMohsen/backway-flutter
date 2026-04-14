@@ -31,12 +31,12 @@ class VerifyCodeCubit extends Cubit<VerifyCodeState> {
   final TextEditingController newPhoneController = TextEditingController();
   final GlobalKey<FormState> changePhoneFormKey = GlobalKey<FormState>();
   Timer? _timer;
-  int _secondsRemaining = 120; // 2 minutes
+  int _secondsRemaining = 60; // 1 minute
   bool isResendActive = false;
 
   //---------------------------------TIMER FUNCTIONS----------------------------------//
   void startTimer() {
-    _secondsRemaining = 120;
+    _secondsRemaining = 60;
     isResendActive = false;
     emit(TimerTick(_secondsRemaining, isResendActive));
 
@@ -72,7 +72,7 @@ class VerifyCodeCubit extends Cubit<VerifyCodeState> {
 
   //----------------------------------VERIFY OTP REQUEST-----------------------------------//
   Future<void> verifyOtpThenLogin() async {
-    if (otpController.text.isEmpty || otpController.text.length < 6) {
+    if (otpController.text.isEmpty || otpController.text.length < 4) {
       return;
     }
 

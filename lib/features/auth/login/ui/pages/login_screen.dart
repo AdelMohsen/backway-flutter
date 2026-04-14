@@ -1,11 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_animate/flutter_animate.dart';
-import 'package:greenhub/core/assets/app_images.dart';
+import 'package:flutter_svg/svg.dart';
+import 'package:greenhub/core/assets/app_svg.dart';
+import 'package:greenhub/core/navigation/custom_navigation.dart';
+import 'package:greenhub/core/navigation/routes.dart';
 import 'package:greenhub/core/theme/colors/styles.dart';
-import 'package:greenhub/core/utils/widgets/misc/custom_scaffold_widget.dart';
+import 'package:greenhub/core/theme/text_styles/text_styles.dart';
+import 'package:greenhub/core/utils/constant/app_strings.dart';
+import 'package:greenhub/core/utils/extensions/extensions.dart';
 import 'package:greenhub/features/auth/login/ui/widgets/main_container_and_filed.dart';
-import 'package:greenhub/features/auth/login/ui/widgets/title_description_login.dart';
 
 class LoginScreen extends StatelessWidget {
   const LoginScreen({super.key});
@@ -19,59 +23,83 @@ class LoginScreen extends StatelessWidget {
         systemNavigationBarColor: Colors.white,
         systemNavigationBarIconBrightness: Brightness.dark,
       ),
-      child: CustomScaffoldWidget(
+      child: Scaffold(
         resizeToAvoidBottomInset: true,
-        needAppbar: false,
-        child: Stack(
-          alignment: Alignment.bottomCenter,
-          children: [
-            /// Background Image
-            Positioned.fill(
-              child:
-                  Image.asset(
-                        AppImages.loginLogo3,
-                        fit: BoxFit.fill,
-                        filterQuality: FilterQuality.high,
-                      )
-                      .animate()
-                      .fadeIn(duration: 800.ms)
-                      .scale(
-                        begin: const Offset(1.1, 1.1),
-                        end: const Offset(1.0, 1.0),
-                        duration: 1200.ms,
-                        curve: Curves.easeOut,
-                      ),
+        body: Container(
+          decoration: const BoxDecoration(
+            gradient: LinearGradient(
+              begin: Alignment.topLeft,
+              end: Alignment.bottomRight,
+              colors: [ColorsApp.KorangePrimary, ColorsApp.KorangeSecondary],
             ),
-
-            /// Gradient Overlay
-            Positioned.fill(
-              child: Container(
-                decoration: BoxDecoration(
-                  gradient: LinearGradient(
-                    begin: Alignment.topLeft,
-                    end: Alignment.center,
-                    colors: [
-                      AppColors.kNeonGreen.withAlpha(45),
-                      AppColors.primaryGreenHub.withAlpha(50),
+          ),
+          child: SafeArea(
+            bottom: false,
+            child: Column(
+              children: [
+                /// Top Section
+                Padding(
+                  padding: const EdgeInsetsDirectional.only(
+                    start: 17,
+                    end: 16,
+                    top: 20,
+                  ),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          SvgPicture.asset(
+                            SvgImages.logo,
+                            width: 50,
+                            height: 38,
+                            colorFilter: const ColorFilter.mode(
+                              Colors.white,
+                              BlendMode.srcIn,
+                            ),
+                          ),
+                          GestureDetector(
+                            onTap: () {
+                              CustomNavigator.push(Routes.LANGUAGE);
+                            },
+                            child: Container(
+                              width: 48,
+                              height: 48,
+                              decoration: BoxDecoration(
+                                color: const Color.fromRGBO(255, 255, 255, 0.2),
+                                shape: BoxShape.circle,
+                              ),
+                              child: Padding(
+                                padding: const EdgeInsets.all(12.0),
+                                child: SvgPicture.asset(SvgImages.lang),
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                      const SizedBox(height: 16),
+                      Text(
+                        AppStrings.welcomeBack.tr,
+                        style: Styles.urbanistSize28w700Orange.copyWith(
+                          color: Colors.white,
+                        ),
+                      ),
+                      const SizedBox(height: 4),
+                      Text(
+                        AppStrings.signInSubtitle.tr,
+                        style: Styles.urbanistSize14w400White.copyWith(
+                          color: Color.fromRGBO(255, 255, 255, 0.8),
+                        ),
+                      ),
+                      const SizedBox(height: 10),
                     ],
                   ),
                 ),
-              ).animate().fadeIn(duration: 800.ms),
+                const Expanded(child: _LoginBottomSection()),
+              ],
             ),
-
-            /// Main Content
-            Positioned.fill(
-              child: Column(
-                children: const [
-                  /// Top Section (Logo + Title)
-                  Expanded(child: TitleDescriptionLogin()),
-
-                  /// Bottom Section (Login Card) - uses intrinsic height
-                  _LoginBottomSection(),
-                ],
-              ),
-            ),
-          ],
+          ),
         ),
       ),
     );
@@ -83,30 +111,6 @@ class _LoginBottomSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Stack(
-      clipBehavior: Clip.none,
-      alignment: Alignment.bottomCenter,
-      children: [
-        /// Decorative background - extends above main card
-        Positioned(
-          left: -4,
-          right: -4,
-          bottom: -0,
-          top: -15,
-          child: Container(
-            decoration: BoxDecoration(
-              color: Colors.white.withAlpha(80),
-              borderRadius: const BorderRadius.only(
-                topLeft: Radius.circular(50),
-                topRight: Radius.circular(50),
-              ),
-            ),
-          ),
-        ),
-
-        /// Main Card
-        const MainContainerAndFiled(),
-      ],
-    );
+    return const MainContainerAndFiled();
   }
 }

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:greenhub/core/assets/app_images.dart';
 import 'package:greenhub/core/assets/app_svg.dart';
@@ -21,6 +22,19 @@ class OnboardingScreen extends StatefulWidget {
 class _OnboardingScreenState extends State<OnboardingScreen> {
   final PageController _pageController = PageController();
   int _currentPage = 0;
+  double _scrollOffset = 0.0;
+
+  @override
+  void initState() {
+    super.initState();
+    _pageController.addListener(() {
+      if (_pageController.hasClients) {
+        setState(() {
+          _scrollOffset = _pageController.page ?? 0.0;
+        });
+      }
+    });
+  }
 
   @override
   void dispose() {
@@ -88,10 +102,13 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
           left: 24,
           right: 24,
           bottom: 290,
-          child: Image.asset(
-            ImagesApp.onboadringDriver,
-            fit: BoxFit.contain,
-            alignment: Alignment.bottomCenter,
+          child: Transform.translate(
+            offset: Offset((0 - _scrollOffset) * 50, 0),
+            child: Image.asset(
+              ImagesApp.onboadringDriver,
+              fit: BoxFit.contain,
+              alignment: Alignment.bottomCenter,
+            ).animate().fadeIn(duration: 600.ms).slideY(begin: 0.2, end: 0),
           ),
         ),
 
@@ -114,8 +131,8 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
             subtitle: AppStrings.enterTrackingNumber.tr,
             onNextPressed: () {
               _pageController.nextPage(
-                duration: const Duration(milliseconds: 300),
-                curve: Curves.easeInOut,
+                duration: const Duration(milliseconds: 600),
+                curve: Curves.easeInOutCubic,
               );
             },
           ),
@@ -143,10 +160,20 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
           left: 10,
           right: 24,
           bottom: 80,
-          child: Image.asset(
-            ImagesApp.cc,
-            fit: BoxFit.cover,
-            alignment: Alignment.center,
+          child: Transform.translate(
+            offset: Offset((1 - _scrollOffset) * 50, 0),
+            child:
+                Image.asset(
+                      ImagesApp.cc,
+                      fit: BoxFit.cover,
+                      alignment: Alignment.center,
+                    )
+                    .animate()
+                    .fadeIn(duration: 600.ms)
+                    .scale(
+                      begin: const Offset(0.8, 0.8),
+                      end: const Offset(1, 1),
+                    ),
           ),
         ),
 
@@ -181,8 +208,8 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
             subtitle: AppStrings.upToThreeStops.tr,
             onNextPressed: () {
               _pageController.nextPage(
-                duration: const Duration(milliseconds: 300),
-                curve: Curves.easeInOut,
+                duration: const Duration(milliseconds: 600),
+                curve: Curves.easeInOutCubic,
               );
             },
           ),
@@ -199,10 +226,13 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
           left: 50,
           right: 50,
           bottom: 370,
-          child: Image.asset(
-            ImagesApp.onboarding3,
-            fit: BoxFit.contain,
-            alignment: Alignment.bottomCenter,
+          child: Transform.translate(
+            offset: Offset((2 - _scrollOffset) * 50, 0),
+            child: Image.asset(
+              ImagesApp.onboarding3,
+              fit: BoxFit.contain,
+              alignment: Alignment.bottomCenter,
+            ).animate().fadeIn(duration: 600.ms).slideX(begin: 0.2, end: 0),
           ),
         ),
 
@@ -229,7 +259,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
             buttonText: AppStrings.signIn.tr,
             buttonIcon: SvgImages.on3,
             onNextPressed: () {
-              CustomNavigator.push(Routes.CHOOSE_ACCOUNT);
+              CustomNavigator.push(Routes.LOGIN);
             },
           ),
         ),
@@ -249,27 +279,48 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
       left: left,
       right: right,
       bottom: bottom,
-      child: Container(
-        padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 9),
-        decoration: BoxDecoration(
-          color: ColorsApp.kTooltipBg,
-          borderRadius: BorderRadius.circular(20),
-        ),
-        child: Text(
-          text,
-          style: Styles.urbanistSize16w600White.copyWith(
-            fontSize: 12,
-            color: ColorsApp.kPrimary,
-          ),
-        ),
-      ),
+      child:
+          Animate(
+                effects: const [
+                  FadeEffect(duration: Duration(milliseconds: 500)),
+                  SlideEffect(
+                    begin: Offset(0, 0.2),
+                    end: Offset.zero,
+                    duration: Duration(milliseconds: 500),
+                  ),
+                ],
+                child: Container(
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 12,
+                    vertical: 9,
+                  ),
+                  decoration: BoxDecoration(
+                    color: ColorsApp.kTooltipBg,
+                    borderRadius: BorderRadius.circular(20),
+                  ),
+                  child: Text(
+                    text,
+                    style: Styles.urbanistSize16w600White.copyWith(
+                      fontSize: 12,
+                      color: ColorsApp.kPrimary,
+                    ),
+                  ),
+                ),
+              )
+              .animate(onPlay: (controller) => controller.repeat(reverse: true))
+              .moveY(
+                begin: 0,
+                end: -5,
+                duration: 1500.ms,
+                curve: Curves.easeInOut,
+              ),
     );
   }
 
   Widget _buildSkipButton() {
     return GestureDetector(
       onTap: () {
-        CustomNavigator.push(Routes.CHOOSE_ACCOUNT);
+        CustomNavigator.push(Routes.LOGIN);
       },
       child: Container(
         padding: const EdgeInsets.symmetric(horizontal: 22, vertical: 7),
@@ -288,7 +339,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
             SvgPicture.asset(SvgImages.backs, width: 14, height: 14),
           ],
         ),
-      ),
+      ).animate().fadeIn(duration: 800.ms).slideY(begin: -0.5, end: 0),
     );
   }
 }

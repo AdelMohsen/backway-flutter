@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:greenhub/core/assets/app_svg.dart';
 import 'package:greenhub/core/navigation/custom_navigation.dart';
 import 'package:greenhub/core/navigation/routes.dart';
 import 'package:greenhub/core/shared/blocs/main_app_bloc.dart';
@@ -27,14 +29,9 @@ class MainContainerAndFiled extends StatelessWidget {
       create: (context) => LoginCubit(),
       child: BlocConsumer<LoginCubit, LoginState>(
         listener: (context, state) {
-          if (state is SendOtpLoading) {
-            AnimatedLoading.showAnimatedLoading();
-          } else if (state is SendOtpSuccess) {
-            AnimatedLoading.hideAnimatedLoading(); // Dismiss loading
+          if (state is SendOtpSuccess) {
             final cubit = context.read<LoginCubit>();
-            // Show success toast
             CustomToast.showSuccess(context, message: state.data.message);
-            // Navigate to verify code with params
             CustomNavigator.push(
               Routes.VERIFY_CODE,
               extra: VerifyCodeRouteParams(
@@ -43,8 +40,6 @@ class MainContainerAndFiled extends StatelessWidget {
               ),
             );
           } else if (state is SendOtpError) {
-            AnimatedLoading.hideAnimatedLoading(); // Dismiss loading
-            // Show error toast
             CustomToast.showError(context, message: state.error.message);
           }
         },
@@ -52,12 +47,16 @@ class MainContainerAndFiled extends StatelessWidget {
           final cubit = context.read<LoginCubit>();
           return Container(
                 width: double.infinity,
-                padding: const EdgeInsets.fromLTRB(20, 20, 24, 14),
+                height: double.infinity,
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 16,
+                  vertical: 25,
+                ),
                 decoration: const BoxDecoration(
                   color: Colors.white,
                   borderRadius: BorderRadius.only(
-                    topLeft: Radius.circular(45),
-                    topRight: Radius.circular(45),
+                    topLeft: Radius.circular(30),
+                    topRight: Radius.circular(30),
                   ),
                 ),
                 child: SingleChildScrollView(
@@ -65,71 +64,110 @@ class MainContainerAndFiled extends StatelessWidget {
                   child: Form(
                     key: cubit.formKey,
                     child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.stretch,
                       mainAxisSize: MainAxisSize.min,
                       children: [
-                        Row(
-                          children: [
-                            Text(
-                              AppStrings.loginCardTitle.tr,
-                              style: AppTextStyles.ibmPlexSansSize26w700White
-                                  .copyWith(color: Colors.black),
+                        /// Phone Number Label
+                        Padding(
+                          padding: const EdgeInsets.only(left: 8),
+                          child: Text(
+                            AppStrings.phoneFieldLabel.tr,
+                            style: Styles.urbanistSize16w600White.copyWith(
+                              fontSize: 14,
+                              color: const Color.fromRGBO(64, 64, 64, 1),
                             ),
-                          ],
+                          ),
                         ),
-                        const SizedBox(height: 20),
+                        const SizedBox(height: 14),
+
+                        /// Phone Input Field
                         DefaultPhoneFormField(
                           controller: cubit.phone,
-                          hintText: mainAppBloc.isArabic
-                              ? "رقم الجوال"
-                              : "Phone Number",
-                          fillColor: const Color(0xffF7F7F7),
-                          borderRadious: 44,
-                          contentPadding: const EdgeInsetsDirectional.fromSTEB(
-                            5,
-                            5,
-                            5,
-                            5,
+                          hintText: AppStrings.phoneFieldHint.tr,
+                          fillColor: Color.fromRGBO(249, 250, 251, 1),
+                          borderColor: const Color(0xFFF5F6F8),
+                          hintStyle: Styles.urbanistSize14w400White.copyWith(
+                            fontSize: 12,
+                            color: const Color.fromRGBO(148, 163, 184, 1),
+                          ),
+                          style: Styles.urbanistSize14w400White.copyWith(
+                            color: Colors.black87,
+                          ),
+                          borderRadious: 26,
+                          showCountryPicker: true,
+                          prefixIcon: Padding(
+                            padding: const EdgeInsets.all(10),
+                            child: SvgPicture.asset(
+                              SvgImages.phone,
+                              width: 22,
+                              height: 22,
+                              colorFilter: const ColorFilter.mode(
+                                Color.fromRGBO(180, 180, 190, 1),
+                                BlendMode.srcIn,
+                              ),
+                            ),
+                          ),
+                          contentPadding: const EdgeInsets.symmetric(
+                            horizontal: 4,
+                            vertical: 14,
                           ),
                           onChanged: (value) {
                             cubit.isValidPhoneFunction();
                           },
                         ),
-                        const SizedBox(height: 40),
+
+                        const SizedBox(height: 38),
+
+                        /// Sign In Button
                         DefaultButton(
-                          text: mainAppBloc.isArabic ? "سجل دخولك" : "Login",
+                          text: AppStrings.signIn.tr,
+                          isLoading: state is SendOtpLoading,
                           onPressed: () {
                             if (cubit.isLoginValidate()) {
                               cubit.sendOtpStatesHandled();
                             }
                           },
-                          backgroundColor: AppColors.primaryGreenHub,
-                          height: 56,
-                          borderRadiusValue: 44,
-                          textStyle: AppTextStyles.ibmPlexSansSize18w700Primary
-                              .copyWith(color: Colors.white),
+                          backgroundColor: ColorsApp.kPrimary,
+                          height: 48,
+                          borderRadiusValue: 28,
+                          textStyle: Styles.urbanistSize14w700White,
                         ),
-                        const SizedBox(height: 12),
-                        GestureDetector(
-                          onTap: () => CustomNavigator.pop(),
-                          child: Text(
-                            AppStrings.loginReturn.tr,
-                            style: GoogleFonts.ibmPlexSansArabic(
-                              fontSize: 16,
-                              fontWeight: FontWeight.w600,
-                              color: const Color(0xff666666),
+
+                        const SizedBox(height: 32),
+
+                        /// New here? Create an account
+                        Center(
+                          child: GestureDetector(
+                            child: RichText(
+                              text: TextSpan(
+                                text: AppStrings.newHere.tr,
+                                style: Styles.urbanistSize14w400White.copyWith(
+                                  color: Color.fromRGBO(133, 133, 133, 1),
+                                ),
+                                children: [
+                                  TextSpan(
+                                    text: AppStrings.guestText.tr,
+                                    style: Styles.urbanistSize14w400White
+                                        .copyWith(
+                                          color: ColorsApp.kPrimary,
+                                          fontWeight: FontWeight.w700,
+                                        ),
+                                  ),
+                                ],
+                              ),
                             ),
                           ),
                         ),
-                        const SizedBox(height: 8),
+
+                        const SizedBox(height: 48),
                       ],
                     ),
                   ),
                 ),
               )
               .animate()
-              .fadeIn(duration: 600.ms, delay: 700.ms)
-              .slideY(begin: 0.3, end: 0, curve: Curves.easeOutBack);
+              .fadeIn(duration: 600.ms, delay: 200.ms)
+              .slideY(begin: 0.1, end: 0, curve: Curves.easeOutBack);
         },
       ),
     );

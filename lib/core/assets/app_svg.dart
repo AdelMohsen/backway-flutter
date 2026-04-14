@@ -103,4 +103,6 @@ class SvgImages {
   static const String lang = 'assets/svgs/new/language-skill.svg';
   static const String backs = 'assets/svgs/new/bc.svg';
   static const String on3 = 'assets/svgs/new/icon.svg';
+  static const String phone = 'assets/svgs/new/call.svg';
+  static const String kBackIcon = 'assets/svgs/new/elements.svg';
 }

@@ -67,23 +67,25 @@ class DefaultButton extends StatelessWidget {
 
           borderRadius:
               borderRadius ?? BorderRadius.circular(borderRadiusValue ?? 10),
-          color: borderColor ?? backgroundColor ?? AppColors.kPrimary,
+          color: borderColor ?? backgroundColor ?? ColorsApp.kPrimary,
         ),
         child:
             child ??
             Center(
               child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
+                  if (isLoading) ...[
+                    LoadingAnimationWidget.waveDots(
+                      color: Colors.white,
+                      size: 24,
+                    ),
+                    const SizedBox(width: 8),
+                  ],
                   MainText(
                     text: text ?? AppStrings.login.tr,
                     style: textStyle ?? AppTextStyles.cairoW700Size20,
                   ),
-                  if (isLoading)
-                    LoadingAnimationWidget.staggeredDotsWave(
-                      color: Colors.white,
-                      size: 20,
-                    ),
                 ],
               ),
             ),

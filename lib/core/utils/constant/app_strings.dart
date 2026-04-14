@@ -619,4 +619,37 @@ class AppStrings {
   static const String byVerifiedUsers = 'byVerifiedUsers';
   static const String signIn = 'signIn';
   static const String skip = 'skip';
+
+  // ---------- PHONE VALIDATION ----------
+  static const String validationSelectCountryCode = 'validationSelectCountryCode';
+  static const String validationPhoneRequired = 'validationPhoneRequired';
+  static const String validationPhoneDigitsOnly = 'validationPhoneDigitsOnly';
+  static const String validationPhoneMinLength = 'validationPhoneMinLength';
+
+  // ---------- LOGIN SCREEN REFINEMENT ----------
+  static const String welcomeBack = 'welcomeBack';
+  static const String signInSubtitle = 'signInSubtitle';
+  static const String phoneFieldLabel = 'phoneFieldLabel';
+  static const String phoneFieldHint = 'phoneFieldHint';
+  static const String guestText = 'guestText';
+
+  // ---------- VERIFY CODE REFINEMENT ----------
+  static const String authenticationCode = 'authenticationCode';
+  static const String otpConfirmation = 'otpConfirmation';
+  static const String otpSentDescription = 'otpSentDescription';
+  static const String otpRequired = 'otpRequired';
+  static const String otpDigitsOnly = 'otpDigitsOnly';
+  static const String otpLength = 'otpLength';
+  static const String otpVerificationButton = 'otpVerificationButton';
+  static const String resendCode = 'resendCode';
+
+  // ---------- MORE VALIDATION MESSAGES ----------
+  static const String pleaseEnterValidUserName = 'pleaseEnterValidUserName';
+  static const String pleaseEnterValidTitle = 'pleaseEnterValidTitle';
+  static const String pleaseEnterValidTitleWithoutPhone = 'pleaseEnterValidTitleWithoutPhone';
+  static const String pleaseEnterValidDescription = 'pleaseEnterValidDescription';
+  static const String pleaseEnterValidDescriptionWithoutPhone = 'pleaseEnterValidDescriptionWithoutPhone';
+  static const String pleaseEnterValidPrice = 'pleaseEnterValidPrice';
+  static const String pleaseEnterValidDiscount = 'pleaseEnterValidDiscount';
+  static const String pleaseEnterValidLink = 'pleaseEnterValidLink';
 }

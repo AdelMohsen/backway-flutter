@@ -84,6 +84,7 @@ dependencies:
   flutter_local_notifications: ^19.5.0
   toastification: ^2.3.0
   names_launcher: ^0.0.2
+  country_picker: ^2.0.27
 
 dev_dependencies:
   flutter_test:

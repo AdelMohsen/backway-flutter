@@ -56,6 +56,7 @@ class ColorsApp {
   static const Color buttonColor = Color.fromRGBO(255, 169, 146, 1);
   static const Color kDarkGrey = Color.fromRGBO(83, 85, 101, 1);
   static const Color KorangePrimary = Color.fromRGBO(255, 111, 71, 1);
+  static const Color KorangeSecondary = Color.fromRGBO(255, 137, 105, 1);
   static const Color subColor = Color.fromRGBO(107, 114, 128, 1);
   static const Color subColorUnSelcted = Color.fromRGBO(163, 163, 163, 1);
   static const Color kTooltipBg = Color.fromRGBO(255, 210, 198, 1);
