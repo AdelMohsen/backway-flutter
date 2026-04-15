@@ -129,4 +129,6 @@ class SvgImages {
 
   static const String car4 = 'assets/svgs/new/Minibus.svg';
   static const String gps = 'assets/svgs/new/GPS.svg';
+  static const String distance = 'assets/svgs/new/dis.svg';
+  static const String verify = 'assets/svgs/new/verify.svg';
 }

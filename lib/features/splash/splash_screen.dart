@@ -32,12 +32,12 @@ class _SplashScreenState extends State<SplashScreen> {
     final token = await CacheMethods.getToken();
 
     if (!isOnBoardingDone) {
-      if (mounted) context.goNamed(Routes.LOGIN);
+      if (mounted) context.goNamed(Routes.NAV_LAYOUT);
     } else {
       if (token != null && token.isNotEmpty) {
-        if (mounted) context.goNamed(Routes.LOGIN);
+        if (mounted) context.goNamed(Routes.NAV_LAYOUT);
       } else {
-        if (mounted) context.goNamed(Routes.LOGIN);
+        if (mounted) context.goNamed(Routes.NAV_LAYOUT);
       }
     }
   }

@@ -1,5 +1,6 @@
 import 'dart:math';
 import 'dart:ui' as ui;
+import 'driver_details_bottom_sheet.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart' as svg;
@@ -175,10 +176,18 @@ class _HomeMapWidgetState extends State<HomeMapWidget> {
     final ui.PictureRecorder pictureRecorder = ui.PictureRecorder();
     final Canvas canvas = Canvas(pictureRecorder);
 
-    final double scaleX = width / pictureInfo.size.width;
-    final double scaleY = height / pictureInfo.size.height;
-    canvas.scale(scaleX, scaleY);
+    final double scale = min(
+      width / pictureInfo.size.width,
+      height / pictureInfo.size.height,
+    );
+    final double scaledWidth = pictureInfo.size.width * scale;
+    final double scaledHeight = pictureInfo.size.height * scale;
+
+    canvas.save();
+    canvas.translate((width - scaledWidth) / 2, (height - scaledHeight) / 2);
+    canvas.scale(scale, scale);
     canvas.drawPicture(pictureInfo.picture);
+    canvas.restore();
 
     final ui.Picture picture = pictureRecorder.endRecording();
     final ui.Image image = await picture.toImage(width.toInt(), height.toInt());
@@ -231,13 +240,18 @@ class _HomeMapWidgetState extends State<HomeMapWidget> {
         null,
       );
 
-      const double carSize = 70;
-      final double scaleX = carSize / pictureInfo.size.width;
-      final double scaleY = carSize / pictureInfo.size.height;
+      const double carSize =
+          100; // Increased size slightly for better visibility
+      final double scale = min(
+        carSize / pictureInfo.size.width,
+        carSize / pictureInfo.size.height,
+      );
+      final double scaledWidth = pictureInfo.size.width * scale;
+      final double scaledHeight = pictureInfo.size.height * scale;
 
       canvas.save();
-      canvas.translate(centerX - carSize / 2, centerY - carSize / 2);
-      canvas.scale(scaleX, scaleY);
+      canvas.translate(centerX - scaledWidth / 2, centerY - scaledHeight / 2);
+      canvas.scale(scale, scale);
       canvas.drawPicture(pictureInfo.picture);
       canvas.restore();
     } catch (_) {}
@@ -345,6 +359,7 @@ class _HomeMapWidgetState extends State<HomeMapWidget> {
                 BitmapDescriptor.defaultMarkerWithHue(
                   BitmapDescriptor.hueGreen,
                 ),
+            onTap: () => _showDriverDetails(i),
             anchor: const Offset(0.5, 0.8),
           ),
         );
@@ -352,6 +367,25 @@ class _HomeMapWidgetState extends State<HomeMapWidget> {
     }
 
     return markers;
+  }
+
+  void _showDriverDetails(int index) {
+    final driver = _dummyDrivers[index];
+    final carNames = ["Cargo Van", "Container", "Sedan", "SUV"];
+
+    showModalBottomSheet(
+      context: context,
+      isScrollControlled: true,
+      backgroundColor: Colors.transparent,
+      builder: (context) => DriverDetailsBottomSheet(
+        name: "Jaskson Oliver ${index + 1}",
+        rating: driver.rating,
+        carType: carNames[driver.carIndex],
+        distance: "${(1.0 + index * 0.2).toStringAsFixed(1)} km",
+        shipments: 50 + index * 12,
+        isAvailable: driver.available,
+      ),
+    );
   }
 
   LatLng get _targetPosition =>

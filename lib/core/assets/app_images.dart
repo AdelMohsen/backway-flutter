@@ -69,4 +69,6 @@ class ImagesApp {
   static const String vec2 = 'assets/images/new/Vector1.png';
   static const String shadow = 'assets/images/new/s.png';
   static const String onboarding3 = 'assets/images/new/on3.png';
+  static const String star = 'assets/images/new/star.png';
+  static const String driver1 = 'assets/images/new/joc2.png';
 }
