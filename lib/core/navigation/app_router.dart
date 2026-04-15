@@ -2,10 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:greenhub/app/app.dart';
+import 'package:greenhub/features/auth/complete_profile/ui/pages/complete_profile_screen.dart';
 import 'package:greenhub/features/auth/login/ui/pages/login_screen.dart';
 import 'package:greenhub/features/onboarding/ui/pages/onboarding_screen.dart';
-import 'package:greenhub/features/auth/register/ui/pages/register_screen.dart';
-import 'package:greenhub/features/auth/resgister_or_login/ui/pages/register_or_login.dart';
 import 'package:greenhub/features/choice_account/ui/pages/choice_account.dart';
 import 'package:greenhub/features/choose_account/ui/pages/choose_account_screen.dart';
 
@@ -33,7 +32,6 @@ import 'package:greenhub/features/notification/ui/pages/notifications_screen.dar
 import 'package:greenhub/features/negotiation_offers/ui/pages/negotiation_offers.dart';
 import 'package:greenhub/features/choose_language/ui/pages/language_screen.dart';
 import 'package:greenhub/features/file_complaint/ui/pages/file_complaint_screen.dart';
-import 'package:greenhub/features/avalable_vechile/ui/pages/avalable_vechile_screen.dart';
 
 import 'package:greenhub/features/auth/verifycode/data/params/verify_code_route_params.dart';
 import 'package:greenhub/features/rate_negotiation/ui/pages/rate_negotiation_screen.dart';
@@ -83,21 +81,11 @@ final GoRouter appRouter = GoRouter(
     ),
 
     GoRoute(
-      path: '/register',
-      name: Routes.REGISTER,
-      builder: (context, state) => const RegisterScreen(),
-    ),
-    GoRoute(
       path: '/choose_account',
       name: Routes.CHOOSE_ACCOUNT,
       builder: (context, state) => const ChooseAccountScreen(),
     ),
 
-    GoRoute(
-      path: '/register-or-login',
-      name: Routes.REGISTER_OR_LOGIN,
-      builder: (context, state) => const RegisterOrLogin(),
-    ),
     GoRoute(
       path: '/LOGIN',
       name: Routes.LOGIN,
@@ -270,10 +258,11 @@ final GoRouter appRouter = GoRouter(
         child: const NotificationsScreen(),
       ),
     ),
+
     GoRoute(
-      path: '/avalable_vechile',
-      name: Routes.AVALABLE_VECHILE,
-      builder: (context, state) => const AvailableVehicleScreen(),
+      path: '/complete-profile',
+      name: Routes.COMPLETE_PROFILE,
+      builder: (context, state) => const CompleteProfileScreen(),
     ),
   ],
 

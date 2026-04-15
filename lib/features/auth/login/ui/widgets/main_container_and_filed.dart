@@ -109,7 +109,7 @@ class MainContainerAndFiled extends StatelessWidget {
                           ),
                           contentPadding: const EdgeInsets.symmetric(
                             horizontal: 4,
-                            vertical: 14,
+                            vertical: 8,
                           ),
                           onChanged: (value) {
                             cubit.isValidPhoneFunction();

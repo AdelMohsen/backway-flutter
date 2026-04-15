@@ -1,204 +1,179 @@
-// import 'package:flutter/material.dart';
-// import 'package:flutter_svg/flutter_svg.dart';
-// import 'package:greenhub/core/assets/app_svg.dart';
-// import 'package:greenhub/core/theme/colors/styles.dart';
-// import 'package:greenhub/core/theme/text_styles/text_styles.dart';
-// import 'package:greenhub/features/home/ui/widgets/search_home.dart';
-// import 'package:greenhub/core/utils/constant/app_strings.dart';
-// import 'package:greenhub/core/utils/extensions/extensions.dart';
+import 'dart:ui';
+import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
+import 'package:greenhub/core/theme/colors/styles.dart';
+import 'package:greenhub/core/assets/app_svg.dart';
+import 'package:greenhub/core/theme/text_styles/text_styles.dart';
 
-// class HomeHeaderWidget extends StatelessWidget {
-//   const HomeHeaderWidget({super.key});
+class HomeHeaderWidget extends StatelessWidget {
+  final String locationName;
+  const HomeHeaderWidget({super.key, this.locationName = 'Loading...'});
 
-//   @override
-//   Widget build(BuildContext context) {
-//     return Container(
-//       height: 270,
-//       padding: const EdgeInsets.only(bottom: 10),
-//       decoration: const BoxDecoration(
-//         color: AppColors.primaryGreenHub,
-//         gradient: LinearGradient(
-//           colors: [AppColors.kLightGreen, AppColors.primaryGreenHub],
-//           begin: Alignment.centerLeft,
-//           end: Alignment.centerRight,
-//         ),
-//         borderRadius: BorderRadius.only(
-//           bottomLeft: Radius.circular(28),
-//           bottomRight: Radius.circular(28),
-//         ),
-//       ),
-//       child: Stack(
-//         children: [
-//           // Decorative Waves at Top - Layer 1 (Top wave)
-//           Positioned(top: 20, left: 5, child: SvgPicture.asset(AppSvg.vector2)),
-//           // Decorative Waves at Top - Layer 2 (Bottom wave - under first)
-//           Positioned(
-//             top: 10,
-//             left: -5,
-//             child: SvgPicture.asset(AppSvg.vector2),
-//           ),
-//           // Content
-//           SafeArea(
-//             bottom: false,
-//             child: Padding(
-//               padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 15),
-//               child: Column(
-//                 children: [
-//                   Row(
-//                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
-//                     children: [
-//                       Container(
-//                         height: 40,
-//                         decoration: BoxDecoration(
-//                           color: AppColors.kWhiteOpacity16,
-//                           borderRadius: BorderRadius.circular(25),
-//                         ),
-//                         child: Row(
-//                           children: [
-//                             Padding(
-//                               padding: const EdgeInsets.only(
-//                                 right: 12,
-//                                 left: 8,
-//                               ),
-//                               child: Container(
-//                                 width: 28,
-//                                 height: 28,
-//                                 padding: const EdgeInsets.all(6),
-//                                 decoration: const BoxDecoration(
-//                                   color: AppColors.kLightGreen,
-//                                   shape: BoxShape.circle,
-//                                 ),
-//                                 child: SvgPicture.asset(
-//                                   AppSvg.location,
-//                                   colorFilter: const ColorFilter.mode(
-//                                     AppColors.kWhite,
-//                                     BlendMode.srcIn,
-//                                   ),
-//                                 ),
-//                               ),
-//                             ),
-//                             const SizedBox(width: 2),
-//                             Text(
-//                               AppStrings.homeLocationAddress.tr,
-//                               style: AppTextStyles.ibmPlexSansSize10w500White,
-//                             ),
-//                             const Icon(
-//                               Icons.keyboard_arrow_down,
-//                               color: AppColors.kWhite,
-//                               size: 20,
-//                             ),
-//                             SizedBox(width: 4),
-//                           ],
-//                         ),
-//                       ),
+  @override
+  Widget build(BuildContext context) {
+    return SliverToBoxAdapter(
+      child: Container(
+        padding: const EdgeInsets.only(left: 14, right: 16, bottom: 14),
+        decoration: const BoxDecoration(color: ColorsApp.KorangePrimary),
+        child: SafeArea(
+          bottom: false,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const SizedBox(height: 25),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  // Location Pill
+                  Flexible(
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(50),
+                      child: BackdropFilter(
+                        filter: ImageFilter.blur(sigmaX: 40.0, sigmaY: 140.0),
+                        child: Container(
+                          height: 40,
+                          padding: const EdgeInsets.symmetric(
+                            horizontal: 6,
+                            vertical: 6,
+                          ),
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(40),
+                            border: Border.all(
+                              color: Colors.white.withOpacity(
+                                0.5,
+                              ), // Good balanced border
+                              width: 1.2,
+                            ),
+                            gradient: LinearGradient(
+                              begin: Alignment.topLeft,
+                              end: Alignment.bottomRight,
+                              colors: [
+                                Colors.white.withOpacity(
+                                  0.3,
+                                ), // Bright top-left edge
+                                Colors.white.withOpacity(0.05),
+                              ],
+                            ),
+                          ),
+                          child: Row(
+                            mainAxisSize: MainAxisSize.min, // SHRINK TO FIT
+                            children: [
+                              Container(
+                                width: 28,
+                                height: 28,
+                                decoration: const BoxDecoration(
+                                  color: Colors.white,
+                                  shape: BoxShape.circle,
+                                ),
+                                child: Center(
+                                  child: SvgPicture.asset(SvgImages.locations),
+                                ),
+                              ),
+                              const SizedBox(width: 6),
+                              Flexible(
+                                child: Text(
+                                  "Banff National Park , Canda",
+                                  style: Styles.urbanistSize14w700White
+                                      .copyWith(
+                                        fontSize: 12,
+                                        color: Colors.white,
+                                      ),
+                                  overflow: TextOverflow.ellipsis,
+                                ),
+                              ),
+                              const SizedBox(width: 4),
+                              const Icon(
+                                Icons.keyboard_arrow_down,
+                                color: Colors.white,
+                                size: 20,
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                  // Bell Notification
+                  Stack(
+                    clipBehavior: Clip.none,
+                    children: [
+                      ClipOval(
+                        child: BackdropFilter(
+                          filter: ImageFilter.blur(sigmaX: 20.0, sigmaY: 20.0),
+                          child: Container(
+                            width: 40,
+                            height: 40,
+                            decoration: BoxDecoration(
+                              shape: BoxShape.circle,
+                              border: Border.all(
+                                color: Colors.white.withOpacity(0.6),
+                                width: 1.2,
+                              ),
+                              gradient: LinearGradient(
+                                begin: Alignment.topLeft,
+                                end: Alignment.bottomRight,
+                                colors: [
+                                  Colors.white.withOpacity(
+                                    0.4,
+                                  ), // Bright top-left edge
+                                  Colors.white.withOpacity(0.05),
+                                ],
+                              ),
+                            ),
+                            child: Center(
+                              child: SvgPicture.asset(
+                                SvgImages.bell,
 
-//                       Row(
-//                         children: [
-//                           const SizedBox(width: 12),
-//                           _buildCircleIcon(icon: AppSvg.messages),
-//                           const SizedBox(width: 8),
-//                           _buildCircleIcon(
-//                             icon: AppSvg.notification,
-//                             hasBadge: true,
-//                           ),
-//                         ],
-//                       ),
-//                     ],
-//                   ),
-
-//                   const SizedBox(height: 20),
-
-//                   // Title Area
-//                   Padding(
-//                     padding: const EdgeInsets.symmetric(horizontal: 10),
-//                     child: Column(
-//                       crossAxisAlignment: CrossAxisAlignment.start,
-//                       children: [
-//                         Row(
-//                           mainAxisAlignment: MainAxisAlignment.start,
-//                           children: [
-//                             Text(
-//                               AppStrings.homeHeaderTitle.tr,
-//                               style: AppTextStyles.ibmPlexSansSize24w700White,
-//                             ),
-//                           ],
-//                         ),
-//                         const SizedBox(height: 8),
-//                         Text(
-//                           AppStrings.homeHeaderSubtitle.tr,
-//                           style:
-//                               AppTextStyles.ibmPlexSansSize12w400WhiteOpacity,
-//                         ),
-//                       ],
-//                     ),
-//                   ),
-
-//                   const SizedBox(height: 20),
-
-//                   // Search Bar & Action Button
-//                   Row(
-//                     children: [
-//                       const Expanded(child: SearchHome()),
-//                       const SizedBox(width: 12),
-//                       Container(
-//                         width: 44,
-//                         height: 44,
-//                         decoration: const BoxDecoration(
-//                           color: AppColors.primaryGreenHub,
-//                           shape: BoxShape.circle,
-//                         ),
-//                         padding: const EdgeInsets.all(8),
-//                         child: SvgPicture.asset(
-//                           AppSvg.directUp,
-//                           colorFilter: const ColorFilter.mode(
-//                             AppColors.kWhite,
-//                             BlendMode.srcIn,
-//                           ),
-//                         ),
-//                       ),
-
-//                       // Teal Action Button (Separate)
-//                     ],
-//                   ),
-//                 ],
-//               ),
-//             ),
-//           ),
-//         ],
-//       ),
-//     );
-//   }
-
-//   Widget _buildCircleIcon({required String icon, bool hasBadge = false}) {
-//     return Stack(
-//       children: [
-//         Container(
-//           width: 44,
-//           height: 44,
-//           padding: const EdgeInsets.all(10),
-//           decoration: BoxDecoration(
-//             color: AppColors.kWhite.withOpacity(0.2),
-//             shape: BoxShape.circle,
-//           ),
-//           child: SvgPicture.asset(icon, color: AppColors.kWhite),
-//         ),
-//         if (hasBadge)
-//           Positioned(
-//             top: 10,
-//             right: 12,
-//             child: Container(
-//               width: 8,
-//               height: 8,
-//               decoration: const BoxDecoration(
-//                 color: AppColors.kRed,
-//                 shape: BoxShape.circle,
-//                 border: Border.fromBorderSide(
-//                   BorderSide(color: AppColors.kWhite, width: 1.5),
-//                 ),
-//               ),
-//             ),
-//           ),
-//       ],
-//     );
-//   }
-// }
+                                width: 24,
+                                height: 24,
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                      Positioned(
+                        bottom: 25,
+                        left: 20,
+                        child: Container(
+                          width: 6.5,
+                          height: 6.5,
+                          decoration: const BoxDecoration(
+                            color: Color(
+                              0xFFD12A2A,
+                            ), // Soft dark red for the dot
+                            shape: BoxShape.circle,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+              const SizedBox(height: 20),
+              // Title with box image
+              Row(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Text(
+                    "Plan Your Delivery",
+                    style: Styles.urbanistSize16w600White.copyWith(
+                      color: Colors.white,
+                      fontSize: 24,
+                    ),
+                  ),
+                  const SizedBox(width: 4),
+                  Image.asset(
+                    'assets/images/box.png',
+                    width: 24,
+                    height: 24,
+                    fit: BoxFit.contain,
+                  ),
+                ],
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}

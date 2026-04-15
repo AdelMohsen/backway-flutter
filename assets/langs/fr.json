@@ -66,5 +66,20 @@
     "pleaseEnterValidPrice": "Veuillez entrer un prix valide.",
     "pleaseEnterValidDiscount": "Veuillez entrer une réduction valide.",
     "pleaseEnterValidLink": "Veuillez entrer un lien valide.",
-    "thisFieldIsRequired": "Ce champ est requis."
+    "thisFieldIsRequired": "Ce champ est requis.",
+    "setUpProfile": "Configurer votre profil",
+    "completeProfileSubtitle": "Complétez votre profil pour accéder à votre compte et profiter d'une expérience plus fluide.",
+    "usernameLabel": "Nom d'utilisateur",
+    "usernameHint": "Entrez le nom d'utilisateur...",
+    "emailLabel": "E-mail",
+    "emailHintText": "Entrez l'e-mail...",
+    "selectCityLabel": "Sélectionnez votre ville",
+    "pickCityHint": "Choisissez votre ville",
+    "getStarted": "Commencer",
+    "haveAccount": "Vous avez déjà un compte ? ",
+    "logIn": "Connexion",
+    "home": "Accueil",
+    "myOrders": "Expéditions",
+    "negotiation": "Négociations",
+    "profile": "Profil"
 }

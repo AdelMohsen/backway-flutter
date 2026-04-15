@@ -223,7 +223,7 @@ class _DefaultPhoneFormFieldState extends State<DefaultPhoneFormField> {
       Widget content;
       if (widget.labelInsideBorder) {
         content = Container(
-          height: 57,
+          height: 46,
           decoration: BoxDecoration(
             color: widget.fillColor ?? Colors.white,
             borderRadius: BorderRadius.circular(radius),
@@ -312,11 +312,12 @@ class _DefaultPhoneFormFieldState extends State<DefaultPhoneFormField> {
               widget.hintStyle ??
               Styles.urbanistSize12w400White.copyWith(
                 fontSize: widget.hintFontSize ?? 12,
-                color: const Color.fromRGBO(187, 187, 187, 1),
+                color: ColorsApp.subColor,
               ),
           style:
               widget.style ??
               Styles.urbanistSize12w400White.copyWith(
+                color: ColorsApp.subColor,
                 fontSize: widget.titleFontSize ?? 14,
               ),
           labelStyle: Styles.urbanistSize12w400White.copyWith(
@@ -326,7 +327,8 @@ class _DefaultPhoneFormFieldState extends State<DefaultPhoneFormField> {
           foucsBorderColor: ColorsApp.KorangePrimary,
           titleStyle:
               widget.titleStyle ??
-              AppTextStyles.ibmPlexSansSize8w400Description.copyWith(
+              Styles.urbanistSize12w400White.copyWith(
+                color: ColorsApp.subColor,
                 fontSize: widget.titleFontSize,
               ),
           labelText: widget.titleText,
@@ -391,7 +393,7 @@ class _DefaultPhoneFormFieldState extends State<DefaultPhoneFormField> {
         result = Row(
           children: [
             Expanded(child: content),
-            const SizedBox(width: 10),
+            const SizedBox(width: 6),
             _buildCountryPicker(),
           ],
         );

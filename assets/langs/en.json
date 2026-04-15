@@ -66,5 +66,20 @@
     "pleaseEnterValidPrice": "Please enter a valid price.",
     "pleaseEnterValidDiscount": "Please enter a valid discount.",
     "pleaseEnterValidLink": "Please enter a valid link.",
-    "thisFieldIsRequired": "This field is required."
+    "thisFieldIsRequired": "This field is required.",
+    "setUpProfile": "Set Up Your Profile",
+    "completeProfileSubtitle": "Complete your profile to access your account and enjoy a smoother experience.",
+    "usernameLabel": "Username",
+    "usernameHint": "Enter Username...",
+    "emailLabel": "Email",
+    "emailHintText": "Enter Email...",
+    "selectCityLabel": "Select Your City",
+    "pickCityHint": "Pick your city",
+    "getStarted": "Get Started",
+    "haveAccount": "Have an account already? ",
+    "logIn": "Log in",
+    "home": "Home",
+    "myOrders": "Shipments",
+    "negotiation": "Negotiations",
+    "profile": "Profile"
 }

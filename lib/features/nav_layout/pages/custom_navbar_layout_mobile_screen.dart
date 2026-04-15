@@ -7,7 +7,6 @@ import '../../../core/utils/widgets/misc/custom_scaffold_widget.dart';
 import '../cubit/navbar_layout_cubit.dart';
 import '../cubit/navbar_layout_state.dart';
 import '../widgets/custom_navbar_widget.dart';
-import '../widgets/navbar_floating_action_button_widget.dart';
 
 class CustomNavbarLayoutMobilePortraitDesignScreen extends StatefulWidget {
   const CustomNavbarLayoutMobilePortraitDesignScreen({super.key});
@@ -42,15 +41,9 @@ class _CustomNavbarLayoutMobilePortraitDesignScreenState
                   systemNavigationBarDividerColor: Colors.transparent,
                 ),
                 child: CustomScaffoldWidget(
-                  floatingActionButtonLocation:
-                      FloatingActionButtonLocation.centerDocked,
-                  floatingActionButton: !isKeyboardVisible
-                      ? const NavbarFloatingActionButtonWidget()
-                      : null,
                   needAppbar: false,
                   backgroundColor: AppColors.kWhite,
                   bottomNavigationBar: const CustomNavbarWidget(),
-
                   child: cubit.pages[cubit.currentIndex],
                 ),
               ),

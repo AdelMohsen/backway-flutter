@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_animate/flutter_animate.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:greenhub/core/assets/app_svg.dart';
 import 'package:greenhub/core/navigation/custom_navigation.dart';
@@ -9,10 +9,11 @@ import 'package:greenhub/core/theme/colors/styles.dart';
 import 'package:greenhub/core/theme/text_styles/text_styles.dart';
 import 'package:greenhub/core/utils/constant/app_strings.dart';
 import 'package:greenhub/core/utils/extensions/extensions.dart';
-import 'package:greenhub/features/auth/login/ui/widgets/main_container_and_filed.dart';
+import '../../logic/complete_profile_cubit.dart';
+import '../widgets/complete_profile_body.dart';
 
-class LoginScreen extends StatelessWidget {
-  const LoginScreen({super.key});
+class CompleteProfileScreen extends StatelessWidget {
+  const CompleteProfileScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -69,8 +70,8 @@ class LoginScreen extends StatelessWidget {
                             child: Container(
                               width: 48,
                               height: 48,
-                              decoration: BoxDecoration(
-                                color: const Color.fromRGBO(255, 255, 255, 0.2),
+                              decoration: const BoxDecoration(
+                                color: Color.fromRGBO(255, 255, 255, 0.2),
                                 shape: BoxShape.circle,
                               ),
                               child: Padding(
@@ -83,37 +84,33 @@ class LoginScreen extends StatelessWidget {
                       ),
                       const SizedBox(height: 16),
                       Text(
-                        AppStrings.welcomeBack.tr,
+                        AppStrings.setUpProfile.tr,
                         style: Styles.urbanistSize28w700Orange.copyWith(
                           color: Colors.white,
                         ),
                       ),
                       const SizedBox(height: 4),
                       Text(
-                        AppStrings.signInSubtitle.tr,
+                        AppStrings.completeProfileSubtitle.tr,
                         style: Styles.urbanistSize14w400White.copyWith(
-                          color: Color.fromRGBO(255, 255, 255, 1),
+                          color: const Color.fromRGBO(255, 255, 255, 1),
                         ),
                       ),
-                      const SizedBox(height: 10),
+                      const SizedBox(height: 20),
                     ],
                   ),
                 ),
-                const Expanded(child: _LoginBottomSection()),
+                Expanded(
+                  child: BlocProvider(
+                    create: (context) => CompleteProfileCubit(),
+                    child: const CompleteProfileBody(),
+                  ),
+                ),
               ],
             ),
           ),
         ),
       ),
     );
-  }
-}
-
-class _LoginBottomSection extends StatelessWidget {
-  const _LoginBottomSection();
-
-  @override
-  Widget build(BuildContext context) {
-    return const MainContainerAndFiled();
   }
 }

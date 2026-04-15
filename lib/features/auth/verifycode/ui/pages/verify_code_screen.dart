@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:greenhub/core/assets/app_svg.dart';
 import 'package:greenhub/core/navigation/custom_navigation.dart';
 import 'package:greenhub/core/navigation/routes.dart';
@@ -11,20 +12,11 @@ import 'package:greenhub/core/utils/constant/app_strings.dart';
 import 'package:greenhub/core/utils/enums/enums.dart';
 import 'package:greenhub/core/utils/extensions/extensions.dart';
 import 'package:greenhub/core/utils/widgets/buttons/default_button.dart';
-import 'package:greenhub/core/utils/widgets/misc/custom_scaffold_widget.dart';
-import 'package:greenhub/core/utils/widgets/misc/graident_heaader_layout.dart';
 import 'package:greenhub/core/utils/widgets/toast/custom_toast.dart';
 import 'package:greenhub/features/auth/verifycode/data/params/verify_code_route_params.dart';
 import 'package:greenhub/features/auth/verifycode/logic/verify_code_cubit.dart';
 import 'package:greenhub/features/auth/verifycode/logic/verify_code_state.dart';
-import 'package:greenhub/features/auth/verifycode/ui/widgets/back_to_login_widget.dart';
-import 'package:greenhub/features/auth/verifycode/ui/widgets/change_phone_widget.dart';
-import 'package:greenhub/features/auth/verifycode/ui/widgets/otp_input_widget.dart';
-import 'package:greenhub/features/auth/verifycode/ui/widgets/resend_code_widget.dart';
-import 'package:greenhub/features/auth/verifycode/ui/widgets/timer_widget.dart';
-import 'package:greenhub/features/auth/verifycode/ui/widgets/verify_button_widget.dart';
-import 'package:greenhub/features/auth/verifycode/ui/widgets/verify_code_icon_widget.dart';
-import 'package:greenhub/features/auth/verifycode/ui/widgets/verify_code_title_widget.dart';
+
 import 'package:pin_code_fields/pin_code_fields.dart';
 
 class VerifyCodeScreen extends StatelessWidget {
@@ -55,7 +47,7 @@ class VerifyCodeScreen extends StatelessWidget {
                 CustomToast.showSuccess(context, message: state.data.message);
                 if (params.fromScreen == VerifyCodeFromScreen.fromLogin ||
                     params.fromScreen == VerifyCodeFromScreen.fromRegister) {
-                  CustomNavigator.push(Routes.NAV_LAYOUT, clean: true);
+                  //   CustomNavigator.push(Routes.COMPLETE_PROFILE, clean: true);
                 }
               } else if (state is VerifyOtpError) {
                 CustomToast.showError(context, message: state.error.message);
@@ -69,11 +61,7 @@ class VerifyCodeScreen extends StatelessWidget {
               final cubit = context.read<VerifyCodeCubit>();
               return SafeArea(
                 child: Padding(
-                  padding: EdgeInsetsDirectional.only(
-                    start: 16,
-                    end: 18,
-                    top: 20,
-                  ),
+                  padding: EdgeInsetsDirectional.only(start: 16, end: 16),
                   child: CustomScrollView(
                     slivers: [
                       SliverFillRemaining(
@@ -121,10 +109,10 @@ class VerifyCodeScreen extends StatelessWidget {
                             // Title
                             Text(
                               AppStrings.otpConfirmation.tr,
-                              style: Styles.urbanistSize28w600White.copyWith(
-                                color: ColorsApp.kPrimary,
-                                fontWeight: FontWeight.w700,
+                              style: GoogleFonts.inter(
                                 fontSize: 22,
+                                fontWeight: FontWeight.w700,
+                                color: ColorsApp.kPrimary,
                               ),
                             ),
                             const SizedBox(height: 12),
@@ -136,6 +124,7 @@ class VerifyCodeScreen extends StatelessWidget {
                                 cubit.phoneNumber,
                               ),
                               style: Styles.urbanistSize14w400White.copyWith(
+                                fontSize: 13,
                                 color: const Color.fromRGBO(107, 114, 128, 1),
                               ),
                             ),
@@ -163,64 +152,82 @@ class VerifyCodeScreen extends StatelessWidget {
                               ),
                             ),
 
-                            const SizedBox(height: 32),
+                            const SizedBox(height: 28),
 
                             // PIN Code Field
-                            PinCodeTextField(
-                              validator: (value) {
-                                if (value == null || value.isEmpty) {
-                                  return AppStrings.otpRequired.tr;
-                                }
-                                if (!RegExp(r'^\d+$').hasMatch(value)) {
-                                  return AppStrings.otpDigitsOnly.tr;
-                                }
-                                if (value.length < 4) {
-                                  return AppStrings.otpLength.tr;
-                                }
-                                return null;
-                              },
-                              appContext: context,
-                              length: 4,
-                              autoDisposeControllers: false,
-                              controller: cubit.otpController,
-                              keyboardType: TextInputType.number,
-                              inputFormatters: [
-                                FilteringTextInputFormatter.digitsOnly,
-                              ],
-                              autoFocus: true,
-                              enableActiveFill: true,
-                              hintCharacter: '-',
-                              hintStyle: const TextStyle(
-                                fontSize: 20,
-                                color: Color.fromRGBO(174, 173, 178, 1),
-                                fontWeight: FontWeight.w400,
+                            Padding(
+                              padding: const EdgeInsets.symmetric(
+                                horizontal: 2,
                               ),
-                              pinTheme: PinTheme(
-                                shape: PinCodeFieldShape.box,
-                                borderRadius: BorderRadius.circular(16),
-                                fieldHeight: 72,
-                                fieldWidth: 72,
-                                activeColor: ColorsApp.KorangeSecondary,
-                                selectedColor: ColorsApp.KorangeSecondary,
-                                inactiveColor: const Color(0xFFE5E7EB),
-                                activeFillColor: Colors.white,
-                                selectedFillColor: Colors.white,
-                                inactiveFillColor: const Color(0xFFFBFBFD),
-                                errorBorderColor: Colors.red,
+                              child: PinCodeTextField(
+                                validator: (value) {
+                                  if (value == null || value.isEmpty) {
+                                    return AppStrings.otpRequired.tr;
+                                  }
+                                  if (!RegExp(r'^\d+$').hasMatch(value)) {
+                                    return AppStrings.otpDigitsOnly.tr;
+                                  }
+                                  if (value.length < 4) {
+                                    return AppStrings.otpLength.tr;
+                                  }
+                                  return null;
+                                },
+                                appContext: context,
+                                length: 4,
+                                autoDisposeControllers: false,
+                                controller: cubit.otpController,
+                                keyboardType: TextInputType.number,
+                                inputFormatters: [
+                                  FilteringTextInputFormatter.digitsOnly,
+                                ],
+                                autoFocus: true,
+                                enableActiveFill: true,
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                hintCharacter: '-',
+                                hintStyle: const TextStyle(
+                                  fontSize: 28,
+                                  color: Color.fromRGBO(174, 173, 178, 1),
+                                  fontWeight: FontWeight.w400,
+                                ),
+                                pinTheme: PinTheme(
+                                  shape: PinCodeFieldShape.box,
+                                  borderRadius: BorderRadius.circular(16),
+                                  fieldHeight: 72,
+                                  fieldWidth: 72,
+                                  borderWidth: 1,
+                                  activeBorderWidth: 1,
+                                  inactiveBorderWidth: 1,
+                                  selectedBorderWidth: 1,
+                                  errorBorderWidth: 1,
+                                  activeColor:
+                                      cubit.otpController.text.length == 4
+                                      ? Colors.green
+                                      : ColorsApp.KorangeSecondary,
+                                  selectedColor:
+                                      cubit.otpController.text.length == 4
+                                      ? Colors.green
+                                      : ColorsApp.KorangeSecondary,
+                                  inactiveColor: const Color(0xFFE5E7EB),
+                                  activeFillColor: Colors.white,
+                                  selectedFillColor: Colors.white,
+                                  inactiveFillColor: const Color(0xFFFBFBFD),
+                                  errorBorderColor: Colors.red,
+                                ),
+                                textStyle: Styles.urbanistSize20w500Orange
+                                    .copyWith(
+                                      color: Color.fromRGBO(64, 64, 64, 1),
+                                    ),
+                                onChanged: (val) {
+                                  // Update state to trigger button refresh
+                                  if (val.length == 4 || val.length == 3) {
+                                    cubit.emit(VerifyCodeInitial());
+                                  }
+                                },
                               ),
-                              textStyle: Styles.urbanistSize20w500Orange
-                                  .copyWith(
-                                    color: Color.fromRGBO(64, 64, 64, 1),
-                                  ),
-                              onChanged: (val) {
-                                // Update state to trigger button refresh
-                                if (val.length == 4 || val.length == 3) {
-                                  cubit.emit(VerifyCodeInitial());
-                                }
-                              },
                             ),
 
-                            const SizedBox(height: 24),
+                            const SizedBox(height: 20),
 
                             // Resend Code
                             GestureDetector(
@@ -240,9 +247,7 @@ class VerifyCodeScreen extends StatelessWidget {
                                 ),
                               ),
                             ),
-
-                            const Spacer(),
-
+                            const SizedBox(height: 46),
                             // Verify Button
                             DefaultButton(
                               text: AppStrings.otpVerificationButton.tr,
@@ -251,10 +256,13 @@ class VerifyCodeScreen extends StatelessWidget {
                                   cubit.otpController.text.length == 4
                                   ? ColorsApp.kPrimary
                                   : const Color(0xFFBFC5CC),
-                              height: 56,
+                              height: 48,
                               borderRadiusValue: 28,
                               onPressed: cubit.otpController.text.length == 4
-                                  ? () => cubit.verifyOtpThenLogin()
+                                  ? () => CustomNavigator.push(
+                                      Routes.COMPLETE_PROFILE,
+                                      clean: true,
+                                    )
                                   : () {
                                       if (cubit.otpController.text.isEmpty) {
                                         CustomToast.showError(

@@ -105,4 +105,28 @@ class SvgImages {
   static const String on3 = 'assets/svgs/new/icon.svg';
   static const String phone = 'assets/svgs/new/call.svg';
   static const String kBackIcon = 'assets/svgs/new/elements.svg';
+  static const String location = 'assets/svgs/new/location.svg';
+  static const String sms = 'assets/svgs/new/sms.svg';
+  static const String user = 'assets/svgs/new/profile.svg';
+  static const String drop = 'assets/svgs/new/drop.svg';
+  static const String homeActive = 'assets/svgs/new/home.svg';
+  static const String homeUnActive = 'assets/svgs/new/home-unactive.svg';
+  static const String tagActive = 'assets/svgs/new/Tag-active.svg';
+  static const String tagUnActive = 'assets/svgs/new/tag-unactive.svg';
+  static const String truck = 'assets/svgs/new/truck-fast-active.svg';
+  static const String truckUnActive = 'assets/svgs/new/truck-fast-un.svg';
+  static const String profile = 'assets/svgs/new/prof.svg';
+  static const String bell =
+      'assets/svgs/new/Bell.svg'; // Corrected the uppercase 'B'
+  static const String locations = 'assets/svgs/new/not.svg';
+  static const String locationPin = 'assets/svgs/new/current.svg';
+  static const String car1 = 'assets/svgs/new/Group.svg';
+  static const String filter = 'assets/svgs/new/filter.svg';
+
+  static const String car2 = 'assets/svgs/new/Group2.svg';
+
+  static const String car3 = 'assets/svgs/new/blue_car.svg';
+
+  static const String car4 = 'assets/svgs/new/Minibus.svg';
+  static const String gps = 'assets/svgs/new/GPS.svg';
 }

@@ -652,4 +652,17 @@ class AppStrings {
   static const String pleaseEnterValidPrice = 'pleaseEnterValidPrice';
   static const String pleaseEnterValidDiscount = 'pleaseEnterValidDiscount';
   static const String pleaseEnterValidLink = 'pleaseEnterValidLink';
+
+  // ---------- COMPLETE PROFILE ----------
+  static const String setUpProfile = 'setUpProfile';
+  static const String completeProfileSubtitle = 'completeProfileSubtitle';
+  static const String usernameLabel = 'usernameLabel';
+  static const String usernameHint = 'usernameHint';
+  static const String emailLabel = 'emailLabel';
+  static const String emailHintText = 'emailHintText';
+  static const String selectCityLabel = 'selectCityLabel';
+  static const String pickCityHint = 'pickCityHint';
+  static const String getStarted = 'getStarted';
+  static const String haveAccount = 'haveAccount';
+  static const String logIn = 'logIn';
 }

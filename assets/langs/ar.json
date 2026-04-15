@@ -66,5 +66,20 @@
     "pleaseEnterValidPrice": "يرجى إدخال سعر صحيح.",
     "pleaseEnterValidDiscount": "يرجى إدخال خصم صحيح.",
     "pleaseEnterValidLink": "يرجى إدخال رابط صحيح.",
-    "thisFieldIsRequired": "هذا الحقل مطلوب."
+    "thisFieldIsRequired": "هذا الحقل مطلوب.",
+    "setUpProfile": "إعداد ملفك الشخصي",
+    "completeProfileSubtitle": "أكمل ملفك الشخصي للوصول إلى حسابك والاستمتاع بتجربة أكثر سلاسة.",
+    "usernameLabel": "اسم المستخدم",
+    "usernameHint": "أدخل اسم المستخدم...",
+    "emailLabel": "البريد الإلكتروني",
+    "emailHintText": "أدخل البريد الإلكتروني...",
+    "selectCityLabel": "اختر مدينتك",
+    "pickCityHint": "اختر مدينتك",
+    "getStarted": "ابدأ الآن",
+    "haveAccount": "هل لديك حساب بالفعل؟ ",
+    "logIn": "تسجيل الدخول",
+    "home": "الرئيسية",
+    "myOrders": "الشحنات",
+    "negotiation": "المفاوضات",
+    "profile": "حسابي"
 }

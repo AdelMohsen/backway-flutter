@@ -35,6 +35,7 @@ class DefaultUsernameFormField extends StatelessWidget {
     this.textAlign,
     this.height,
     this.style,
+    this.foucsBorderColor,
   });
   final double? titleFontSize;
   final double? hintFontSize;
@@ -60,6 +61,7 @@ class DefaultUsernameFormField extends StatelessWidget {
   final TextAlign? textAlign;
   final double? height;
   final TextStyle? style;
+  final Color? foucsBorderColor;
   @override
   Widget build(BuildContext context) {
     return SizedBox(
@@ -69,14 +71,13 @@ class DefaultUsernameFormField extends StatelessWidget {
         contentPadding:
             contentPadding ??
             const EdgeInsetsDirectional.fromSTEB(20, 10, 20, 28),
-        hintStyle: AppTextStyles.ibmPlexSansSize12w400Grey.copyWith(
-          fontSize: hintFontSize ?? 12,
-          fontWeight: hintFontWeight ?? FontWeight.w400,
-          color: hintColor ?? const Color.fromRGBO(187, 187, 187, 1),
+        hintStyle: Styles.urbanistSize12w400White.copyWith(
+          color: hintColor ?? const Color.fromRGBO(148, 163, 184, 1),
         ),
         style:
             style ??
             AppTextStyles.interW500Size20.copyWith(
+              color: ColorsApp.subColor,
               fontSize: titleFontSize ?? 14,
             ),
         labelStyle: AppTextStyles.cairoW400Size12.copyWith(
@@ -86,7 +87,7 @@ class DefaultUsernameFormField extends StatelessWidget {
         hintText: hintText ?? AppStrings.firstName.tr,
         maxLines: maxLines,
         fillColor: fillColor ?? const Color.fromRGBO(247, 247, 247, 1),
-        titleStyle: AppTextStyles.cairoW400Size12.copyWith(
+        titleStyle: Styles.urbanistSize12w400White.copyWith(
           fontSize: titleFontSize,
         ),
         borderRadious: borderRadious ?? 12,
@@ -98,8 +99,8 @@ class DefaultUsernameFormField extends StatelessWidget {
         padding: padding,
 
         borderColor: borderColor ?? Colors.transparent,
-        enabledBorderColor: Colors.transparent,
-        foucsBorderColor: AppColors.primaryGreenHub,
+        enabledBorderColor: borderColor ?? Colors.transparent,
+        foucsBorderColor: foucsBorderColor ?? AppColors.primaryGreenHub,
         onSaved: onSaved,
         focusedErrorBorderColor: Colors.red,
         validator: validator,

@@ -30,6 +30,8 @@ class DefaultEmailFormField extends StatelessWidget {
     this.textAlign,
     this.style,
     this.contentPadding,
+    this.hintText,
+    this.foucsBorderColor,
   });
   final double? titleFontSize;
   final double? hintFontSize;
@@ -47,6 +49,8 @@ class DefaultEmailFormField extends StatelessWidget {
   final TextStyle? style;
   final TextAlign? textAlign;
   final EdgeInsetsGeometry? contentPadding;
+  final String? hintText;
+  final Color? foucsBorderColor;
 
   @override
   Widget build(BuildContext context) {
@@ -55,18 +59,21 @@ class DefaultEmailFormField extends StatelessWidget {
       contentPadding:
           contentPadding ??
           const EdgeInsetsDirectional.fromSTEB(20, 10, 20, 28),
-      hintStyle: AppTextStyles.cairoW400Size12.copyWith(
+      hintStyle: Styles.urbanistSize12w400White.copyWith(
         fontSize: hintFontSize ?? 12,
         color: const Color.fromRGBO(187, 187, 187, 1),
       ),
       style:
           style ??
-          AppTextStyles.interW500Size20.copyWith(fontSize: titleFontSize ?? 14),
+          Styles.urbanistSize12w400White.copyWith(
+            color: ColorsApp.subColor,
+            fontSize: titleFontSize ?? 14,
+          ),
       labelStyle: AppTextStyles.bodySmMedium.copyWith(
         fontSize: hintFontSize ?? 14,
         color: const Color.fromRGBO(210, 210, 210, 1),
       ),
-      hintText: AppStrings.emailHint.tr,
+      hintText: hintText ?? AppStrings.emailHint.tr,
       fillColor: fillColor ?? const Color.fromRGBO(247, 247, 247, 1),
       validator: (value) => EmailValidator.emailValidator(value),
       borderRadious: borderRadious ?? 12,
@@ -77,8 +84,8 @@ class DefaultEmailFormField extends StatelessWidget {
       textAlign: textAlign ?? TextAlign.start,
 
       borderColor: borderColor ?? Colors.transparent,
-      enabledBorderColor: Colors.transparent,
-      foucsBorderColor: AppColors.primaryGreenHub,
+      enabledBorderColor: borderColor ?? Colors.transparent,
+      foucsBorderColor: foucsBorderColor ?? AppColors.primaryGreenHub,
       onSaved: onSaved,
       focusedErrorBorderColor: Colors.red,
     );

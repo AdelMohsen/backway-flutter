@@ -21,59 +21,41 @@ class NavbarLayoutCubit extends Cubit<NavbarLayoutState> {
 
   List<BottomNavigationBarItem> get items => [
     BottomNavigationBarItem(
-      activeIcon: SvgPicture.asset(AppSvg.homeNav),
-      icon: SvgPicture.asset(AppSvg.homeNavInactive),
+      activeIcon: SvgPicture.asset(SvgImages.homeActive),
+      icon: SvgPicture.asset(SvgImages.homeUnActive),
       label: AppStrings.home.tr,
       tooltip: AppStrings.home.tr,
     ),
     BottomNavigationBarItem(
-      activeIcon: SvgPicture.asset(
-        AppSvg.offersNav,
-        color: AppColors.primaryGreenHub,
-      ),
-      icon: SvgPicture.asset(AppSvg.offersNav, color: AppColors.nutral60),
-      label: AppStrings.offers.tr,
-      tooltip: AppStrings.offers.tr,
-    ),
-
-    const BottomNavigationBarItem(
-      activeIcon: Icon(
-        CupertinoIcons.add_circled,
-        color: AppColors.primaryGreenHub,
-      ),
-      icon: Icon(CupertinoIcons.add_circled, color: AppColors.primaryGreenHub),
-      label: '',
-      tooltip: '',
-    ),
-    BottomNavigationBarItem(
-      activeIcon: SvgPicture.asset(
-        AppSvg.ordersNav,
-        color: AppColors.primaryGreenHub,
-      ),
-      icon: SvgPicture.asset(AppSvg.ordersNav, color: AppColors.nutral60),
+      activeIcon: SvgPicture.asset(SvgImages.truck),
+      icon: SvgPicture.asset(SvgImages.truckUnActive),
       label: AppStrings.myOrders.tr,
       tooltip: AppStrings.myOrders.tr,
     ),
     BottomNavigationBarItem(
-      activeIcon: SvgPicture.asset(
-        AppSvg.moreNav,
-        colorFilter: const ColorFilter.mode(
-          AppColors.primaryGreenHub,
-          BlendMode.srcIn,
-        ),
+      activeIcon: SvgPicture.asset(SvgImages.tagActive),
+      icon: SvgPicture.asset(SvgImages.tagUnActive),
+      label: AppStrings.negotiation.tr,
+      tooltip: AppStrings.negotiation.tr,
+    ),
+    BottomNavigationBarItem(
+      activeIcon: ClipRRect(
+        borderRadius: BorderRadius.circular(25),
+        child: Image.asset('assets/images/new/nn.png', height: 24, width: 24),
       ),
-
-      icon: SvgPicture.asset(AppSvg.moreNav, color: AppColors.nutral60),
-      label: AppStrings.more.tr,
-      tooltip: AppStrings.more.tr,
+      icon: ClipRRect(
+        borderRadius: BorderRadius.circular(25),
+        child: Image.asset('assets/images/new/nn.png', height: 24, width: 24),
+      ),
+      label: 'profile'.tr,
+      tooltip: 'profile'.tr,
     ),
   ];
 
   List<Widget> pages = [
     const HomeScreen(),
-    const OffersScreen(),
-    const SizedBox(),
     const OrderScreen(),
+    const OffersScreen(),
     const MoreScreen(),
   ];
 

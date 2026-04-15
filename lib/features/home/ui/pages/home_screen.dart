@@ -1,12 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:greenhub/core/theme/colors/styles.dart';
+import 'package:greenhub/core/services/location/location_service.dart';
 import 'package:greenhub/core/utils/widgets/misc/custom_scaffold_widget.dart';
-import '../../../../core/assets/app_images.dart';
-import '../../data/models/home_models.dart';
-import '../widgets/home_header_sliver.dart';
-import '../widgets/offers_section_widget.dart';
-import '../widgets/services_section_widget.dart';
-import 'package:greenhub/core/utils/constant/app_strings.dart';
-import 'package:greenhub/core/utils/extensions/extensions.dart';
+import 'package:greenhub/features/home/ui/widgets/home_header_widget.dart';
+import 'package:greenhub/features/home/ui/widgets/home_map_widget.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -16,91 +13,46 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  bool isLoading = true;
-  List<OfferModel> offers = [];
-  List<ServiceModel> services = [];
+  final LocationService _locationService = LocationService();
+  String _locationName = 'Loading...';
+  double? _latitude;
+  double? _longitude;
 
   @override
   void initState() {
     super.initState();
-    _loadHomeData();
+    _fetchLocation();
   }
 
-  void _loadHomeData() {
-    setState(() {
-      isLoading = true;
-    });
-
-    // Simulate API call
-    Future.delayed(const Duration(seconds: 1), () {
-      if (!mounted) return;
-
+  Future<void> _fetchLocation() async {
+    final result = await _locationService.getCurrentLocation();
+    if (result.success) {
       setState(() {
-        offers = [
-          OfferModel(
-            id: 1,
-            title: AppStrings.homeBannerTitle.tr,
-            image: AppImages.homeBanner,
-            discount: '40%',
-          ),
-        ];
-
-        services = [
-          ServiceModel(
-            buttonColor: const Color.fromRGBO(4, 131, 114, 1),
-            buttonTextColor: const Color.fromRGBO(255, 255, 255, 1),
-
-            id: 2,
-            title: AppStrings.serviceDeliveryTitle.tr,
-            image: AppImages.serviceDelivery,
-            description: AppStrings.serviceDeliveryDesc.tr,
-          ),
-          ServiceModel(
-            buttonColor: const Color.fromRGBO(174, 207, 92, 1),
-            buttonTextColor: Colors.black,
-            id: 1,
-            title: AppStrings.serviceInstallationTitle.tr,
-            image: AppImages.serviceInstallation,
-            description: AppStrings.serviceInstallationDesc.tr,
-          ),
-        ];
-
-        isLoading = false;
+        _locationName = result.locationName ?? 'Unknown Location';
+        _latitude = result.latitude;
+        _longitude = result.longitude;
       });
-    });
+    } else {
+      setState(() {
+        _locationName = 'Location unavailable';
+      });
+    }
   }
 
   @override
   Widget build(BuildContext context) {
     return CustomScaffoldWidget(
+      backgroundColor: ColorsApp.KorangePrimary,
       needAppbar: false,
       needBottomGradient: false,
       child: CustomScrollView(
+        physics: const ScrollPhysics(),
         slivers: [
-          // Collapsing Header
-          const HomeHeaderSliver(),
-
-          // Content
-          SliverToBoxAdapter(
-            child: Column(
-              children: [
-                const SizedBox(height: 16),
-                if (isLoading)
-                  const Padding(
-                    padding: EdgeInsets.only(top: 50),
-                    child: Center(child: CircularProgressIndicator()),
-                  )
-                else
-                  Column(
-                    children: [
-                      const OffersSectionWidget(),
-                      const SizedBox(height: 16),
-                      ServicesSectionWidget(services: services),
-                      const SizedBox(height: 15),
-                    ],
-                  ),
-              ],
-            ),
+          HomeHeaderWidget(locationName: _locationName),
+          HomeMapWidget(
+            latitude: _latitude,
+            longitude: _longitude,
+            onLocateMe: _fetchLocation,
           ),
         ],
       ),
