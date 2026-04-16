@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:greenhub/features/shipments/ui/pages/shipment_screen.dart';
 import '../../../core/assets/app_svg.dart';
 import '../../../core/utils/constant/app_strings.dart';
 import '../../../core/utils/extensions/extensions.dart';
@@ -52,7 +53,7 @@ class NavbarLayoutCubit extends Cubit<NavbarLayoutState> {
 
   List<Widget> pages = [
     const HomeScreen(),
-    const Text("data"),
+    const ShipmentScreen(),
     const Text("data"),
     const MoreScreen(),
   ];

@@ -80,10 +80,10 @@ class _DriverDetailsCardState extends State<DriverDetailsCard> {
                 ),
               ),
               SvgPicture.asset(
-                SvgImages.drop,
-                width: 20,
-                height: 20,
-                colorFilter: ColorFilter.mode(
+                SvgImages.arrowDown,
+                width: 24,
+                height: 24,
+                colorFilter: const ColorFilter.mode(
                   Color.fromRGBO(130, 134, 171, 1),
                   BlendMode.srcIn,
                 ),
@@ -269,7 +269,7 @@ class _DriverDetailsCardState extends State<DriverDetailsCard> {
                 },
                 child: Container(
                   padding: const EdgeInsets.symmetric(
-                    horizontal: 15,
+                    horizontal: 12,
                     vertical: 9,
                   ),
                   decoration: BoxDecoration(

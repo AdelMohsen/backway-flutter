@@ -134,4 +134,16 @@ class SvgImages {
   static const String checks = 'assets/svgs/new/vv.svg';
   static const String ckear = 'assets/svgs/new/hh.svg';
   static const String star = 'assets/svgs/new/starr.svg';
+  static const String arrowDown = 'assets/svgs/new/Arrow.svg';
+  static const String search = 'assets/svgs/new/search.svg';
+
+  static const String close = 'assets/svgs/new/close-circle.svg';
+
+  static const String volt = 'assets/svgs/new/Bolt.svg';
+
+  static const String done = 'assets/svgs/new/done.svg';
+
+  static const String boxx = 'assets/svgs/new/boxx.svg';
+
+  static const String complete = 'assets/svgs/new/complete.svg';
 }

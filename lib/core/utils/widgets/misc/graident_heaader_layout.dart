@@ -16,6 +16,10 @@ class GradientHeaderLayout extends StatelessWidget {
   final double headerHeight;
   final Widget? trailing;
   final TextStyle? style;
+  final List<Color>? gradientColors;
+  final Color? headerColor;
+  final double contentTopPadding;
+  final double glassTopPadding;
 
   const GradientHeaderLayout({
     super.key,
@@ -29,6 +33,10 @@ class GradientHeaderLayout extends StatelessWidget {
     this.headerHeight = 180,
     this.backgroundColor,
     this.trailing,
+    this.gradientColors,
+    this.headerColor,
+    this.contentTopPadding = 130,
+    this.glassTopPadding = 117,
   });
 
   @override
@@ -38,12 +46,20 @@ class GradientHeaderLayout extends StatelessWidget {
         // 🔹 Gradient Header
         Container(
           height: headerHeight,
-          decoration: const BoxDecoration(
-            gradient: LinearGradient(
-              colors: [AppColors.kLightGreen, AppColors.primaryGreenHub],
-              begin: Alignment.centerLeft,
-              end: Alignment.centerRight,
-            ),
+          decoration: BoxDecoration(
+            color: headerColor,
+            gradient: headerColor != null
+                ? null
+                : LinearGradient(
+                    colors:
+                        gradientColors ??
+                        const [
+                          AppColors.kLightGreen,
+                          AppColors.primaryGreenHub,
+                        ],
+                    begin: Alignment.centerLeft,
+                    end: Alignment.centerRight,
+                  ),
           ),
         ),
 
@@ -98,23 +114,10 @@ class GradientHeaderLayout extends StatelessWidget {
         ),
 
         // 🔹 Glass effect layer
-        Padding(
-          padding: const EdgeInsets.only(top: 117, left: 4, right: 4),
-          child: Container(
-            height: 40,
-            decoration: BoxDecoration(
-              color: Colors.white.withAlpha(128),
-              borderRadius: const BorderRadius.only(
-                topLeft: Radius.circular(30),
-                topRight: Radius.circular(30),
-              ),
-            ),
-          ),
-        ),
 
         // 🔹 Main Content Card
         Padding(
-          padding: const EdgeInsets.only(top: 130),
+          padding: EdgeInsets.only(top: contentTopPadding),
           child: Container(
             width: double.infinity,
             decoration: BoxDecoration(
