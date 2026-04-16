@@ -4,6 +4,7 @@ import 'package:greenhub/core/assets/app_svg.dart';
 import 'package:greenhub/core/navigation/custom_navigation.dart';
 import 'package:greenhub/core/theme/text_styles/text_styles.dart';
 import 'package:greenhub/core/utils/widgets/misc/custom_scaffold_widget.dart';
+import 'package:greenhub/features/shipment_details/ui/widgets/driver_details_card.dart';
 
 class ShipmentDetailsScreen extends StatelessWidget {
   const ShipmentDetailsScreen({super.key});
@@ -12,6 +13,7 @@ class ShipmentDetailsScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return CustomScaffoldWidget(
       backgroundColor: Colors.white,
+
       child: SingleChildScrollView(
         child: Column(
           children: [
@@ -48,10 +50,12 @@ class ShipmentDetailsScreen extends StatelessWidget {
                       ),
                     ),
                   ),
-                  const SizedBox(width: 44), // To balance the row visually
+                  const SizedBox(width: 44), // To balanced the row visually
                 ],
               ),
             ),
+            const SizedBox(height: 20),
+            const DriverDetailsCard(),
           ],
         ),
       ),

@@ -294,6 +294,11 @@ abstract class Styles {
     fontWeight: FontWeight.w500,
     color: ColorsApp.KorangePrimary,
   );
+  static TextStyle urbanistSize10w500Orange = GoogleFonts.urbanist(
+    fontSize: 10,
+    fontWeight: FontWeight.w500,
+    color: ColorsApp.KorangePrimary,
+  );
   static TextStyle urbanistSize12w600Orange = GoogleFonts.urbanist(
     fontSize: 12,
     fontWeight: FontWeight.w600,

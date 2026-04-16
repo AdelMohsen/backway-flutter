@@ -13,6 +13,7 @@ import 'package:greenhub/core/theme/colors/styles.dart';
 import 'package:greenhub/core/theme/text_styles/text_styles.dart';
 import 'package:greenhub/core/utils/constant/app_strings.dart';
 import 'package:greenhub/core/utils/extensions/extensions.dart';
+import 'package:greenhub/core/utils/helpers/map_style_helper.dart';
 
 class HomeMapWidget extends StatefulWidget {
   final double? latitude;
@@ -452,6 +453,7 @@ class _HomeMapWidgetState extends State<HomeMapWidget> {
                 ),
                 onMapCreated: (GoogleMapController controller) {
                   _mapController = controller;
+                  _mapController?.setMapStyle(MapStyleHelper.silverStyle);
                 },
                 markers: _buildMarkers(),
                 circles: _buildCircles(),
