@@ -214,7 +214,7 @@ class DriverDetailsBottomSheet extends StatelessWidget {
                 Expanded(
                   child: DefaultButton(
                     onPressed: () {
-                      CustomNavigator.push(Routes.SHIPMENT_DETAILS);
+                      CustomNavigator.push(Routes.DRIVER_DETAILS);
                     },
                     backgroundColor: const Color(0xFFF8F9FB),
                     text: AppStrings.viewDetails.tr,

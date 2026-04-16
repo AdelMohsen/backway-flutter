@@ -5,12 +5,12 @@ import 'package:greenhub/core/navigation/custom_navigation.dart';
 import 'package:greenhub/core/theme/text_styles/text_styles.dart';
 import 'package:greenhub/core/utils/widgets/buttons/default_button.dart';
 import 'package:greenhub/core/utils/widgets/misc/custom_scaffold_widget.dart';
-import 'package:greenhub/features/shipment_details/ui/widgets/driver_details_card.dart';
-import 'package:greenhub/features/shipment_details/ui/widgets/vehicle_details_card.dart';
-import 'package:greenhub/features/shipment_details/ui/widgets/reviews_card.dart';
+import 'package:greenhub/features/driver_details/ui/widgets/driver_details_card.dart';
+import 'package:greenhub/features/driver_details/ui/widgets/vehicle_details_card.dart';
+import 'package:greenhub/features/driver_details/ui/widgets/reviews_card.dart';
 
-class ShipmentDetailsScreen extends StatelessWidget {
-  const ShipmentDetailsScreen({super.key});
+class DriverDetailsScreen extends StatelessWidget {
+  const DriverDetailsScreen({super.key});
 
   @override
   Widget build(BuildContext context) {

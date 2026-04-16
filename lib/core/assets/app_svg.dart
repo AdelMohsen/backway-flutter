@@ -146,4 +146,12 @@ class SvgImages {
   static const String boxx = 'assets/svgs/new/boxx.svg';
 
   static const String complete = 'assets/svgs/new/complete.svg';
+  static const String phone1 = 'assets/svgs/new/phone.svg';
+  static const String cancel = 'assets/svgs/new/cancel.svg';
+  static const String capacity = 'assets/svgs/new/capacity.svg';
+  static const String docs = 'assets/svgs/new/docs.svg';
+  static const String locs1 = 'assets/svgs/new/locs1.svg';
+  static const String pay = 'assets/svgs/new/pay.svg';
+  static const String size = 'assets/svgs/new/size.svg';
+  static const String total = 'assets/svgs/new/total.svg';
 }

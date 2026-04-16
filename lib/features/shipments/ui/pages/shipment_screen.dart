@@ -157,17 +157,20 @@ class _ShipmentScreenState extends State<ShipmentScreen> {
                           itemCount: 4,
                           itemBuilder: (context, index) {
                             return ShipmentCard(
+                              onDetails: () {},
+                              onCancel: () {},
+                              onTracking: () {},
                               orderId: "28765543",
                               vehicleType: "Cargo Van",
                               fromAddress: "Toronto, ON · M5V 2H1",
                               toAddress: "Vancouver, BC · V6B 3K9",
-                              status: _tabs[_selectedTab].toLowerCase() ==
+                              status:
+                                  _tabs[_selectedTab].toLowerCase() ==
                                       'in progress'
-                                  ? (index == 0
-                                      ? 'Picking Up'
-                                      : 'In Progress')
+                                  ? (index == 0 ? 'Picking Up' : 'In Progress')
                                   : _tabs[_selectedTab],
-                              progress: _tabs[_selectedTab].toLowerCase() ==
+                              progress:
+                                  _tabs[_selectedTab].toLowerCase() ==
                                       'in progress'
                                   ? 0.75
                                   : null,

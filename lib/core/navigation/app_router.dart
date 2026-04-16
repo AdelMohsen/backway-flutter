@@ -9,7 +9,7 @@ import 'package:greenhub/features/choice_account/ui/pages/choice_account.dart';
 import 'package:greenhub/features/choose_account/ui/pages/choose_account_screen.dart';
 
 import 'package:greenhub/features/settings/ui/pages/app_settings_screen.dart';
-import 'package:greenhub/features/shipment_details/ui/pages/shipment_details_screen.dart';
+import 'package:greenhub/features/driver_details/ui/pages/driver_details_screen.dart';
 import 'package:greenhub/features/splash/splash_screen.dart';
 import 'package:greenhub/features/nav_layout/pages/custom_navbar_layout_screen.dart';
 import 'package:greenhub/features/about/ui/pages/about_screen.dart';
@@ -208,9 +208,9 @@ final GoRouter appRouter = GoRouter(
       builder: (context, state) => const CompleteProfileScreen(),
     ),
     GoRoute(
-      path: '/shipmentDetails',
-      name: Routes.SHIPMENT_DETAILS,
-      builder: (context, state) => const ShipmentDetailsScreen(),
+      path: '/driverDetails',
+      name: Routes.DRIVER_DETAILS,
+      builder: (context, state) => const DriverDetailsScreen(),
     ),
   ],
 
