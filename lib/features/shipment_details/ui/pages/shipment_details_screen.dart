@@ -11,41 +11,46 @@ class ShipmentDetailsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return CustomScaffoldWidget(
+      backgroundColor: Colors.white,
       child: SingleChildScrollView(
         child: Column(
           children: [
-            Row(
-              children: [
-                GestureDetector(
-                  onTap: () => CustomNavigator.pop(),
-                  child: Container(
-                    width: 40,
-                    height: 40,
-                    decoration: const BoxDecoration(
-                      color: Color(0xFFF6F8FA),
-                      shape: BoxShape.circle,
-                    ),
-                    alignment: Alignment.center,
-                    child: SvgPicture.asset(
-                      SvgImages.kBackIcon,
-                      colorFilter: const ColorFilter.mode(
-                        Color.fromRGBO(36, 35, 39, 1),
-                        BlendMode.srcIn,
+            const SizedBox(height: 20),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16),
+              child: Row(
+                children: [
+                  GestureDetector(
+                    onTap: () => CustomNavigator.pop(),
+                    child: Container(
+                      width: 40,
+                      height: 40,
+                      decoration: const BoxDecoration(
+                        color: Color.fromRGBO(175, 175, 175, 0.12),
+                        shape: BoxShape.circle,
+                      ),
+                      alignment: Alignment.center,
+                      child: SvgPicture.asset(
+                        SvgImages.kBackIcon,
+                        colorFilter: const ColorFilter.mode(
+                          Color.fromRGBO(36, 35, 39, 1),
+                          BlendMode.srcIn,
+                        ),
                       ),
                     ),
                   ),
-                ),
-                Expanded(
-                  child: Text(
-                    "aa",
-                    textAlign: TextAlign.center,
-                    style: Styles.urbanistSize16w600White.copyWith(
-                      color: Colors.black,
+                  Expanded(
+                    child: Text(
+                      "Driver details",
+                      textAlign: TextAlign.center,
+                      style: Styles.urbanistSize20w600Orange.copyWith(
+                        color: Color.fromRGBO(38, 38, 38, 1),
+                      ),
                     ),
                   ),
-                ),
-                const SizedBox(width: 44), // To balance the row visually
-              ],
+                  const SizedBox(width: 44), // To balance the row visually
+                ],
+              ),
             ),
           ],
         ),

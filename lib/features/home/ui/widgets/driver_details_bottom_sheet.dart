@@ -3,6 +3,8 @@ import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:greenhub/core/animations/entrance_animation.dart';
 import 'package:greenhub/core/assets/app_images.dart';
+import 'package:greenhub/core/navigation/custom_navigation.dart';
+import 'package:greenhub/core/navigation/routes.dart';
 import 'package:greenhub/core/theme/text_styles/text_styles.dart';
 import 'package:greenhub/core/utils/constant/app_strings.dart';
 import 'package:greenhub/core/utils/extensions/extensions.dart';
@@ -153,7 +155,9 @@ class DriverDetailsBottomSheet extends StatelessWidget {
                     borderRadius: BorderRadius.circular(24),
                   ),
                   child: Text(
-                    isAvailable ? AppStrings.available.tr : AppStrings.notAvailable.tr,
+                    isAvailable
+                        ? AppStrings.available.tr
+                        : AppStrings.notAvailable.tr,
                     style: Styles.urbanistSize12w600Orange.copyWith(
                       color: Colors.white,
                     ),
@@ -209,7 +213,9 @@ class DriverDetailsBottomSheet extends StatelessWidget {
                 const SizedBox(width: 12),
                 Expanded(
                   child: DefaultButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      CustomNavigator.push(Routes.SHIPMENT_DETAILS);
+                    },
                     backgroundColor: const Color(0xFFF8F9FB),
                     text: AppStrings.viewDetails.tr,
                     height: 52,

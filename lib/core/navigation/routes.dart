@@ -32,4 +32,5 @@ class Routes {
   static const String AVALABLE_VECHILE = '/avalable_vechile';
   static const String CHOOSE_ACCOUNT = '/choose_account';
   static const String COMPLETE_PROFILE = '/complete-profile';
+  static const String SHIPMENT_DETAILS = '/shipmentDetails';
 }
