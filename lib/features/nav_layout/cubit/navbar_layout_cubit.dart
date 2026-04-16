@@ -6,10 +6,8 @@ import '../../../core/assets/app_svg.dart';
 import '../../../core/utils/constant/app_strings.dart';
 import '../../../core/utils/extensions/extensions.dart';
 import '../../../core/theme/colors/styles.dart';
-import '../../offers/ui/pages/offers_screen.dart';
 import '../../home/ui/pages/home_screen.dart';
 import '../../more/ui/pages/more_screen.dart';
-import '../../orders/ui/pages/order_screen.dart';
 import 'navbar_layout_state.dart';
 
 class NavbarLayoutCubit extends Cubit<NavbarLayoutState> {
@@ -54,8 +52,8 @@ class NavbarLayoutCubit extends Cubit<NavbarLayoutState> {
 
   List<Widget> pages = [
     const HomeScreen(),
-    const OrderScreen(),
-    const OffersScreen(),
+    const Text("data"),
+    const Text("data"),
     const MoreScreen(),
   ];
 

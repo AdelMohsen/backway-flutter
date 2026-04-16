@@ -131,4 +131,7 @@ class SvgImages {
   static const String gps = 'assets/svgs/new/GPS.svg';
   static const String distance = 'assets/svgs/new/dis.svg';
   static const String verify = 'assets/svgs/new/verify.svg';
+  static const String checks = 'assets/svgs/new/vv.svg';
+  static const String ckear = 'assets/svgs/new/hh.svg';
+  static const String star = 'assets/svgs/new/starr.svg';
 }

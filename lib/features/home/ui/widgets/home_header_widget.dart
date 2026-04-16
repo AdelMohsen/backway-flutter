@@ -4,10 +4,12 @@ import 'package:flutter_svg/svg.dart';
 import 'package:greenhub/core/theme/colors/styles.dart';
 import 'package:greenhub/core/assets/app_svg.dart';
 import 'package:greenhub/core/theme/text_styles/text_styles.dart';
+import 'package:greenhub/core/utils/constant/app_strings.dart';
+import 'package:greenhub/core/utils/extensions/extensions.dart';
 
 class HomeHeaderWidget extends StatelessWidget {
   final String locationName;
-  const HomeHeaderWidget({super.key, this.locationName = 'Loading...'});
+  const HomeHeaderWidget({super.key, required this.locationName});
 
   @override
   Widget build(BuildContext context) {
@@ -155,7 +157,7 @@ class HomeHeaderWidget extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   Text(
-                    "Plan Your Delivery",
+                    AppStrings.homeBannerTitle.tr,
                     style: Styles.urbanistSize16w600White.copyWith(
                       color: Colors.white,
                       fontSize: 24,

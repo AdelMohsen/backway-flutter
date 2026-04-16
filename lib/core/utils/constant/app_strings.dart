@@ -665,4 +665,24 @@ class AppStrings {
   static const String getStarted = 'getStarted';
   static const String haveAccount = 'haveAccount';
   static const String logIn = 'logIn';
+
+  // ---------- HOME REFINEMENTS ----------
+  static const String allCars = 'allCars';
+  static const String cargoVan = 'cargoVan';
+  static const String container = 'container';
+  static const String sedan = 'sedan';
+  static const String suv = 'suv';
+  static const String available = 'available';
+  static const String notAvailable = 'notAvailable';
+  static const String shipmentsCount = 'shipmentsCount';
+  static const String shipmentRequest = 'shipmentRequest';
+  static const String viewDetails = 'viewDetails';
+  static const String exploreDriversByCity = 'exploreDriversByCity';
+  static const String selectCityDescription = 'selectCityDescription';
+  static const String applyFilters = 'applyFilters';
+  static const String jeddah = 'jeddah';
+  static const String dammam = 'dammam';
+  static const String mecca = 'mecca';
+  static const String medina = 'medina';
+  static const String ratingLabel = 'ratingLabel';
 }

@@ -8,7 +8,6 @@ import 'package:greenhub/features/onboarding/ui/pages/onboarding_screen.dart';
 import 'package:greenhub/features/choice_account/ui/pages/choice_account.dart';
 import 'package:greenhub/features/choose_account/ui/pages/choose_account_screen.dart';
 
-import 'package:greenhub/features/orders/ui/pages/order_screen.dart';
 import 'package:greenhub/features/settings/ui/pages/app_settings_screen.dart';
 import 'package:greenhub/features/splash/splash_screen.dart';
 import 'package:greenhub/features/nav_layout/pages/custom_navbar_layout_screen.dart';
@@ -22,19 +21,15 @@ import 'package:greenhub/features/address/data/models/address_model.dart';
 import 'package:greenhub/features/address/ui/pages/address_screen.dart';
 import 'package:greenhub/features/edit_address/ui/pages/edit_address_screen.dart';
 import 'package:greenhub/features/add_address/ui/pages/add_address_screen.dart';
-import 'package:greenhub/features/order_tracking/ui/pages/order_tracking_screen.dart';
-import 'package:greenhub/features/order_tracking/logic/order_tracking_cubit.dart';
-import 'package:greenhub/features/order_details/ui/pages/order_details.dart';
+
 import 'package:greenhub/features/download_invoice/ui/pages/download_invoice_screen.dart';
 import 'package:greenhub/features/messages/ui/pages/messages_screen.dart';
 import 'package:greenhub/features/notification/logic/cubit/notification_cubit.dart';
 import 'package:greenhub/features/notification/ui/pages/notifications_screen.dart';
-import 'package:greenhub/features/negotiation_offers/ui/pages/negotiation_offers.dart';
 import 'package:greenhub/features/choose_language/ui/pages/language_screen.dart';
 import 'package:greenhub/features/file_complaint/ui/pages/file_complaint_screen.dart';
 
 import 'package:greenhub/features/auth/verifycode/data/params/verify_code_route_params.dart';
-import 'package:greenhub/features/rate_negotiation/ui/pages/rate_negotiation_screen.dart';
 import 'routes.dart';
 
 /// Global key for navigation
@@ -161,41 +156,7 @@ final GoRouter appRouter = GoRouter(
       name: Routes.ADD_ADDRESS,
       builder: (context, state) => const AddAddressScreen(),
     ),
-    GoRoute(
-      path: '/orders',
-      name: Routes.orders,
-      builder: (context, state) => const OrderScreen(),
-    ),
-    GoRoute(
-      path: '/order-tracking/:orderId',
-      name: Routes.ORDER_TRACKING,
-      builder: (context, state) {
-        final orderIdStr = state.pathParameters['orderId'] ?? '0';
-        final orderId = int.tryParse(orderIdStr) ?? 0;
-        return BlocProvider(
-          create: (context) => OrderTrackingCubit(),
-          // `OrderTrackingScreen` already calls `loadOrderTracking` in `build`,
-          // or we can call it here instead of inside the screen's build method.
-          // Since the screen calls it if orderId is not null, we don't need to call it here to avoid duplicate calls.
-          child: OrderTrackingScreen(orderId: orderId),
-        );
-      },
-    ),
-    GoRoute(
-      path: '/order-details',
-      name: Routes.ORDER_DETAILS,
-      builder: (context, state) {
-        int? orderId;
-        if (state.extra is int) {
-          orderId = state.extra as int;
-        } else if (state.extra is String) {
-          orderId = int.tryParse(state.extra as String);
-        } else if (state.pathParameters.containsKey('orderId')) {
-          orderId = int.tryParse(state.pathParameters['orderId'] ?? '');
-        }
-        return OrderDetailsScreen(orderId: orderId);
-      },
-    ),
+
     GoRoute(
       path: '/download-invoice',
       name: Routes.DOWNLOAD_INVOICE,
@@ -214,19 +175,7 @@ final GoRouter appRouter = GoRouter(
       name: Routes.MESSAGES,
       builder: (context, state) => const MessagesScreen(),
     ),
-    GoRoute(
-      path: '/negotiation-offers',
-      name: Routes.NEGOTIATION_OFFERS,
-      builder: (context, state) {
-        int orderId = 0;
-        if (state.extra is int) {
-          orderId = state.extra as int;
-        } else if (state.extra is String) {
-          orderId = int.tryParse(state.extra as String) ?? 0;
-        }
-        return NegotiationOffersScreen(orderId: orderId);
-      },
-    ),
+
     GoRoute(
       path: '/language',
       name: Routes.LANGUAGE,
@@ -242,14 +191,7 @@ final GoRouter appRouter = GoRouter(
       builder: (context, state) =>
           const Scaffold(body: Center(child: Text('Page not found'))),
     ),
-    GoRoute(
-      path: '/rate-negotiation',
-      name: Routes.RATE_NEGOTIATION,
-      builder: (context, state) {
-        final orderId = state.extra as int?;
-        return RateNegotiationScreen(orderId: orderId ?? 0);
-      },
-    ),
+
     GoRoute(
       path: '/notifications',
       name: Routes.NOTIFICATIONS,

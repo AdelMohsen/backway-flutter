@@ -5,6 +5,8 @@ import 'package:greenhub/core/assets/app_svg.dart';
 import 'package:greenhub/core/theme/colors/styles.dart';
 import 'package:greenhub/core/utils/widgets/buttons/default_button.dart';
 import 'package:greenhub/core/theme/text_styles/text_styles.dart';
+import 'package:greenhub/core/utils/constant/app_strings.dart';
+import 'package:greenhub/core/utils/extensions/extensions.dart';
 
 class OnboardingBottomCard extends StatelessWidget {
   final VoidCallback onNextPressed;
@@ -13,7 +15,7 @@ class OnboardingBottomCard extends StatelessWidget {
   final String titleHighlight;
   final String titlePart2;
   final String subtitle;
-  final String buttonText;
+  final String? buttonText;
   final String? buttonIcon;
 
   const OnboardingBottomCard({
@@ -24,7 +26,7 @@ class OnboardingBottomCard extends StatelessWidget {
     required this.titleHighlight,
     required this.titlePart2,
     required this.subtitle,
-    this.buttonText = 'Next',
+    this.buttonText,
     this.buttonIcon,
   }) : super(key: key);
 
@@ -94,7 +96,7 @@ class OnboardingBottomCard extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Text(
-                  buttonText,
+                  buttonText ?? AppStrings.next.tr,
                   style: Styles.urbanistSize14w700White.copyWith(fontSize: 16),
                 ),
                 const SizedBox(width: 8),

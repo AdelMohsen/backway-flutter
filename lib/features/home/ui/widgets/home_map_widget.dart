@@ -1,6 +1,7 @@
 import 'dart:math';
 import 'dart:ui' as ui;
 import 'driver_details_bottom_sheet.dart';
+import 'filter_drivers_bottom_sheet.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart' as svg;
@@ -10,6 +11,8 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:greenhub/core/assets/app_svg.dart';
 import 'package:greenhub/core/theme/colors/styles.dart';
 import 'package:greenhub/core/theme/text_styles/text_styles.dart';
+import 'package:greenhub/core/utils/constant/app_strings.dart';
+import 'package:greenhub/core/utils/extensions/extensions.dart';
 
 class HomeMapWidget extends StatefulWidget {
   final double? latitude;
@@ -369,9 +372,23 @@ class _HomeMapWidgetState extends State<HomeMapWidget> {
     return markers;
   }
 
+  void _showFilters() {
+    showModalBottomSheet(
+      context: context,
+      isScrollControlled: true,
+      backgroundColor: Colors.transparent,
+      builder: (context) => const FilterDriversBottomSheet(),
+    );
+  }
+
   void _showDriverDetails(int index) {
     final driver = _dummyDrivers[index];
-    final carNames = ["Cargo Van", "Container", "Sedan", "SUV"];
+    final carNames = [
+      AppStrings.cargoVan.tr,
+      AppStrings.container.tr,
+      AppStrings.sedan.tr,
+      AppStrings.suv.tr,
+    ];
 
     showModalBottomSheet(
       context: context,
@@ -490,34 +507,36 @@ class _HomeMapWidgetState extends State<HomeMapWidget> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          // Filter Dropdown Box
-          Container(
-            padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 8),
-            decoration: BoxDecoration(
-              border: Border.all(color: Colors.grey.shade200),
-              borderRadius: BorderRadius.circular(30),
-            ),
-            child: Row(
-              children: [
-                // Orange dots icon
-                SvgPicture.asset(SvgImages.filter),
-                const SizedBox(width: 12),
-                Expanded(
-                  child: Text(
-                    "Filter Drivers",
-                    style: Styles.urbanistSize14w400White.copyWith(
-                      color: const Color.fromRGBO(130, 134, 171, 1),
+          GestureDetector(
+            onTap: _showFilters,
+            child: Container(
+              padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 8),
+              decoration: BoxDecoration(
+                border: Border.all(color: Colors.grey.shade200),
+                borderRadius: BorderRadius.circular(30),
+              ),
+              child: Row(
+                children: [
+                  // Orange dots icon
+                  SvgPicture.asset(SvgImages.filter),
+                  const SizedBox(width: 12),
+                  Expanded(
+                    child: Text(
+                      AppStrings.filterTitle.tr,
+                      style: Styles.urbanistSize14w400White.copyWith(
+                        color: const Color.fromRGBO(130, 134, 171, 1),
+                      ),
                     ),
                   ),
-                ),
-                SvgPicture.asset(
-                  width: 15,
-                  height: 15,
-                  SvgImages.drop,
-                  color: const Color.fromRGBO(130, 134, 171, 1),
-                ),
-                // Circle arrow button
-              ],
+                  SvgPicture.asset(
+                    width: 15,
+                    height: 15,
+                    SvgImages.drop,
+                    color: const Color.fromRGBO(130, 134, 171, 1),
+                  ),
+                  // Circle arrow button
+                ],
+              ),
             ),
           ),
           const SizedBox(height: 14),
@@ -526,13 +545,19 @@ class _HomeMapWidgetState extends State<HomeMapWidget> {
             scrollDirection: Axis.horizontal,
             child: Row(
               children: [
-                _buildFilterChip("All Cars", isSelected: true),
+                _buildFilterChip(AppStrings.allCars.tr, isSelected: true),
                 const SizedBox(width: 10),
-                _buildFilterChip("Car", svgAsset: SvgImages.car1),
+                _buildFilterChip(AppStrings.car.tr, svgAsset: SvgImages.car1),
                 const SizedBox(width: 10),
-                _buildFilterChip("Cargo Van", svgAsset: SvgImages.car4),
+                _buildFilterChip(
+                  AppStrings.cargoVan.tr,
+                  svgAsset: SvgImages.car4,
+                ),
                 const SizedBox(width: 10),
-                _buildFilterChip("Container", svgAsset: SvgImages.car2),
+                _buildFilterChip(
+                  AppStrings.container.tr,
+                  svgAsset: SvgImages.car2,
+                ),
               ],
             ),
           ),
@@ -602,9 +627,9 @@ class _HomeMapWidgetState extends State<HomeMapWidget> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          _buildLegendItem(Colors.green, "Available"),
+          _buildLegendItem(Colors.green, AppStrings.available.tr),
           const SizedBox(height: 12),
-          _buildLegendItem(Colors.grey, "Not available"),
+          _buildLegendItem(Colors.grey, AppStrings.notAvailable.tr),
         ],
       ),
     );

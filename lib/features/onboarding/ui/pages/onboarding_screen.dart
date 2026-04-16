@@ -146,7 +146,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
       children: [
         // Ribbons background (behind phone)
         Positioned(
-          top: MediaQuery.of(context).padding.top + 290,
+          top: 410,
           right: -45,
           child: Image.asset(
             ImagesApp.vec1,
@@ -179,7 +179,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
 
         // Ribbon on top of phone
         Positioned(
-          top: MediaQuery.of(context).padding.top + 160,
+          top: 180,
           left: -1,
           child: Image.asset(ImagesApp.vec2, height: 111),
         ),
