@@ -33,4 +33,5 @@ class Routes {
   static const String CHOOSE_ACCOUNT = '/choose_account';
   static const String COMPLETE_PROFILE = '/complete-profile';
   static const String DRIVER_DETAILS = '/driverDetails';
+  static const String SHIPMENT_DETAILS = '/shipmentDetails';
 }

@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:greenhub/core/assets/app_svg.dart';
+import 'package:greenhub/core/navigation/custom_navigation.dart';
+import 'package:greenhub/core/navigation/routes.dart';
 import 'package:greenhub/core/theme/colors/styles.dart';
 import 'package:greenhub/core/theme/text_styles/text_styles.dart';
 import 'package:greenhub/core/utils/widgets/misc/custom_scaffold_widget.dart';
@@ -158,7 +160,9 @@ class _ShipmentScreenState extends State<ShipmentScreen> {
                           itemBuilder: (context, index) {
                             return ShipmentCard(
                               onDetails: () {},
-                              onCancel: () {},
+                              onCancel: () {
+                                CustomNavigator.push(Routes.SHIPMENT_DETAILS);
+                              },
                               onTracking: () {},
                               orderId: "28765543",
                               vehicleType: "Cargo Van",

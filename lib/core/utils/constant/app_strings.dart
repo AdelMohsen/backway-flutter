@@ -621,7 +621,8 @@ class AppStrings {
   static const String skip = 'skip';
 
   // ---------- PHONE VALIDATION ----------
-  static const String validationSelectCountryCode = 'validationSelectCountryCode';
+  static const String validationSelectCountryCode =
+      'validationSelectCountryCode';
   static const String validationPhoneRequired = 'validationPhoneRequired';
   static const String validationPhoneDigitsOnly = 'validationPhoneDigitsOnly';
   static const String validationPhoneMinLength = 'validationPhoneMinLength';
@@ -646,9 +647,12 @@ class AppStrings {
   // ---------- MORE VALIDATION MESSAGES ----------
   static const String pleaseEnterValidUserName = 'pleaseEnterValidUserName';
   static const String pleaseEnterValidTitle = 'pleaseEnterValidTitle';
-  static const String pleaseEnterValidTitleWithoutPhone = 'pleaseEnterValidTitleWithoutPhone';
-  static const String pleaseEnterValidDescription = 'pleaseEnterValidDescription';
-  static const String pleaseEnterValidDescriptionWithoutPhone = 'pleaseEnterValidDescriptionWithoutPhone';
+  static const String pleaseEnterValidTitleWithoutPhone =
+      'pleaseEnterValidTitleWithoutPhone';
+  static const String pleaseEnterValidDescription =
+      'pleaseEnterValidDescription';
+  static const String pleaseEnterValidDescriptionWithoutPhone =
+      'pleaseEnterValidDescriptionWithoutPhone';
   static const String pleaseEnterValidPrice = 'pleaseEnterValidPrice';
   static const String pleaseEnterValidDiscount = 'pleaseEnterValidDiscount';
   static const String pleaseEnterValidLink = 'pleaseEnterValidLink';
@@ -685,4 +689,22 @@ class AppStrings {
   static const String mecca = 'mecca';
   static const String medina = 'medina';
   static const String ratingLabel = 'ratingLabel';
+
+  // ---------- SHIPMENT DETAILS ----------
+  static const String cancelShipment = 'cancelShipment';
+  static const String yesCancelShipment = 'yesCancelShipment';
+  static const String noCancel = 'noCancel';
+  static const String cancelShipmentSubtitle = 'cancelShipmentSubtitle';
+  static const String cancellationReason = 'cancellationReason';
+  static const String writeTheReason = 'writeTheReason';
+  static const String driverDetails = 'driverDetails';
+  static const String receiptDetails = 'receiptDetails';
+  static const String shipmentAmount = 'shipmentAmount';
+  static const String taxes = 'taxes';
+  static const String loadingCapacity = 'loadingCapacity';
+  static const String type = 'type';
+  static const String size = 'size';
+  static const String description = 'description';
+  static const String orderIdLabel = 'orderIdLabel';
+  static const String send = 'send';
 }
