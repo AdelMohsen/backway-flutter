@@ -7,6 +7,7 @@ import 'package:greenhub/features/auth/login/ui/pages/login_screen.dart';
 import 'package:greenhub/features/onboarding/ui/pages/onboarding_screen.dart';
 import 'package:greenhub/features/choice_account/ui/pages/choice_account.dart';
 import 'package:greenhub/features/choose_account/ui/pages/choose_account_screen.dart';
+import 'package:greenhub/features/rate_driver/ui/pages/rate_driver_screen.dart';
 
 import 'package:greenhub/features/settings/ui/pages/app_settings_screen.dart';
 import 'package:greenhub/features/driver_details/ui/pages/driver_details_screen.dart';
@@ -24,6 +25,7 @@ import 'package:greenhub/features/address/ui/pages/address_screen.dart';
 import 'package:greenhub/features/edit_address/ui/pages/edit_address_screen.dart';
 import 'package:greenhub/features/add_address/ui/pages/add_address_screen.dart';
 
+import 'package:greenhub/features/track_shipment/ui/pages/track_shipment_screen.dart';
 import 'package:greenhub/features/download_invoice/ui/pages/download_invoice_screen.dart';
 import 'package:greenhub/features/messages/ui/pages/messages_screen.dart';
 import 'package:greenhub/features/notification/logic/cubit/notification_cubit.dart';
@@ -31,7 +33,6 @@ import 'package:greenhub/features/notification/ui/pages/notifications_screen.dar
 import 'package:greenhub/features/choose_language/ui/pages/language_screen.dart';
 import 'package:greenhub/features/file_complaint/ui/pages/file_complaint_screen.dart';
 
-import 'package:greenhub/features/auth/verifycode/data/params/verify_code_route_params.dart';
 import 'routes.dart';
 
 /// Global key for navigation
@@ -69,6 +70,12 @@ final GoRouter appRouter = GoRouter(
       path: '/choice_account',
       name: Routes.CHOICE_ACCOUNT,
       builder: (context, state) => const ChoiceAccount(),
+    ),
+
+    GoRoute(
+      path: '/rate_driver',
+      name: Routes.RATE_DRIVER,
+      builder: (context, state) => const RateDriverScreen(),
     ),
 
     GoRoute(
@@ -138,8 +145,7 @@ final GoRouter appRouter = GoRouter(
       path: '/verify-code',
       name: Routes.VERIFY_CODE,
       builder: (context, state) {
-        final params = state.extra as VerifyCodeRouteParams;
-        return VerifyCodeScreen(params: params);
+        return VerifyCodeScreen();
       },
     ),
     GoRoute(
@@ -216,7 +222,19 @@ final GoRouter appRouter = GoRouter(
     GoRoute(
       path: '/shipmentDetails',
       name: Routes.SHIPMENT_DETAILS,
-      builder: (context, state) => const ShipmentDetailsScreen(),
+      builder: (context, state) {
+        final Map<String, dynamic>? extra =
+            state.extra as Map<String, dynamic>?;
+        return ShipmentDetailsScreen(
+          status: extra?['status'] ?? "New",
+          progress: extra?['progress'],
+        );
+      },
+    ),
+    GoRoute(
+      path: '/track_shipment',
+      name: Routes.TRACK_SHIPMENT,
+      builder: (context, state) => const TrackShipmentScreen(),
     ),
   ],
 

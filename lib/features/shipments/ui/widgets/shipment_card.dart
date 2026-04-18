@@ -44,77 +44,80 @@ class ShipmentCard extends StatelessWidget {
         status.toLowerCase() == 'canceled' ||
         status.toLowerCase() == 'cancelled';
 
-    return Container(
-      margin: const EdgeInsets.only(bottom: 16),
-      padding: const EdgeInsets.all(16),
-      decoration: BoxDecoration(
-        color: const Color.fromRGBO(249, 250, 251, 1),
-        borderRadius: BorderRadius.circular(16),
-        border: Border.all(
-          color: const Color.fromRGBO(243, 244, 246, 1),
-          width: 1,
+    return GestureDetector(
+      onTap: onDetails,
+      child: Container(
+        margin: const EdgeInsets.only(bottom: 16),
+        padding: const EdgeInsets.all(16),
+        decoration: BoxDecoration(
+          color: const Color.fromRGBO(249, 250, 251, 1),
+          borderRadius: BorderRadius.circular(16),
+          border: Border.all(
+            color: const Color.fromRGBO(243, 244, 246, 1),
+            width: 1,
+          ),
         ),
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          // Order ID + Status
-          Row(
-            children: [
-              // Package icon
-              _buildPackageIcon(),
-              const SizedBox(width: 16),
-              // Order ID + Car Type
-              Expanded(
-                child: _buildHeaderInfo(),
-              ),
-              // Status badge
-              ShipmentStatusBadge(
-                status: status,
-                isCompleted: isCompleted,
-                isCancelled: isCancelled,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            // Order ID + Status
+            Row(
+              children: [
+                // Package icon
+                _buildPackageIcon(),
+                const SizedBox(width: 16),
+                // Order ID + Car Type
+                Expanded(
+                  child: _buildHeaderInfo(),
+                ),
+                // Status badge
+                ShipmentStatusBadge(
+                  status: status,
+                  isCompleted: isCompleted,
+                  isCancelled: isCancelled,
+                ),
+              ],
+            ),
+
+            if (!isCancelled) ...[
+              const SizedBox(height: 14),
+              // Addresses
+              ShipmentAddresses(
+                fromAddress: fromAddress,
+                toAddress: toAddress,
               ),
             ],
-          ),
 
-          if (!isCancelled) ...[
-            const SizedBox(height: 14),
-            // Addresses
-            ShipmentAddresses(
-              fromAddress: fromAddress,
-              toAddress: toAddress,
-            ),
-          ],
-
-          // Progress Section
-          if (progress != null ||
-              (status.toLowerCase() == 'in progress' ||
-                  status.toLowerCase() == 'picking up')) ...[
-            const SizedBox(height: 14),
-            ShipmentProgressBar(
-              progress: progress,
-              statusColor: ShipmentUtils.getStatusColor(status),
-            ),
-          ],
-
-          if (!isCancelled) ...[
-            const SizedBox(height: 8),
-            const Divider(
-              color: Color.fromRGBO(243, 244, 246, 1),
-              thickness: 1,
-            ),
-            const SizedBox(height: 16),
-            if (isCompleted)
-              const ShipmentRating()
-            else
-              ShipmentCardActions(
-                status: status,
-                onDetails: onDetails,
-                onCancel: onCancel,
-                onTracking: onTracking,
+            // Progress Section
+            if (progress != null ||
+                (status.toLowerCase() == 'in progress' ||
+                    status.toLowerCase() == 'picking up')) ...[
+              const SizedBox(height: 14),
+              ShipmentProgressBar(
+                progress: progress,
+                statusColor: ShipmentUtils.getStatusColor(status),
               ),
+            ],
+
+            if (!isCancelled) ...[
+              const SizedBox(height: 8),
+              const Divider(
+                color: Color.fromRGBO(243, 244, 246, 1),
+                thickness: 1,
+              ),
+              const SizedBox(height: 16),
+              if (isCompleted)
+                const ShipmentRating()
+              else
+                ShipmentCardActions(
+                  status: status,
+                  onDetails: onDetails,
+                  onCancel: onCancel,
+                  onTracking: onTracking,
+                ),
+            ],
           ],
-        ],
+        ),
       ),
     );
   }

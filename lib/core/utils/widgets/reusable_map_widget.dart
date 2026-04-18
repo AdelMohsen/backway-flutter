@@ -63,17 +63,21 @@ class _ReusableMapWidgetState extends State<ReusableMapWidget> {
               mapToolbarEnabled: false,
             ),
             if (widget.floatingWidgetLeft != null)
-              Positioned(
-                bottom: 16,
-                left: 16,
-                child: widget.floatingWidgetLeft!,
-              ),
+              widget.floatingWidgetLeft is Positioned
+                  ? widget.floatingWidgetLeft!
+                  : Positioned(
+                      bottom: 16,
+                      left: 16,
+                      child: widget.floatingWidgetLeft!,
+                    ),
             if (widget.floatingWidgetRight != null)
-              Positioned(
-                bottom: 16,
-                right: 16,
-                child: widget.floatingWidgetRight!,
-              ),
+              widget.floatingWidgetRight is Positioned
+                  ? widget.floatingWidgetRight!
+                  : Positioned(
+                      bottom: 16,
+                      right: 16,
+                      child: widget.floatingWidgetRight!,
+                    ),
           ],
         ),
       ),

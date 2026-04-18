@@ -132,5 +132,13 @@
     "paymentMethod": "Payment method",
     "totalAmount": "Total Amount",
     "from": "From",
-    "to": "To"
+    "to": "To",
+    "rateDelivery": "Rate this delivery",
+    "liveTracking": "Live tracking",
+    "cancelledStatus": "Cancelled",
+    "completedStatus": "Completed",
+    "deliveredStatus": "Delivered",
+    "inTransitStatus": "In Transit",
+    "call": "Call",
+    "message": "Message"
 }

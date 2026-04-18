@@ -32,7 +32,7 @@ class ShipmentStatusBadge extends StatelessWidget {
         children: [
           Text(
             isCompleted
-                ? AppStrings.delivered.tr
+                ? AppStrings.deliveredStatus.tr
                 : isCancelled
                 ? AppStrings.cancelledStatus.tr
                 : (status.toLowerCase() == 'in progress' ||

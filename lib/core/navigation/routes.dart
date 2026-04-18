@@ -34,4 +34,6 @@ class Routes {
   static const String COMPLETE_PROFILE = '/complete-profile';
   static const String DRIVER_DETAILS = '/driverDetails';
   static const String SHIPMENT_DETAILS = '/shipmentDetails';
+  static const String RATE_DRIVER = '/rate_driver';
+  static const String TRACK_SHIPMENT = '/track_shipment';
 }

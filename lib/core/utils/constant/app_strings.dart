@@ -484,6 +484,8 @@ class AppStrings {
   static const String arrivedAtDelivery = 'arrivedAtDelivery';
   static const String deliveredStatus = 'deliveredStatus';
   static const String cancelledStatus = 'cancelledStatus';
+  static const String completedStatus = 'completedStatus';
+  static const String inTransitStatus = 'inTransitStatus';
 
   // ---------- REGISTER ----------
   static const String registerSuccess = 'registerSuccess';
@@ -707,4 +709,8 @@ class AppStrings {
   static const String description = 'description';
   static const String orderIdLabel = 'orderIdLabel';
   static const String send = 'send';
+  static const String rateDelivery = 'rateDelivery';
+  static const String liveTracking = 'liveTracking';
+  static const String call = 'call';
+  static const String message = 'message';
 }

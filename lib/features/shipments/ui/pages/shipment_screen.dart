@@ -159,9 +159,47 @@ class _ShipmentScreenState extends State<ShipmentScreen> {
                           itemCount: 4,
                           itemBuilder: (context, index) {
                             return ShipmentCard(
-                              onDetails: () {},
+                              onDetails: () {
+                                final statusVal =
+                                    _tabs[_selectedTab].toLowerCase() ==
+                                            'in progress'
+                                        ? (index == 0
+                                            ? 'Picking Up'
+                                            : 'In Progress')
+                                        : _tabs[_selectedTab];
+                                final progressVal =
+                                    _tabs[_selectedTab].toLowerCase() ==
+                                            'in progress'
+                                        ? 0.75
+                                        : null;
+                                CustomNavigator.push(
+                                  Routes.SHIPMENT_DETAILS,
+                                  extra: {
+                                    'status': statusVal,
+                                    'progress': progressVal,
+                                  },
+                                );
+                              },
                               onCancel: () {
-                                CustomNavigator.push(Routes.SHIPMENT_DETAILS);
+                                final statusVal =
+                                    _tabs[_selectedTab].toLowerCase() ==
+                                            'in progress'
+                                        ? (index == 0
+                                            ? 'Picking Up'
+                                            : 'In Progress')
+                                        : _tabs[_selectedTab];
+                                final progressVal =
+                                    _tabs[_selectedTab].toLowerCase() ==
+                                            'in progress'
+                                        ? 0.75
+                                        : null;
+                                CustomNavigator.push(
+                                  Routes.SHIPMENT_DETAILS,
+                                  extra: {
+                                    'status': statusVal,
+                                    'progress': progressVal,
+                                  },
+                                );
                               },
                               onTracking: () {},
                               orderId: "28765543",

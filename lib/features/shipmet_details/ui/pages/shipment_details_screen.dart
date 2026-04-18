@@ -2,6 +2,7 @@ import 'dart:math' as math;
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:greenhub/core/navigation/custom_navigation.dart';
+import 'package:greenhub/core/navigation/routes.dart';
 import 'package:greenhub/core/shared/blocs/main_app_bloc.dart';
 import 'package:greenhub/core/theme/text_styles/text_styles.dart';
 import 'package:greenhub/core/utils/constant/app_strings.dart';
@@ -17,7 +18,10 @@ import '../widgets/receipt_details_card.dart';
 import '../widgets/shipment_details_card.dart';
 
 class ShipmentDetailsScreen extends StatelessWidget {
-  const ShipmentDetailsScreen({super.key});
+  final String status;
+  final double? progress;
+
+  const ShipmentDetailsScreen({super.key, this.status = "New", this.progress});
 
   @override
   Widget build(BuildContext context) {
@@ -35,12 +39,13 @@ class ShipmentDetailsScreen extends StatelessWidget {
                 children: [
                   const SizedBox(height: 24),
                   // Dedicated ShipmentDetailsCard
-                  const ShipmentDetailsCard(
+                  ShipmentDetailsCard(
                     orderId: "28765543",
                     vehicleType: "Cargo Van",
                     fromAddress: "Toronto, ON · M5V 2H1",
                     toAddress: "Vancouver, BC · V6B 3K9",
-                    status: "New",
+                    status: status,
+                    progress: progress,
                     loadingCapacity: "10000 dl",
                     type: "Heavy Duty",
                     size: "Large",
@@ -122,6 +127,35 @@ class ShipmentDetailsScreen extends StatelessWidget {
   }
 
   Widget _buildBottomAction(BuildContext context) {
+    final bool isCompleted =
+        status.toLowerCase() == 'delivered' ||
+        status.toLowerCase() == 'completed';
+    final bool isInProgress =
+        status.toLowerCase() == 'in progress' ||
+        status.toLowerCase() == 'picking up' ||
+        status.toLowerCase() == 'in transit';
+
+    String buttonText = AppStrings.cancelShipment.tr;
+    Color backgroundColor = const Color.fromRGBO(254, 242, 242, 1);
+    Color textColor = const Color.fromRGBO(220, 38, 38, 1);
+    VoidCallback? onPressed = () => _showCancelBottomSheet(context);
+
+    if (isCompleted) {
+      buttonText = AppStrings.rateDelivery.tr;
+      backgroundColor = const Color.fromRGBO(240, 244, 253, 1);
+      textColor = const Color.fromRGBO(0, 45, 133, 1);
+      onPressed = () {
+        CustomNavigator.push(Routes.RATE_DRIVER);
+      };
+    } else if (isInProgress) {
+      buttonText = AppStrings.liveTracking.tr;
+      backgroundColor = const Color.fromRGBO(240, 244, 253, 1);
+      textColor = const Color.fromRGBO(0, 45, 133, 1);
+      onPressed = () {
+        CustomNavigator.push(Routes.TRACK_SHIPMENT);
+      };
+    }
+
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
       decoration: const BoxDecoration(
@@ -133,12 +167,10 @@ class ShipmentDetailsScreen extends StatelessWidget {
       ),
       child: SafeArea(
         child: DefaultButton(
-          onPressed: () => _showCancelBottomSheet(context),
-          text: AppStrings.cancelShipment.tr,
-          backgroundColor: const Color.fromRGBO(254, 242, 242, 1),
-          textStyle: Styles.urbanistSize14w700White.copyWith(
-            color: const Color.fromRGBO(220, 38, 38, 1),
-          ),
+          onPressed: onPressed,
+          text: buttonText,
+          backgroundColor: backgroundColor,
+          textStyle: Styles.urbanistSize14w700White.copyWith(color: textColor),
           borderRadiusValue: 45,
           height: 52,
         ),

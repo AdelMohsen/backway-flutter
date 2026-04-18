@@ -154,4 +154,5 @@ class SvgImages {
   static const String pay = 'assets/svgs/new/pay.svg';
   static const String size = 'assets/svgs/new/size.svg';
   static const String total = 'assets/svgs/new/total.svg';
+  static const String locationDriver = 'assets/svgs/new/location_driver.svg';
 }

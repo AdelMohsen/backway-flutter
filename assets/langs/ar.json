@@ -132,5 +132,13 @@
     "paymentMethod": "طريقة الدفع",
     "totalAmount": "المبلغ الإجمالي",
     "from": "من",
-    "to": "إلى"
+    "to": "إلى",
+    "rateDelivery": "تقييم هذا التوصيل",
+    "liveTracking": "تتبع مباشر",
+    "cancelledStatus": "ملغاة",
+    "completedStatus": "مكتملة",
+    "deliveredStatus": "تم التوصيل",
+    "inTransitStatus": "قيد التوصيل",
+    "call": "اتصال",
+    "message": "مراسلة"
 }

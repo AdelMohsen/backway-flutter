@@ -130,5 +130,13 @@
     "paymentMethod": "Mode de paiement",
     "totalAmount": "Montant total",
     "from": "De",
-    "to": "À"
+    "to": "À",
+    "rateDelivery": "Évaluer cette livraison",
+    "liveTracking": "Suivi en direct",
+    "cancelledStatus": "Annulée",
+    "completedStatus": "Terminée",
+    "deliveredStatus": "Livré",
+    "inTransitStatus": "En transit",
+    "call": "Appeler",
+    "message": "Message"
 }

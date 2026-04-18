@@ -5,6 +5,8 @@ import 'package:greenhub/core/theme/colors/styles.dart';
 import 'package:greenhub/core/theme/text_styles/text_styles.dart';
 import 'package:greenhub/core/utils/constant/app_strings.dart';
 import 'package:greenhub/core/utils/extensions/extensions.dart';
+import 'shipment_progress_bar.dart';
+import 'shipment_utils.dart';
 import 'shipment_addresses.dart';
 import 'shipment_status_badge.dart';
 import 'shipment_description_section.dart';
@@ -20,6 +22,7 @@ class ShipmentDetailsCard extends StatelessWidget {
   final String type;
   final String size;
   final String description;
+  final double? progress;
 
   const ShipmentDetailsCard({
     super.key,
@@ -32,6 +35,7 @@ class ShipmentDetailsCard extends StatelessWidget {
     required this.type,
     required this.size,
     required this.description,
+    this.progress,
   });
 
   @override
@@ -74,6 +78,17 @@ class ShipmentDetailsCard extends StatelessWidget {
             const SizedBox(height: 14),
             // Addresses
             ShipmentAddresses(fromAddress: fromAddress, toAddress: toAddress),
+
+            if (progress != null ||
+                (status.toLowerCase() == 'in progress' ||
+                    status.toLowerCase() == 'picking up')) ...[
+              const SizedBox(height: 14),
+              ShipmentProgressBar(
+                progress: progress,
+                statusColor: ShipmentUtils.getStatusColor(status),
+              ),
+            ],
+
             const SizedBox(height: 12),
             Divider(
               color: const Color.fromRGBO(243, 244, 246, 1),
@@ -137,10 +152,14 @@ class ShipmentDetailsCard extends StatelessWidget {
               ),
             ),
             const SizedBox(width: 4),
-            Text(
-              "#$orderId",
-              style: Styles.urbanistSize16w700Orange.copyWith(
-                color: Color.fromRGBO(64, 64, 64, 1),
+            Flexible(
+              child: Text(
+                "#$orderId",
+                overflow: TextOverflow.ellipsis,
+                maxLines: 1,
+                style: Styles.urbanistSize16w700Orange.copyWith(
+                  color: Color.fromRGBO(64, 64, 64, 1),
+                ),
               ),
             ),
           ],
@@ -150,11 +169,15 @@ class ShipmentDetailsCard extends StatelessWidget {
           children: [
             SvgPicture.asset(SvgImages.car4, width: 14, height: 10),
             const SizedBox(width: 4),
-            Text(
-              vehicleType,
-              style: Styles.urbanistSize12w400Orange.copyWith(
-                fontWeight: FontWeight.w500,
-                color: const Color.fromRGBO(130, 134, 171, 1),
+            Flexible(
+              child: Text(
+                vehicleType,
+                overflow: TextOverflow.ellipsis,
+                maxLines: 1,
+                style: Styles.urbanistSize12w400Orange.copyWith(
+                  fontWeight: FontWeight.w500,
+                  color: const Color.fromRGBO(130, 134, 171, 1),
+                ),
               ),
             ),
           ],
