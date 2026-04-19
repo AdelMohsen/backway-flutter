@@ -36,4 +36,5 @@ class Routes {
   static const String SHIPMENT_DETAILS = '/shipmentDetails';
   static const String RATE_DRIVER = '/rate_driver';
   static const String TRACK_SHIPMENT = '/track_shipment';
+  static const String SHIPMENT_REQUEST = '/shipmentRequest';
 }

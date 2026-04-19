@@ -11,6 +11,7 @@ import 'package:greenhub/features/rate_driver/ui/pages/rate_driver_screen.dart';
 
 import 'package:greenhub/features/settings/ui/pages/app_settings_screen.dart';
 import 'package:greenhub/features/driver_details/ui/pages/driver_details_screen.dart';
+import 'package:greenhub/features/shipment_request/ui/pages/shipment_request_screen.dart';
 import 'package:greenhub/features/shipmet_details/ui/pages/shipment_details_screen.dart';
 import 'package:greenhub/features/splash/splash_screen.dart';
 import 'package:greenhub/features/nav_layout/pages/custom_navbar_layout_screen.dart';
@@ -71,7 +72,11 @@ final GoRouter appRouter = GoRouter(
       name: Routes.CHOICE_ACCOUNT,
       builder: (context, state) => const ChoiceAccount(),
     ),
-
+    GoRoute(
+      path: '/shipmentRequest',
+      name: Routes.SHIPMENT_REQUEST,
+      builder: (context, state) => const ShipmentRequestScreen(),
+    ),
     GoRoute(
       path: '/rate_driver',
       name: Routes.RATE_DRIVER,

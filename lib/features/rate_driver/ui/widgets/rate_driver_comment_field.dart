@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:greenhub/core/theme/text_styles/text_styles.dart';
+import 'package:greenhub/core/utils/constant/app_strings.dart';
+import 'package:greenhub/core/utils/extensions/extensions.dart';
 import 'package:greenhub/core/utils/widgets/form_fields/default_form_field.dart';
 
 class RateDriverCommentField extends StatelessWidget {
@@ -18,7 +20,7 @@ class RateDriverCommentField extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 16),
             child: Text(
-              "Add your comment",
+              AppStrings.addYourComment.tr,
               style: Styles.urbanistSize14w500Orange.copyWith(
                 color: const Color.fromRGBO(64, 64, 64, 1),
                 fontWeight: FontWeight.w600,
@@ -36,7 +38,7 @@ class RateDriverCommentField extends StatelessWidget {
               controller: controller,
               maxLines: 4,
               decoration: InputDecoration(
-                hintText: "Write your review",
+                hintText: AppStrings.writeYourReviewHint.tr,
                 hintStyle: Styles.urbanistSize12w400Orange.copyWith(
                   color: const Color.fromRGBO(148, 163, 184, 1),
                 ),

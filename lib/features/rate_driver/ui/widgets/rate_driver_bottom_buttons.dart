@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:greenhub/core/theme/colors/styles.dart';
 import 'package:greenhub/core/theme/text_styles/text_styles.dart';
+import 'package:greenhub/core/utils/constant/app_strings.dart';
+import 'package:greenhub/core/utils/extensions/extensions.dart';
 import 'package:greenhub/core/utils/widgets/buttons/default_button.dart';
 
 class RateDriverBottomButtons extends StatelessWidget {
@@ -26,7 +28,7 @@ class RateDriverBottomButtons extends StatelessWidget {
         children: [
           DefaultButton(
             onPressed: onSubmit,
-            text: "Submit Review",
+            text: AppStrings.submitReview.tr,
             backgroundColor: ColorsApp.kPrimary,
             textStyle: Styles.urbanistSize14w700White,
             borderRadiusValue: 45,
@@ -44,7 +46,7 @@ class RateDriverBottomButtons extends StatelessWidget {
                 borderRadius: BorderRadius.circular(45),
               ),
               child: Text(
-                "Maybe Later",
+                AppStrings.maybeLater.tr,
                 style: Styles.urbanistSize14w600Orange.copyWith(
                   color: Color.fromRGBO(107, 114, 128, 1),
                 ),

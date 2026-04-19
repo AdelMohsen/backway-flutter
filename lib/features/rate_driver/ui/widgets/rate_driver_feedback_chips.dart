@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:greenhub/core/theme/colors/styles.dart';
 import 'package:greenhub/core/theme/text_styles/text_styles.dart';
+import 'package:greenhub/core/utils/constant/app_strings.dart';
+import 'package:greenhub/core/utils/extensions/extensions.dart';
 
 class RateDriverFeedbackChips extends StatelessWidget {
   final List<String> tags;
@@ -21,7 +23,7 @@ class RateDriverFeedbackChips extends StatelessWidget {
       children: [
         const SizedBox(height: 32),
         Text(
-          "How was the delivery?",
+          AppStrings.rateDelivery.tr, // Reusing existing key or adding new one
           style: Styles.urbanistSize20w500Orange.copyWith(
             color: const Color.fromRGBO(64, 64, 64, 1),
           ),
@@ -54,7 +56,7 @@ class RateDriverFeedbackChips extends StatelessWidget {
                   ),
                 ),
                 child: Text(
-                  tag,
+                  tag.tr,
                   style: Styles.urbanistSize12w600Orange.copyWith(
                     color: isSelected
                         ? ColorsApp.kPrimary

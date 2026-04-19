@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:greenhub/core/theme/text_styles/text_styles.dart';
+import 'package:greenhub/core/utils/constant/app_strings.dart';
+import 'package:greenhub/core/utils/extensions/extensions.dart';
 import 'package:greenhub/core/utils/widgets/misc/dynamic_rating_bar_widget.dart';
 
 class RateDriverExperienceRating extends StatelessWidget {
@@ -18,7 +20,7 @@ class RateDriverExperienceRating extends StatelessWidget {
       children: [
         const SizedBox(height: 32),
         Text(
-          "Rate Your Experience!",
+          AppStrings.rateYourExperience.tr,
           style: Styles.urbanistSize20w500Orange.copyWith(
             color: const Color.fromRGBO(64, 64, 64, 1),
             fontWeight: FontWeight.w500,

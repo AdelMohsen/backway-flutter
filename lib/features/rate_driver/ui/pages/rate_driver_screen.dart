@@ -3,6 +3,8 @@ import 'package:flutter_svg/svg.dart';
 import 'package:greenhub/core/assets/app_svg.dart';
 import 'package:greenhub/core/navigation/custom_navigation.dart';
 import 'package:greenhub/core/theme/text_styles/text_styles.dart';
+import 'package:greenhub/core/utils/constant/app_strings.dart';
+import 'package:greenhub/core/utils/extensions/extensions.dart';
 import 'package:greenhub/core/utils/widgets/misc/custom_scaffold_widget.dart';
 import '../widgets/rate_driver_profile_header.dart';
 import '../widgets/rate_driver_experience_rating.dart';
@@ -23,11 +25,11 @@ class _RateDriverScreenState extends State<RateDriverScreen> {
   final TextEditingController _commentController = TextEditingController();
 
   final List<String> _tags = [
-    "Punctual",
-    "Safe Driving",
-    "Professional",
-    "Communication",
-    "Vehicle Condition",
+    AppStrings.punctual,
+    AppStrings.safeDriving,
+    AppStrings.professional,
+    AppStrings.communication,
+    AppStrings.vehicleCondition,
   ];
 
   void _onTagToggle(String tag) {
@@ -79,7 +81,7 @@ class _RateDriverScreenState extends State<RateDriverScreen> {
                 ),
                 Expanded(
                   child: Text(
-                    "Rate Driver",
+                    AppStrings.rateDriver.tr,
                     textAlign: TextAlign.center,
                     style: Styles.urbanistSize20w700Orange.copyWith(
                       color: const Color.fromRGBO(17, 17, 17, 1),
@@ -96,9 +98,9 @@ class _RateDriverScreenState extends State<RateDriverScreen> {
             child: SingleChildScrollView(
               child: Column(
                 children: [
-                  const RateDriverProfileHeader(
-                    name: "Jaskson Oliver",
-                    vehicleType: "Cargo Van",
+                  RateDriverProfileHeader(
+                    name: AppStrings.dummyDriverName.tr,
+                    vehicleType: AppStrings.cargoVan.tr,
                   ),
                   RateDriverExperienceRating(
                     rating: _rating,

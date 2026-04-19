@@ -713,4 +713,40 @@ class AppStrings {
   static const String liveTracking = 'liveTracking';
   static const String call = 'call';
   static const String message = 'message';
+  static const String packageDetails = 'packageDetails';
+  static const String selectShipmentCity = 'selectShipmentCity';
+  static const String chooseCityForShipmentHint = 'chooseCityForShipmentHint';
+  static const String itemType = 'itemType';
+  static const String itemTypeHint = 'itemTypeHint';
+  static const String documents = 'documents';
+  static const String electronics = 'electronics';
+  static const String clothes = 'clothes';
+  static const String approximateWeight = 'approximateWeight';
+  static const String weightHint = 'weightHint';
+  static const String sizePreset = 'sizePreset';
+  static const String selectSizeHint = 'selectSizeHint';
+  static const String medium = 'medium';
+  static const String packageDescriptionOptional = 'packageDescriptionOptional';
+  static const String packageDescriptionHint = 'packageDescriptionHint';
+  static const String uploadPhotos = 'uploadPhotos';
+  static const String confirmPackage = 'confirmPackage';
+  static const String copyShipment = 'copyShipment';
+  static const String newShipment = 'newShipment';
+  static const String dummyDriverName = 'dummyDriverName';
+  static const String step1 = 'step1';
+  static const String step2 = 'step2';
+  static const String step3 = 'step3';
+
+  // ---------- RATE DRIVER ----------
+  static const String rateDriver = 'rateDriver';
+  static const String rateYourExperience = 'rateYourExperience';
+  static const String addYourComment = 'addYourComment';
+  static const String writeYourReviewHint = 'writeYourReviewHint';
+  static const String submitReview = 'submitReview';
+  static const String maybeLater = 'maybeLater';
+  static const String punctual = 'punctual';
+  static const String safeDriving = 'safeDriving';
+  static const String professional = 'professional';
+  static const String communication = 'communication';
+  static const String vehicleCondition = 'vehicleCondition';
 }

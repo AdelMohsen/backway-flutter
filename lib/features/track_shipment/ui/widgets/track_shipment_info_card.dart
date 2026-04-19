@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:greenhub/core/assets/app_images.dart';
 import 'package:greenhub/core/assets/app_svg.dart';
+import 'package:greenhub/core/theme/colors/styles.dart';
 import 'package:greenhub/core/theme/text_styles/text_styles.dart';
 import 'package:greenhub/core/utils/constant/app_strings.dart';
 import 'package:greenhub/core/utils/extensions/extensions.dart';
@@ -66,19 +67,25 @@ class TrackShipmentInfoCard extends StatelessWidget {
                   children: [
                     // Parcel Icon
                     Container(
-                      width: 48,
-                      height: 48,
+                      width: 44,
+                      height: 44,
                       decoration: BoxDecoration(
-                        shape: BoxShape.circle,
-                        color: Colors.white,
                         border: Border.all(
-                          color: const Color.fromRGBO(243, 244, 246, 1),
+                          width: 1,
+                          color: const Color.fromRGBO(244, 244, 244, 1),
+                        ),
+                        color: Color.fromRGBO(255, 255, 255, 1),
+                        shape: BoxShape.circle,
+                      ),
+                      child: Center(
+                        child: Image.asset(
+                          'assets/images/new/de.png',
+                          width: 28,
+                          height: 28,
                         ),
                       ),
-                      padding: const EdgeInsets.all(8),
-                      child: Image.asset(AppImages.box),
                     ),
-                    const SizedBox(width: 12),
+                    const SizedBox(width: 16),
                     // ID & Vehicle
                     Expanded(
                       child: Column(
@@ -89,16 +96,22 @@ class TrackShipmentInfoCard extends StatelessWidget {
                               children: [
                                 TextSpan(
                                   text: "ID: ",
-                                  style: Styles.urbanistSize12w400Orange.copyWith(
-                                    color: const Color.fromRGBO(156, 163, 175, 1),
-                                  ),
+                                  style: Styles.urbanistSize12w400Orange
+                                      .copyWith(
+                                        color: const Color.fromRGBO(
+                                          130,
+                                          134,
+                                          171,
+                                          1,
+                                        ),
+                                      ),
                                 ),
                                 TextSpan(
                                   text: "#$orderId",
-                                  style: Styles.urbanistSize16w600White.copyWith(
-                                    color: const Color.fromRGBO(31, 41, 55, 1),
-                                    fontSize: 16,
-                                  ),
+                                  style: Styles.urbanistSize16w700Orange
+                                      .copyWith(
+                                        color: Color.fromRGBO(64, 64, 64, 1),
+                                      ),
                                 ),
                               ],
                             ),
@@ -106,8 +119,11 @@ class TrackShipmentInfoCard extends StatelessWidget {
                           const SizedBox(height: 4),
                           Row(
                             children: [
-                              SvgPicture.asset(SvgImages.car4,
-                                  width: 22, height: 16),
+                              SvgPicture.asset(
+                                SvgImages.car4,
+                                width: 22,
+                                height: 16,
+                              ),
                               const SizedBox(width: 8),
                               Text(
                                 vehicleType,
@@ -135,7 +151,7 @@ class TrackShipmentInfoCard extends StatelessWidget {
                           Text(
                             "In Transit",
                             style: Styles.urbanistSize12w600Orange.copyWith(
-                              color: const Color.fromRGBO(251, 191, 36, 1),
+                              color: const Color.fromRGBO(245, 158, 11, 1),
                             ),
                           ),
                           const SizedBox(width: 4),
@@ -164,15 +180,15 @@ class TrackShipmentInfoCard extends StatelessWidget {
                         children: [
                           Text(
                             AppStrings.from.tr,
-                            style: Styles.urbanistSize12w400Orange.copyWith(
+                            style: Styles.urbanistSize12w500Orange.copyWith(
                               color: const Color.fromRGBO(156, 163, 175, 1),
                             ),
                           ),
                           const SizedBox(height: 4),
                           Text(
                             fromAddress,
-                            style: Styles.urbanistSize14w600White.copyWith(
-                              color: const Color.fromRGBO(55, 65, 81, 1),
+                            style: Styles.urbanistSize12w600Orange.copyWith(
+                              color: const Color.fromRGBO(75, 85, 99, 1),
                             ),
                           ),
                         ],
@@ -184,15 +200,15 @@ class TrackShipmentInfoCard extends StatelessWidget {
                         children: [
                           Text(
                             AppStrings.to.tr,
-                            style: Styles.urbanistSize12w400Orange.copyWith(
+                            style: Styles.urbanistSize12w500Orange.copyWith(
                               color: const Color.fromRGBO(156, 163, 175, 1),
                             ),
                           ),
                           const SizedBox(height: 4),
                           Text(
                             toAddress,
-                            style: Styles.urbanistSize14w600White.copyWith(
-                              color: const Color.fromRGBO(55, 65, 81, 1),
+                            style: Styles.urbanistSize12w600Orange.copyWith(
+                              color: const Color.fromRGBO(75, 85, 99, 1),
                             ),
                           ),
                         ],
@@ -200,9 +216,9 @@ class TrackShipmentInfoCard extends StatelessWidget {
                     ),
                   ],
                 ),
-                const SizedBox(height: 12),
+                const SizedBox(height: 16),
                 const Divider(color: Color.fromRGBO(243, 244, 246, 1)),
-                const SizedBox(height: 12),
+                const SizedBox(height: 16),
               ],
             ),
           ),
@@ -216,9 +232,8 @@ class TrackShipmentInfoCard extends StatelessWidget {
                 children: [
                   Text(
                     "Trip Progress",
-                    style: Styles.urbanistSize14w600Orange.copyWith(
-                      color: const Color.fromRGBO(17, 24, 39, 1),
-                      fontSize: 18,
+                    style: Styles.urbanistSize16w600White.copyWith(
+                      color: ColorsApp.kPrimary,
                     ),
                   ),
                   const SizedBox(height: 16),
@@ -250,9 +265,10 @@ class TrackShipmentInfoCard extends StatelessWidget {
                         stepNumber: 5,
                       ),
                       TripStep(
-                          label: "Completed",
-                          isCompleted: false,
-                          stepNumber: 6),
+                        label: "Completed",
+                        isCompleted: false,
+                        stepNumber: 6,
+                      ),
                     ],
                   ),
                   const SizedBox(height: 24),
@@ -266,7 +282,7 @@ class TrackShipmentInfoCard extends StatelessWidget {
             padding: const EdgeInsets.fromLTRB(20, 16, 20, 32),
             child: SizedBox(
               width: double.infinity,
-              height: 56,
+              height: 44,
               child: ElevatedButton(
                 onPressed: () {},
                 style: ElevatedButton.styleFrom(
@@ -279,17 +295,12 @@ class TrackShipmentInfoCard extends StatelessWidget {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    const Icon(
-                      Icons.phone_outlined,
-                      color: Colors.white,
-                      size: 20,
-                    ),
+                    SvgPicture.asset(SvgImages.phone, color: Colors.white),
                     const SizedBox(width: 8),
                     Text(
                       "Call driver",
                       style: Styles.urbanistSize14w700White.copyWith(
                         color: Colors.white,
-                        fontSize: 16,
                       ),
                     ),
                   ],

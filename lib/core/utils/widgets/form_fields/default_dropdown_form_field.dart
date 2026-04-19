@@ -85,6 +85,7 @@ class DefaultDropdownFormField extends StatelessWidget {
                 focusedBorder: InputBorder.none,
                 hintText: hintText,
                 hintStyle: Styles.urbanistSize12w400White.copyWith(
+                  fontSize: hintFontSize ?? 12,
                   color: const Color.fromRGBO(148, 163, 184, 1),
                 ),
                 prefixIcon: prefixIcon,

@@ -202,7 +202,9 @@ class DriverDetailsBottomSheet extends StatelessWidget {
               children: [
                 Expanded(
                   child: DefaultButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      CustomNavigator.push(Routes.SHIPMENT_REQUEST);
+                    },
                     backgroundColor: ColorsApp.kPrimary,
                     text: AppStrings.shipmentRequest.tr,
                     height: 52,
